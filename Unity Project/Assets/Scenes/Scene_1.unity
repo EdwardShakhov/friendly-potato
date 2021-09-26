@@ -162,6 +162,18 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 6.500901e-10
       objectReference: {fileID: 0}
+    - target: {fileID: 1714614646, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 515220730}
+    - target: {fileID: 1714614646, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 515220731}
+    - target: {fileID: 1871028777, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
+      propertyPath: m_YAxis.m_InvertInput
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1260597861999642, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -212,6 +224,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
+--- !u!1 &515220729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1260597861999642, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
+  m_PrefabInstance: {fileID: 515220728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &515220730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 932818055, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
+  m_PrefabInstance: {fileID: 515220728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515220729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a08fcc7342468409f503ecd66b25cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &515220731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515220729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4854856af5e249c1b873b9ae8046b256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 515220730}
+  controller: {fileID: 515220733}
+  gameCamera: {fileID: 1753185133}
+  animator: {fileID: 515220734}
+  speed: 1
+  turnSmoothTime: 0.1
+  turnSmoothVelocity: 0
+--- !u!143 &515220733 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 932818054, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
+  m_PrefabInstance: {fileID: 515220728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &515220734 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95509902755735526, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
+  m_PrefabInstance: {fileID: 515220728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &611061297
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,6 +1169,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1753185133 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1368188686, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
+  m_PrefabInstance: {fileID: 515220728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1874028928
 GameObject:
   m_ObjectHideFlags: 0
