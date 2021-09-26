@@ -11,9 +11,8 @@ namespace Game  //what for?
         public Transform gameCamera;
         public Animator animator;
 
-        public float speed;
+        public float speed = 0.1f;
         public float turnSmoothTime = 0.1f;
-        
         public float turnSmoothVelocity;
 
         public void Update()
