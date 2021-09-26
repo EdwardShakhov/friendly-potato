@@ -150,7 +150,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391796301}
-  m_LocalRotation: {x: 0.07119864, y: -0.0000000042906785, z: 3.0626776e-10, w: 0.99746215}
+  m_LocalRotation: {x: 0.071198635, y: 0.0000000042906785, z: -3.0626773e-10, w: 0.99746215}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -224,7 +224,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 944571126}
-  m_LocalRotation: {x: 0.17781167, y: -0.000000023945725, z: 0.000000004326779, w: 0.9840646}
+  m_LocalRotation: {x: 0.17781167, y: 0.000000023945736, z: -0.0000000043267807, w: 0.9840646}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -300,7 +300,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368188685}
-  m_LocalRotation: {x: 0.07763097, y: -0.0000000056883716, z: 6.500901e-10, w: 0.9969822}
+  m_LocalRotation: {x: 0.07763095, y: 0.000000006721963, z: -5.6960875e-10, w: 0.9969822}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -723,7 +723,7 @@ MonoBehaviour:
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
-    m_InvertInput: 0
+    m_InvertInput: 1
     m_MinValue: 0
     m_MaxValue: 1
     m_Wrap: 0
@@ -1422,6 +1422,7 @@ GameObject:
   - component: {fileID: 932818054}
   - component: {fileID: 932818055}
   - component: {fileID: 1714614646}
+  - component: {fileID: 515220731}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1496,10 +1497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a08fcc7342468409f503ecd66b25cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 932818054}
-  camera: {fileID: 1368188686}
-  speed: 2
-  turnSmoothTime: 0.2
 --- !u!114 &1714614646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1512,6 +1509,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d60240284a42c94aa852a3fca7dd42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 515220731}
+--- !u!114 &515220731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260597861999642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4854856af5e249c1b873b9ae8046b256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 932818055}
+  controller: {fileID: 932818054}
+  gameCamera: {fileID: 1368188686}
+  animator: {fileID: 95509902755735526}
+  speed: 1
+  turnSmoothTime: 0.1
+  turnSmoothVelocity: 0
 --- !u!1 &1261804499409134
 GameObject:
   m_ObjectHideFlags: 0
