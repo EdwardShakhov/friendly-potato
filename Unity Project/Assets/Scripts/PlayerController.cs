@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Game  //what for?
+namespace Game
 {
     public class PlayerController : MonoBehaviour
     {
@@ -9,11 +9,21 @@ namespace Game  //what for?
         public PlayerInput input;
         public CharacterController controller;
         public Transform gameCamera;
-        public Animator animator;
 
         public float speed = 0.1f;
         public float turnSmoothTime = 0.1f;
         public float turnSmoothVelocity;
+
+        public Animator animator;
+        protected float movement;
+        protected int movementHash;
+
+        public void Start()
+        {
+            animator = GetComponent<Animator>();
+            //animator.speed = playerController.speed;
+            movementHash = Animator.StringToHash("movement");
+        }
 
         public void Update()
         {
@@ -27,6 +37,13 @@ namespace Game  //what for?
 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveDir.normalized * speed * Time.deltaTime);
+
+                animator.SetFloat(movementHash, 1);
+            }
+
+            if (direction.magnitude < 0.5f)
+            {
+                animator.SetFloat(movementHash, 0);
             }
         }
     }
