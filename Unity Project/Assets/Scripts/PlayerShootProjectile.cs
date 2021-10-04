@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerShoot : MonoBehaviour
+public class PlayerShootProjectile : MonoBehaviour
 {
 
     public Rigidbody projectile;
