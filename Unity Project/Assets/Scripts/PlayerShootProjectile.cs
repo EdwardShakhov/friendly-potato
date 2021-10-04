@@ -6,6 +6,7 @@ public class PlayerShootProjectile : MonoBehaviour
 
     public Rigidbody projectile;
     public float speed = 20;
+    public AudioSource audioSource;
 
     // Use this for initialization
     void Start()
@@ -18,6 +19,7 @@ public class PlayerShootProjectile : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            audioSource.Play();
             Rigidbody instantiatedProjectile = Instantiate(projectile, transform.position, transform.rotation) as Rigidbody;
             instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, speed));
         }
