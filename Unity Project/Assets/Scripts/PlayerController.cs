@@ -22,7 +22,7 @@ namespace Game
         {
             animator = GetComponent<Animator>();
             //animator.speed = playerController.speed;
-            movementHash = Animator.StringToHash("movement");
+            movementHash = Animator.StringToHash("speed");
         }
 
         public void Update()

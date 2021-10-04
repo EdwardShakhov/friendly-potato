@@ -154,7 +154,7 @@ AnimatorStateTransition:
   m_Name: Stop Walking
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: movement
+    m_ConditionEvent: speed
     m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4355240698880720553}
@@ -204,7 +204,7 @@ AnimatorStateTransition:
   m_Name: Start Walking
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: movement
+    m_ConditionEvent: speed
     m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1687429159833966013}
@@ -961,12 +961,12 @@ AnimatorController:
   m_Name: AnimationController
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: movement
+  - m_Name: speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
