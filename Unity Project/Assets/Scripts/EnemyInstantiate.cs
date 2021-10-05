@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InstantiateEnemies : MonoBehaviour
+public class EnemyInstantiate : MonoBehaviour
 {
     public GameObject enemy;
     public int x;
