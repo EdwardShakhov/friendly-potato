@@ -3,27 +3,25 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour
 {
-    Transform Player;
-    public float moveSpeed = 0f;
-    public float rotationSpeed = 3.0f;
+    [SerializeField] private Transform player;
+    [SerializeField] private Animator animator;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float rotationSpeed;
+    private int _movementHash;
 
-    public Animator animator;
-    protected float movement;
-    protected int movementHash;
-
-    void Start()
+    protected void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         animator = GetComponent<Animator>();
-        movementHash = Animator.StringToHash("speed");
+        _movementHash = Animator.StringToHash("speed");
     }
 
-    void Update()
+    protected void Update()
     {
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Player.position - transform.position), rotationSpeed * Time.deltaTime);
-        transform.position += transform.forward * moveSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.position - transform.position), rotationSpeed * Time.deltaTime);
+        transform.position += transform.forward * (moveSpeed * Time.deltaTime);
 
-        animator.SetFloat(movementHash, 1);
+        animator.SetFloat(_movementHash, 1);
     }
 }

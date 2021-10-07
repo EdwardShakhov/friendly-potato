@@ -3,22 +3,14 @@ using System.Collections;
 
 public class PlayerShootProjectile : MonoBehaviour
 {
-
-    public Rigidbody projectile;
-    public float speed = 20;
-
-    // Use this for initialization
-    void Start()
-    {
+    [SerializeField] private Rigidbody projectile;
+    [SerializeField] private float speed = 20;
     
-    }
-
-    // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Rigidbody instantiatedProjectile = Instantiate(projectile, transform.position, transform.rotation) as Rigidbody;
+            var instantiatedProjectile = Instantiate(projectile, transform.position, transform.rotation);
             instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, speed));
         }
     }

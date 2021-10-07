@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DestroyProjectile : MonoBehaviour
 {
-    void Start()
+    protected void Start()
     {
         Destroy(gameObject, 3.0f);
     }
 
-    void OnCollisionEnter(Collision collision)
+    protected void OnCollisionEnter()
     {
         Destroy(gameObject);
     }
