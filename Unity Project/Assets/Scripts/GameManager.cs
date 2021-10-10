@@ -5,16 +5,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private int PlayerHealthPoint { get; set; }
-    public const int MapSize = 90;
-    public const int EnemyCountMax = 100;
+    public GameObject Player;
+    public List<GameObject> Enemies;
+    public int MapSize = 90;
+    public int EnemyCountMax = 100;
     
-    protected void Start()
-    {
-        PlayerHealthPoint = 100;
-    }
     
-    //Singleton
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -39,5 +35,14 @@ public class GameManager : MonoBehaviour
         {
             _instance = null;
         }
+    }
+
+    public void AddEnemy(GameObject enemy)
+    {
+        if (Enemies == null)
+        {
+            Enemies = new List<GameObject>();
+        }
+        Enemies.Add(enemy);
     }
 }

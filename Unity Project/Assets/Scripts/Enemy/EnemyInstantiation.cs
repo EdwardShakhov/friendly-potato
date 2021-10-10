@@ -15,9 +15,9 @@ public class EnemyInstantiation : MonoBehaviour
 
     private IEnumerator EnemySpawn()
     {
-        while (_enemyCount < GameManager.EnemyCountMax)
+        while (_enemyCount < GameManager.Instance.EnemyCountMax)
         {
-            Instantiate(_enemyPrefab, new Vector3(Random.Range(-1f, 1f) * GameManager.MapSize, 0, Random.Range(-1f, 1f) * GameManager.MapSize), Quaternion.identity);
+            GameManager.Instance.AddEnemy(Instantiate(_enemyPrefab, new Vector3(Random.Range(-1f, 1f) * GameManager.Instance.MapSize, 0, Random.Range(-1f, 1f) * GameManager.Instance.MapSize), Quaternion.identity));
             yield return new WaitForSeconds(_enemySpawnTime);
             _enemyCount ++;
         }

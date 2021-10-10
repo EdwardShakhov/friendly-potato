@@ -9,11 +9,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator _playerAnimator;
     [SerializeField] private float _playerSpeed;
     [SerializeField] private float _playerTurnSmoothTime;
+    [SerializeField] private GameObject _weapon;
+    [SerializeField] private Transform _weaponHolder;
+    //[SerializeField] private int PlayerHealthPoint;
     private float _turnSmoothVelocity; 
     private int _movementHash;
 
     protected void Start()
     {
+        Instantiate(_weapon,_weaponHolder);
+        //PlayerHealthPoint = 100;
         _playerAnimator = GetComponent<Animator>();
         _movementHash = Animator.StringToHash("speed");
     }
