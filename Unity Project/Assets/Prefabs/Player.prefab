@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 20.005802, z: -10.002901}
+  m_FollowOffset: {x: 0, y: 20, z: -10}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -78,7 +78,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: -153.35059
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -150,7 +150,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391796301}
-  m_LocalRotation: {x: 0.43142438, y: -0.000000021952443, z: 0.000000010498065, w: 0.90214914}
+  m_LocalRotation: {x: -0.099430054, y: 0.87786293, z: -0.41981024, w: -0.20791765}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -224,7 +224,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 944571126}
-  m_LocalRotation: {x: 0.52573115, y: -1e-45, z: 1e-45, w: 0.85065085}
+  m_LocalRotation: {x: -0.121164866, y: 0.827751, z: -0.51157826, w: -0.19604887}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06d047ff26cf46439d74d2dff267902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedWeapon: 0
+  _selectedWeapon: 0
 --- !u!1 &1368188685
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,8 +346,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368188685}
-  m_LocalRotation: {x: 0.43723443, y: -0.000000024030031, z: 0.000000008133015, w: 0.89934766}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.12203598, y: 0.8274757, z: -0.5112509, w: -0.19751899}
+  m_LocalPosition: {x: 0.031858444, y: 0.0021858215, z: -0.014835358}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1871028778}
@@ -496,7 +496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 20.005802, z: -10.002901}
+  m_FollowOffset: {x: 0, y: 20, z: -10}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -516,7 +516,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: -153.35059
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 20.005802, z: -10.002901}
+  m_FollowOffset: {x: 0, y: 20, z: -10}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -642,7 +642,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: -153.35059
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -716,7 +716,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871028776}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 20.005802, z: -10.002901}
+  m_LocalPosition: {x: 4.485298, y: 20, z: 8.937679}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 944571128}
@@ -762,7 +762,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0.53
+    Value: 0.9999999
     m_SpeedMode: 0
     m_MaxSpeed: 6
     m_AccelTime: 0.1
@@ -786,7 +786,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 0
+    Value: -153.35059
     m_SpeedMode: 0
     m_MaxSpeed: 600
     m_AccelTime: 0.1
@@ -881,7 +881,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086710295}
-  m_LocalRotation: {x: 0.4944843, y: 0.000000014884995, z: -0.0000000084681435, w: 0.8691866}
+  m_LocalRotation: {x: -0.11396344, y: 0.8457877, z: -0.4811726, w: -0.20032075}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1554,13 +1554,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4854856af5e249c1b873b9ae8046b256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 932818055}
-  controller: {fileID: 932818054}
-  gameCamera: {fileID: 1368188686}
-  speed: 5
-  turnSmoothTime: 0.1
-  turnSmoothVelocity: 0
-  animator: {fileID: 95509902755735526}
+  _playerController: {fileID: 932818054}
+  _gameCamera: {fileID: 1368188686}
+  _playerAnimator: {fileID: 95509902755735526}
+  _playerSpeed: 5
+  _playerTurnSmoothTime: 0.1
 --- !u!1 &1261804499409134
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,6 +3289,10 @@ PrefabInstance:
       propertyPath: speed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 546158099, guid: 9fb11258c99e81d43acd77e3c6f02909, type: 3}
+      propertyPath: _bulletProjectile
+      value: 
+      objectReference: {fileID: 6282942858798883039, guid: b5319be778030b94c8d75ee5333165ff, type: 3}
     - target: {fileID: 3332254614726548681, guid: 9fb11258c99e81d43acd77e3c6f02909, type: 3}
       propertyPath: m_Name
       value: Pistol
@@ -3413,6 +3415,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotGun
       objectReference: {fileID: 0}
+    - target: {fileID: 6847669262545966308, guid: 5a795a97a6b1c984e951fad901ed1a16, type: 3}
+      propertyPath: _bulletProjectile
+      value: 
+      objectReference: {fileID: 6282942858798883039, guid: b5319be778030b94c8d75ee5333165ff, type: 3}
+    - target: {fileID: 8669546576399960805, guid: 5a795a97a6b1c984e951fad901ed1a16, type: 3}
+      propertyPath: _bulletProjectile
+      value: 
+      objectReference: {fileID: 6282942858798883039, guid: b5319be778030b94c8d75ee5333165ff, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a795a97a6b1c984e951fad901ed1a16, type: 3}
 --- !u!4 &4155801321869745063 stripped

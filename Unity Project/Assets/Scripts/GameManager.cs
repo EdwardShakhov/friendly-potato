@@ -5,6 +5,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private int PlayerHealthPoint { get; set; }
+    public const int MapSize = 90;
+    public const int EnemyCountMax = 100;
+    
+    protected void Start()
+    {
+        PlayerHealthPoint = 100;
+    }
+    
+    //Singleton
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -25,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     protected void OnDestroy()
     {
-        if (_instance == this) ;
+        if (_instance == this)
         {
             _instance = null;
         }

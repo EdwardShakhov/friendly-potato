@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class WeaponSwitch : MonoBehaviour
 {
-    [SerializeField] private int selectedWeapon;
+    [SerializeField] private int _selectedWeapon;
 
     protected WeaponSwitch()
     {
-        selectedWeapon = 0;
+        _selectedWeapon = 0;
     }
 
     protected void Start()
@@ -18,24 +18,24 @@ public class WeaponSwitch : MonoBehaviour
 
     protected void Update()
     {
-        var previousSelectedWeapon = selectedWeapon;
+        var previousSelectedWeapon = _selectedWeapon;
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            if (selectedWeapon >= transform.childCount - 1)
-                selectedWeapon = 0;
+            if (_selectedWeapon >= transform.childCount - 1)
+                _selectedWeapon = 0;
             else
-                selectedWeapon++;
+                _selectedWeapon++;
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
-            if (selectedWeapon <= 0)
-                selectedWeapon = transform.childCount - 1;
+            if (_selectedWeapon <= 0)
+                _selectedWeapon = transform.childCount - 1;
             else
-                selectedWeapon--;
+                _selectedWeapon--;
         }
 
-        if (previousSelectedWeapon != selectedWeapon)
+        if (previousSelectedWeapon != _selectedWeapon)
         {
             SelectWeapon();
         }
@@ -46,7 +46,7 @@ public class WeaponSwitch : MonoBehaviour
         var i = 0;
         foreach (Transform weapon in transform)
         {
-            weapon.gameObject.SetActive(i == selectedWeapon);
+            weapon.gameObject.SetActive(i == _selectedWeapon);
             i++;
         }
     }

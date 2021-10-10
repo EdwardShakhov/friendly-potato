@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class EnemyInstantiation : MonoBehaviour
 {
-    [SerializeField] private GameObject enemy;
-    [SerializeField] public float waitDuration = 1.0f;
-    [SerializeField] private int enemyCount;
-    private const int EnemyCountMax = 100;
+    [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private float _enemySpawnTime = 1.0f;
+    [SerializeField] private int _enemyCount;
 
     protected void Start()
     {
@@ -16,11 +15,11 @@ public class EnemyInstantiation : MonoBehaviour
 
     private IEnumerator EnemySpawn()
     {
-        while (enemyCount < EnemyCountMax)
+        while (_enemyCount < GameManager.EnemyCountMax)
         {
-            Instantiate(enemy, new Vector3(Random.Range(-90, 90), 0, Random.Range(-90, 90)), Quaternion.identity);
-            yield return new WaitForSeconds(waitDuration);
-            enemyCount ++;
+            Instantiate(_enemyPrefab, new Vector3(Random.Range(-1f, 1f) * GameManager.MapSize, 0, Random.Range(-1f, 1f) * GameManager.MapSize), Quaternion.identity);
+            yield return new WaitForSeconds(_enemySpawnTime);
+            _enemyCount ++;
         }
 
     }
