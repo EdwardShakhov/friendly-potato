@@ -1,39 +1,57 @@
-using Game;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class PlayerController : MonoBehaviour
+namespace Player
 {
-    [SerializeField] private CharacterController _playerController;
-    [SerializeField] private Transform _gameCamera;
-    [SerializeField] private Animator _playerAnimator;
-    [SerializeField] private float _playerSpeed;
-    [SerializeField] private float _playerTurnSmoothTime;
-    [SerializeField] private GameObject _weapon;
-    [SerializeField] private Transform _weaponHolder;
-    //[SerializeField] private int PlayerHealthPoint;
-    private float _turnSmoothVelocity; 
-    private int _movementHash;
-
-    protected void Start()
+    public class PlayerController : MonoBehaviour
     {
-        Instantiate(_weapon,_weaponHolder);
-        //PlayerHealthPoint = 100;
-        _playerAnimator = GetComponent<Animator>();
-        _movementHash = Animator.StringToHash("speed");
-    }
+        [Header("Player Movement")]
+        [SerializeField] private CharacterController _playerController;
+        [SerializeField] private Transform _gameCamera;
+        [SerializeField] private Animator _playerAnimator;
+        [SerializeField] private float _playerSpeed;
+        [SerializeField] private float _playerTurnSmoothTime;
+        
+        [Header("Player Weapon")]
+        [SerializeField] private GameObject _weapon;
+        [SerializeField] private Transform _weaponHolder;
 
-    protected void Update()
-    {
-        var direction = PlayerInput.GetDirection();
-        if (direction.magnitude >= 0.5f)
+        private float _turnSmoothVelocity; 
+        private int _movementHash;
+
+        protected void Start()
         {
-            var targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + _gameCamera.eulerAngles.y;
-            var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, _playerTurnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            var moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            _playerController.Move(moveDir.normalized * (_playerSpeed * Time.deltaTime));
+
+        
+            Instantiate(_weapon,_weaponHolder);
+            _playerAnimator = GetComponent<Animator>();
+            _movementHash = Animator.StringToHash("speed");
         }
-        _playerAnimator.SetFloat(_movementHash, direction.magnitude);
+
+        protected void Update()
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                TakeDamage(20);
+            }
+        
+            var direction = PlayerInput.GetDirection();
+            if (direction.magnitude >= 0.5f)
+            {
+                var targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + _gameCamera.eulerAngles.y;
+                var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, _playerTurnSmoothTime);
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                var moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                _playerController.Move(moveDir.normalized * (_playerSpeed * Time.deltaTime));
+            }
+            _playerAnimator.SetFloat(_movementHash, direction.magnitude);
+
+
+        }
+
+        void TakeDamage(int damage)
+        {
+            GameManager.Instance.CurrentHealth -= damage;
+            GameManager.Instance.HealthBar.SetHealth(GameManager.Instance.CurrentHealth);
+        }
     }
 }

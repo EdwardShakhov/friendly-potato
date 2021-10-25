@@ -1513,6 +1513,9 @@ MonoBehaviour:
   _playerAnimator: {fileID: 95509902755735526}
   _playerSpeed: 5
   _playerTurnSmoothTime: 0.1
+  _maxHealth: 100
+  _currentHealth: 100
+  _healthBar: {fileID: 6513676218099298959, guid: 3c8fe1721c1e6a945b97c23944cebe22, type: 3}
   _weapon: {fileID: 6066412580313516929, guid: a52bfa4d2305f96428e07c1d3ec30820, type: 3}
   _weaponHolder: {fileID: 4741556435874038}
 --- !u!1 &1261804499409134

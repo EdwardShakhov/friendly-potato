@@ -1,19 +1,29 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Player")]
     public GameObject Player;
+    public HealthBar HealthBar;
+    public int MaxHealth = 100;
+    public int CurrentHealth;
+    
+    [Header("Enemies")]
     public GameObject SpawnEnemies;
     public List<GameObject> EnemiesList;
     public int MapSize = 90;
     public int EnemyCountMax = 100;
 
+
+
+    
     protected void Start()
     {
         Instantiate(Player);
+        CurrentHealth = MaxHealth;
+        HealthBar.SetMaxHealth(MaxHealth);
+        
         Instantiate(SpawnEnemies);
     }
 
