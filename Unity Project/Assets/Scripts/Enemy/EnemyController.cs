@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
 
     protected void Start()
     {
-        _enemy = GameManager.Instance.Player.transform;
+        _enemy = GameObject.FindGameObjectWithTag("Player").transform;
 
         _enemyAnimator = GetComponent<Animator>();
         _movementHash = Animator.StringToHash("speed");
