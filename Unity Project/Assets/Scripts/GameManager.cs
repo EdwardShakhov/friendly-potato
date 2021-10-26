@@ -20,11 +20,11 @@ public class GameManager : MonoBehaviour
     
     protected void Start()
     {
-        Instantiate(Player);
+        Player = Instantiate(Player);
         CurrentHealth = MaxHealth;
         HealthBar.SetMaxHealth(MaxHealth);
         
-        Instantiate(SpawnEnemies);
+        SpawnEnemies = Instantiate(SpawnEnemies);
     }
 
     private static GameManager _instance;
