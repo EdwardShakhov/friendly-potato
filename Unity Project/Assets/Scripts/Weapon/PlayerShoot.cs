@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerShootProjectile : MonoBehaviour
+public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private Rigidbody _bulletProjectile;
     [SerializeField] private float _bulletSpeed = 20;

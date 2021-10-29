@@ -7,6 +7,7 @@ public class EnemyInstantiation : MonoBehaviour
 
     protected void Start()
     {
+        GameManager.Instance.EnemyHealth = GameManager.Instance.EnemyMaxHealth;
         StartCoroutine(EnemySpawn());
     }
 

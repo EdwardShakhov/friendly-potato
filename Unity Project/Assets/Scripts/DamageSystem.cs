@@ -6,7 +6,13 @@ public class DamageSystem : MonoBehaviour
 {
     public static void DamagePlayer(short damage)
     {
-        GameManager.Instance.CurrentHealth -= damage;
-        GameManager.Instance.HealthBar.SetHealth(GameManager.Instance.CurrentHealth);
+        GameManager.Instance.PlayerHealth -= damage;
+        GameManager.Instance.HealthBar.SetHealth(GameManager.Instance.PlayerHealth);
+    }
+    
+    public static void DamageEnemy(short damage)
+    {
+        GameManager.Instance.EnemyHealth -= damage;
+        GameManager.Instance.HealthBar.SetHealth(GameManager.Instance.EnemyHealth);
     }
 }

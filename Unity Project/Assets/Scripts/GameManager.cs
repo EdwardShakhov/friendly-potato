@@ -7,12 +7,14 @@ public class GameManager : MonoBehaviour
     [Header("Player")]
     public GameObject Player;
     public HealthBar HealthBar;
-    public short MaxHealth = 1000;
-    public short CurrentHealth;
+    public short PlayerMaxHealth = 1000;
+    public short PlayerHealth;
     
     [Header("Enemies")]
     public GameObject Enemy;
     public GameObject SpawnEnemies;
+    public short EnemyMaxHealth = 1000;
+    public short EnemyHealth;
     //public List<GameObject> EnemiesList;
     public int MaximumNumberOfEnemies = 50;
     public int EnemySpawnTime;
@@ -24,8 +26,8 @@ public class GameManager : MonoBehaviour
     protected void Start()
     {
         Player = Instantiate(Player);
-        CurrentHealth = MaxHealth;
-        HealthBar.SetMaxHealth(MaxHealth);
+        PlayerHealth = PlayerMaxHealth;
+        HealthBar.SetMaxHealth(PlayerMaxHealth);
         
         SpawnEnemies = Instantiate(SpawnEnemies);
     }

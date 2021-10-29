@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DestroyProjectile : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     protected void Start()
     {
