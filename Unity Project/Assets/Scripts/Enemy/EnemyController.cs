@@ -14,8 +14,8 @@ public class EnemyController : MonoBehaviour
 
     protected void Start()
     {
-        _player = GameManager.Instance.Player.transform;
-        _enemyAnimator = GetComponent<Animator>();
+        _player = _player ? _player : GameManager.Instance.Player.transform;
+        _enemyAnimator = _enemyAnimator ? _enemyAnimator : GetComponent<Animator>();
         _enemyChasingDistance = Random.Range(_enemyAttackDistance, GameManager.Instance.MapSize);
     }
 

@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     public GameObject SpawnEnemies;
     public short EnemyMaxHealth = 1000;
     public short EnemyHealth;
-    //public List<GameObject> EnemiesList;
     public int MaximumNumberOfEnemies = 50;
     public int EnemySpawnTime;
     public const float EnemyAttackDistance = 1.3f;
@@ -57,13 +56,4 @@ public class GameManager : MonoBehaviour
             _instance = null;
         }
     }
-
-    /*public void AddEnemy(GameObject enemy)
-    {
-        if (EnemiesList == null)
-        {
-            EnemiesList = new List<GameObject>();
-        }
-        EnemiesList.Add(enemy);
-    }*/
 }

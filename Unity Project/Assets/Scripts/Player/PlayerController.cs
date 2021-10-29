@@ -16,8 +16,7 @@ namespace Player
         [Header("Player Weapon")]
         [SerializeField] private GameObject _weapon;
         [SerializeField] private Transform _weaponHolder;
-
-        //private float _distanceToPlayer;
+        
         protected void Start()
         {
             Instantiate(_weapon,_weaponHolder);
