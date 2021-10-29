@@ -17,6 +17,7 @@ namespace Player
         [SerializeField] private GameObject _weapon;
         [SerializeField] private Transform _weaponHolder;
 
+        //private float _distanceToPlayer;
         protected void Start()
         {
             Instantiate(_weapon,_weaponHolder);
@@ -26,11 +27,6 @@ namespace Player
 
         protected void Update()
         {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                TakeDamage(20);
-            }
-        
             var direction = PlayerInput.GetDirection();
             if (direction.magnitude >= 0.5f)
             {
@@ -41,12 +37,6 @@ namespace Player
                 _playerController.Move(moveDir.normalized * (_playerSpeed * Time.deltaTime));
             }
             _playerAnimator.SetFloat(_movementHash, direction.magnitude);
-        }
-
-        void TakeDamage(int damage)
-        {
-            GameManager.Instance.CurrentHealth -= damage;
-            GameManager.Instance.HealthBar.SetHealth(GameManager.Instance.CurrentHealth);
         }
     }
 }

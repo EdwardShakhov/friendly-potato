@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class EnemyInstantiation : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemyPrefab;
-    [SerializeField] private float _enemySpawnTime = 1.0f;
     [SerializeField] private int _enemyCount;
 
     protected void Start()
@@ -14,10 +12,10 @@ public class EnemyInstantiation : MonoBehaviour
 
     private IEnumerator EnemySpawn()
     {
-        while (_enemyCount < GameManager.Instance.EnemyCountMax)
+        while (_enemyCount < GameManager.Instance.MaximumNumberOfEnemies)
         {
-            Instantiate(_enemyPrefab, new Vector3(Random.Range(-1f, 1f) * GameManager.Instance.MapSize, 0, Random.Range(-1f, 1f) * GameManager.Instance.MapSize), Quaternion.identity);
-            yield return new WaitForSeconds(_enemySpawnTime);
+            Instantiate(GameManager.Instance.Enemy, new Vector3(Random.Range(-1f, 1f) * GameManager.Instance.MapSize, 0, Random.Range(-1f, 1f) * GameManager.Instance.MapSize), Quaternion.identity);
+            yield return new WaitForSeconds(GameManager.Instance.EnemySpawnTime);
             _enemyCount ++;
         }
 
