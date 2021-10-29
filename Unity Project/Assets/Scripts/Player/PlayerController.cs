@@ -10,18 +10,15 @@ namespace Player
         [SerializeField] private Animator _playerAnimator;
         [SerializeField] private float _playerSpeed;
         [SerializeField] private float _playerTurnSmoothTime;
+        private float _turnSmoothVelocity; 
+        private int _movementHash;
         
         [Header("Player Weapon")]
         [SerializeField] private GameObject _weapon;
         [SerializeField] private Transform _weaponHolder;
 
-        private float _turnSmoothVelocity; 
-        private int _movementHash;
-
         protected void Start()
         {
-
-        
             Instantiate(_weapon,_weaponHolder);
             _playerAnimator = GetComponent<Animator>();
             _movementHash = Animator.StringToHash("speed");
@@ -44,8 +41,6 @@ namespace Player
                 _playerController.Move(moveDir.normalized * (_playerSpeed * Time.deltaTime));
             }
             _playerAnimator.SetFloat(_movementHash, direction.magnitude);
-
-
         }
 
         void TakeDamage(int damage)

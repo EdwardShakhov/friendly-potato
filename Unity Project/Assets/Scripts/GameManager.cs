@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,12 +12,13 @@ public class GameManager : MonoBehaviour
     
     [Header("Enemies")]
     public GameObject SpawnEnemies;
-    public List<GameObject> EnemiesList;
+    //public List<GameObject> EnemiesList;
+    public int EnemyCountMax = 50;
+    public float ChasingDistanceToPlayer;
+    public float AttackDistanceToPlayer = 1.3f;
+    
+    [Header("Map")]
     public int MapSize = 90;
-    public int EnemyCountMax = 100;
-
-
-
     
     protected void Start()
     {
@@ -53,12 +55,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddEnemy(GameObject enemy)
+    /*public void AddEnemy(GameObject enemy)
     {
         if (EnemiesList == null)
         {
             EnemiesList = new List<GameObject>();
         }
         EnemiesList.Add(enemy);
-    }
+    }*/
 }

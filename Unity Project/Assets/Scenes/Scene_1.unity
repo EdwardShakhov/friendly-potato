@@ -6948,10 +6948,13 @@ MonoBehaviour:
   HealthBar: {fileID: 529042788}
   MaxHealth: 100
   CurrentHealth: 0
+  Enemy: {fileID: 1260597861999642, guid: 0a30dd471b1d0264fbfd1a9d1c9a79aa, type: 3}
   SpawnEnemies: {fileID: 7645181264718658607, guid: c317b880021453545ac43adbdade4ffc, type: 3}
   EnemiesList: []
-  MapSize: 90
   EnemyCountMax: 100
+  ChasingDistanceToPlayer: 30
+  AttackDistanceToPlayer: 1.3
+  MapSize: 90
 --- !u!4 &1650535610
 Transform:
   m_ObjectHideFlags: 0
