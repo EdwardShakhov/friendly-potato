@@ -24,6 +24,11 @@ public class GameManager : MonoBehaviour
     
     protected void Start()
     {
+        GameInit();
+    }
+
+    private void GameInit()
+    {
         Player = Instantiate(Player);
         PlayerHealth = PlayerMaxHealth;
         HealthBar.SetMaxHealth(PlayerMaxHealth);
