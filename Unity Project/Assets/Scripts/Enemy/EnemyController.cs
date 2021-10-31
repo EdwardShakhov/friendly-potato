@@ -5,7 +5,7 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private int _enemyMaxHealth = 1000;
     [SerializeField] private int _enemyHealth;
-    [SerializeField] private bool isDead;
+    [SerializeField] private bool _isDead;
     
     private Transform _playerToChase;
     [SerializeField] private Animator _enemyAnimator;
@@ -22,12 +22,12 @@ public class EnemyController : MonoBehaviour
         _enemyChasingDistance = Random.Range(_enemyAttackDistance, GameManager.Instance.MapSize);
         
         _enemyHealth = _enemyMaxHealth;
-        isDead = false;
+        _isDead = false;
     }
 
     protected void Update()
     {
-        if (!isDead)
+        if (!_isDead)
         {
             transform.LookAt(_playerToChase);
         }
@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
         
         //if distance to player between measures - chase
         if (_distanceToPlayer >= _enemyAttackDistance &&
-            _distanceToPlayer <= _enemyChasingDistance && !isDead)
+            _distanceToPlayer <= _enemyChasingDistance && !_isDead)
         {
             var transform1 = transform;
             transform1.position += transform1.forward * (_enemyMoveSpeed * Time.deltaTime);
@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
         }
 
         //if distance to player is small - attack and don't move
-        else if ((_distanceToPlayer <= _enemyAttackDistance) && !isDead)
+        else if ((_distanceToPlayer <= _enemyAttackDistance) && !_isDead)
         {
             _enemyAnimator.SetFloat(_movementHash, 0);
             _enemyAnimator.SetBool("attack", true);
@@ -57,13 +57,13 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void DamageEnemy(int damage)
     {
         _enemyHealth -= damage;
         _enemyAnimator.SetBool("damage", true);
         if (_enemyHealth == 0)
         {
-            isDead = true;
+            _isDead = true;
             _enemyAnimator.SetFloat(_movementHash, 0);
             _enemyAnimator.SetBool("death", true);
             Destroy(gameObject, 7.0f);

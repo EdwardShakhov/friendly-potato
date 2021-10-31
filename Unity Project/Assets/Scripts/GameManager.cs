@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject Player;
     public int PlayerMaxHealth = 1000;
     public int PlayerHealth;
+    public bool IsPlayerDead;
     
     [Header("Enemies")]
     public GameObject Enemy;

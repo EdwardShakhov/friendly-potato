@@ -23,10 +23,10 @@ public class Bullet : MonoBehaviour
         Debug.Log(collision.transform.tag);
         if (collision.transform.CompareTag("Enemy"))
         {
-            var damageEnemy = collision.gameObject.GetComponent<EnemyController>();
-            if (damageEnemy)
+            var collisionEnemy = collision.gameObject.GetComponent<EnemyController>();
+            if (collisionEnemy)
             {
-                damageEnemy.TakeDamage(500);
+                collisionEnemy.DamageEnemy(500);
             }
         }
 

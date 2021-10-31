@@ -9,7 +9,7 @@ namespace Player
         [Header("Player Movement")]
         [SerializeField] private CharacterController _playerController;
         [SerializeField] private Transform _gameCamera;
-        [SerializeField] private Animator _playerAnimator;
+        [SerializeField] private static Animator _playerAnimator;
         [SerializeField] private float _playerSpeed;
         [SerializeField] private float _playerTurnSmoothTime;
         private float _turnSmoothVelocity; 
@@ -22,10 +22,11 @@ namespace Player
         protected void Start()
         {
             Instantiate(_weapon,_weaponHolder);
-            _playerAnimator = GetComponent<Animator>();
+            _playerAnimator = _playerAnimator ? _playerAnimator : GetComponent<Animator>();
             _movementHash = Animator.StringToHash("speed");
             
             GameManager.Instance.PlayerHealth = GameManager.Instance.PlayerMaxHealth;
+            GameManager.Instance.IsPlayerDead = false;
 
         }
 
@@ -46,6 +47,12 @@ namespace Player
         public static void DamagePlayer(int damage)
         {
             GameManager.Instance.PlayerHealth -= damage;
+            if (GameManager.Instance.PlayerHealth == 0)
+            {
+                GameManager.Instance.IsPlayerDead = true;
+
+                _playerAnimator.SetBool("death", true);
+            }
         }
 
     }

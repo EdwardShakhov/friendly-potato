@@ -7,7 +7,7 @@ public class PlayerShoot : MonoBehaviour
     
     protected void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !GameManager.Instance.IsPlayerDead)
         {
             var instantiatedProjectile = Instantiate(_bulletProjectile, transform.position, transform.rotation);
             instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, _bulletSpeed));
