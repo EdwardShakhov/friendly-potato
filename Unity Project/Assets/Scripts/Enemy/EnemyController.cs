@@ -66,7 +66,7 @@ public class EnemyController : MonoBehaviour
             isDead = true;
             _enemyAnimator.SetFloat(_movementHash, 0);
             _enemyAnimator.SetBool("death", true);
-            Destroy(gameObject, 5.0f);
+            Destroy(gameObject, 7.0f);
         }
     }
 }
