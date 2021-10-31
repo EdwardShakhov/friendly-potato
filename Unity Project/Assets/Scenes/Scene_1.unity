@@ -6940,7 +6940,7 @@ MonoBehaviour:
   Player: {fileID: 1260597861999642, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
   PlayerMaxHealth: 1000
   PlayerHealth: 0
-  Enemy: {fileID: 1260597861999642, guid: 0a30dd471b1d0264fbfd1a9d1c9a79aa, type: 3}
+  Enemy: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
   SpawnEnemies: {fileID: 7645181264718658607, guid: c317b880021453545ac43adbdade4ffc, type: 3}
   MaximumNumberOfEnemies: 50
   EnemySpawnTime: 1
