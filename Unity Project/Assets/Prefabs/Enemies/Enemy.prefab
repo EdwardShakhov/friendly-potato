@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: -4766179300198367313}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -607,7 +607,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyAnimator: {fileID: 95509902755735526}
   _enemyMoveSpeed: 1
-  _chasingDistanceToPlayer: 50
+  _distanceToPlayer: 0
+  _enemyChasingDistance: 0
 --- !u!1 &1261804499409134
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,8 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
+
+        
         [Header("Player Movement")]
         [SerializeField] private CharacterController _playerController;
         [SerializeField] private Transform _gameCamera;
@@ -22,6 +24,9 @@ namespace Player
             Instantiate(_weapon,_weaponHolder);
             _playerAnimator = GetComponent<Animator>();
             _movementHash = Animator.StringToHash("speed");
+            
+            GameManager.Instance.PlayerHealth = GameManager.Instance.PlayerMaxHealth;
+
         }
 
         protected void Update()
@@ -37,5 +42,11 @@ namespace Player
             }
             _playerAnimator.SetFloat(_movementHash, direction.magnitude);
         }
+        
+        public static void DamagePlayer(int damage)
+        {
+            GameManager.Instance.PlayerHealth -= damage;
+        }
+
     }
 }

@@ -1859,17 +1859,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528719821}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &529042788 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6513676218099298959, guid: 3c8fe1721c1e6a945b97c23944cebe22, type: 3}
-  m_PrefabInstance: {fileID: 818535367}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eab77072e09d4c64aa8a462a6f86728a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &564722794
 GameObject:
   m_ObjectHideFlags: 0
@@ -3794,7 +3783,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6513676218099298958, guid: 3c8fe1721c1e6a945b97c23944cebe22, type: 3}
       propertyPath: m_Value
-      value: 100
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513676218099298958, guid: 3c8fe1721c1e6a945b97c23944cebe22, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c8fe1721c1e6a945b97c23944cebe22, type: 3}
@@ -6945,9 +6938,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1260597861999642, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
-  HealthBar: {fileID: 529042788}
-  MaxHealth: 1000
-  CurrentHealth: 0
+  PlayerMaxHealth: 1000
+  PlayerHealth: 0
   Enemy: {fileID: 1260597861999642, guid: 0a30dd471b1d0264fbfd1a9d1c9a79aa, type: 3}
   SpawnEnemies: {fileID: 7645181264718658607, guid: c317b880021453545ac43adbdade4ffc, type: 3}
   MaximumNumberOfEnemies: 50
@@ -6961,7 +6953,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650535608}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5173624, y: 0.8165444, z: 2.2421992}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

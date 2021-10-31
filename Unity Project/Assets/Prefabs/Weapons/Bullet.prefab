@@ -92,7 +92,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7477716950258152497}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.021055244
   m_Height: 0.016793042
@@ -126,3 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92537d279f926a24ab01c3f82928cd72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  barObject: {fileID: 2819432391285037315, guid: dd49cccea97a3d048a9c8b442583096b, type: 3}
+  healthBarScript: {fileID: 8271694699046121682, guid: dd49cccea97a3d048a9c8b442583096b, type: 3}

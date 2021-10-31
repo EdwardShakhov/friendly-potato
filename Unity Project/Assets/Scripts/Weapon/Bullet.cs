@@ -18,8 +18,18 @@ public class Bullet : MonoBehaviour
         }
 }
     
-    protected void OnCollisionEnter()
+    void OnCollisionEnter (Collision collision)
     {
+        Debug.Log(collision.transform.tag);
+        if (collision.transform.CompareTag("Enemy"))
+        {
+            var damageEnemy = collision.gameObject.GetComponent<EnemyController>();
+            if (damageEnemy)
+            {
+                damageEnemy.TakeDamage(500);
+            }
+        }
+
         Destroy(gameObject);
     }
 }
