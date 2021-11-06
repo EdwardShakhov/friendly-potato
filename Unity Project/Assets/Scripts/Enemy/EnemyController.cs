@@ -7,15 +7,16 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int _enemyHealth;
     [SerializeField] private bool _isDead;
     
-    private Transform _playerToChase;
     [SerializeField] private Animator _enemyAnimator;
     [SerializeField] private float _enemyMoveSpeed;
     [SerializeField] private float _distanceToPlayer;
     [SerializeField] private float _enemyChasingDistance;
+    
+    private Transform _playerToChase;
     private readonly float _enemyAttackDistance = GameManager.EnemyAttackDistance;
     private readonly int _movementHash = Animator.StringToHash("speed");
 
-    protected void Start()
+    protected void Awake()
     {
         _playerToChase = _playerToChase ? _playerToChase : GameManager.Instance.Player.transform;
         _enemyAnimator = _enemyAnimator ? _enemyAnimator : GetComponent<Animator>();

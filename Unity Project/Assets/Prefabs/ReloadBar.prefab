@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.093844876, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.7676166, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -160,9 +160,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6513676218099298953}
   - component: {fileID: 6513676218099298958}
-  - component: {fileID: 6513676218099298959}
+  - component: {fileID: 2095189495}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: ReloadBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6513676218099298959
+--- !u!114 &2095189495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6513676218099298952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eab77072e09d4c64aa8a462a6f86728a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4179e60673bb4f28ac784d9410d969f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 6513676218099298958}

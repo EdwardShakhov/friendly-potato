@@ -4,30 +4,31 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-
-        
         [Header("Player Movement")]
         [SerializeField] private CharacterController _playerController;
         [SerializeField] private Transform _gameCamera;
         [SerializeField] private static Animator _playerAnimator;
         [SerializeField] private float _playerSpeed;
         [SerializeField] private float _playerTurnSmoothTime;
-        private float _turnSmoothVelocity; 
-        private int _movementHash;
         
+        [Header("Player Health")]
+        public static int PlayerMaxHealth = 1000;
+        public static int PlayerHealth;
+
         [Header("Player Weapon")]
         [SerializeField] private GameObject _weapon;
         [SerializeField] private Transform _weaponHolder;
         
-        protected void Start()
+        private float _turnSmoothVelocity; 
+        private int _movementHash;
+        
+        protected void Awake()
         {
             Instantiate(_weapon,_weaponHolder);
             _playerAnimator = _playerAnimator ? _playerAnimator : GetComponent<Animator>();
             _movementHash = Animator.StringToHash("speed");
-            
-            GameManager.Instance.PlayerHealth = GameManager.Instance.PlayerMaxHealth;
+            PlayerHealth = PlayerMaxHealth;
             GameManager.Instance.IsPlayerDead = false;
-
         }
 
         protected void Update()
@@ -46,8 +47,8 @@ namespace Player
         
         public static void DamagePlayer(int damage)
         {
-            GameManager.Instance.PlayerHealth -= damage;
-            if (GameManager.Instance.PlayerHealth == 0)
+            PlayerHealth -= damage;
+            if (PlayerHealth == 0)
             {
                 GameManager.Instance.IsPlayerDead = true;
 
