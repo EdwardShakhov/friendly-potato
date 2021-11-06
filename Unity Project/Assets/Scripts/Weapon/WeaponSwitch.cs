@@ -4,11 +4,6 @@ public class WeaponSwitch : MonoBehaviour
 {
     [SerializeField] private int _selectedWeapon;
 
-    protected WeaponSwitch()
-    {
-        _selectedWeapon = 0;
-    }
-
     protected void Start()
     {
         SelectWeapon();

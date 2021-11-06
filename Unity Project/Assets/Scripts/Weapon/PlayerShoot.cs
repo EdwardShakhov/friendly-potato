@@ -34,7 +34,7 @@ public class PlayerShoot : MonoBehaviour
     {
         if (ReloadBar < 3)
         {
-            ReloadBar += Time.deltaTime;
+            ReloadBar += Time.deltaTime / 2;
         }
         if (ReloadBar >= 3)
         {
