@@ -15,15 +15,14 @@ public class PlayerHealthBar : MonoBehaviour
     {
         SetHealth(PlayerController.PlayerHealth);
     }
-
-
-    public void SetMaxHealth(int health)
+    
+    private void SetMaxHealth(int health)
     {
         slider.maxValue = health;
         slider.value = health;
     }
     
-    public void SetHealth(int health)
+    private void SetHealth(int health)
     {
         slider.value = health;
     }
