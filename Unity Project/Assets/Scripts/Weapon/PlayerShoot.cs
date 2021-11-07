@@ -28,7 +28,7 @@ public class PlayerShoot : MonoBehaviour
                 _mayFire = false;
             }
         }
-        if (Input.GetButtonUp("Fire2") || !_mayFire)    //reloading
+        if (Input.GetKeyDown(KeyCode.R) || !_mayFire)    //reloading
         {
             Reloading();
         }

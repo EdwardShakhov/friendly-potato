@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -53,5 +55,19 @@ public class GameManager : MonoBehaviour
         {
             _instance = null;
         }
+    }
+
+    public void GameOver()
+    {
+        if (IsPlayerDead)
+        {
+            Debug.Log("Game Over");
+            Invoke(nameof(RestartLevel), 4f);
+        }
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -48,11 +48,11 @@ namespace Player
         public void DamagePlayer(int damage)
         {
             PlayerHealth -= damage;
-            if (PlayerHealth == 0)
+            if (PlayerHealth <= 0)
             {
                 GameManager.Instance.IsPlayerDead = true;
-
                 _playerAnimator.SetBool("death", true);
+                GameManager.Instance.GameOver();
             }
         }
 
