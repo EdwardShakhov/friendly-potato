@@ -11,7 +11,7 @@ public class PlayerShoot : MonoBehaviour
     
     protected void Start()
     {
-        ReloadBar = 3;
+        ReloadBar = 6;
         _mayFire = true;
     }
 
@@ -22,21 +22,22 @@ public class PlayerShoot : MonoBehaviour
             var instantiatedProjectile = Instantiate(_bulletProjectile, transform.position, transform.rotation);
             instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, _bulletSpeed));
             ReloadBar -= 1; //wait duration
-            if (ReloadBar <= 0)
+            if (ReloadBar <= 0.1)
             {
                 _mayFire = false;
             }
         }
-        Reloading();
+        if (!_mayFire || Input.GetButtonUp("Fire2"))
+        {
+            Reloading();
+        }
     }
 
     private void Reloading()
     {
-        if (ReloadBar < 3)
-        {
-            ReloadBar += Time.deltaTime / 2;
-        }
-        if (ReloadBar >= 3)
+        ReloadBar += Time.deltaTime / 2;
+        _mayFire = false;
+        if (ReloadBar >= 6)
         {
             _mayFire = true;
         }

@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
         var collisionEnemy = collision.gameObject.GetComponent<EnemyController>();
         if (collisionEnemy)
         {
-            collisionEnemy.DamageEnemy(500);
+            collisionEnemy.DamageEnemy(Random.Range(250, 500));
         }
         Destroy(gameObject);
     }

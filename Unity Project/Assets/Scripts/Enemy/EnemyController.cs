@@ -59,7 +59,7 @@ public class EnemyController : MonoBehaviour
     {
         _enemyHealth -= damage;
         _enemyAnimator.SetBool("damage", true);
-        if (_enemyHealth == 0)
+        if (_enemyHealth <= 0)
         {
             _isDead = true;
             _enemyAnimator.SetFloat(_movementHash, 0);
