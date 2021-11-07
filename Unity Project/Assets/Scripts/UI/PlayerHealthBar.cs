@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerHealthBar : MonoBehaviour
 {
-    public Slider slider;
+    [SerializeField] public Slider slider;
 
     protected void Start()
     {
@@ -24,6 +24,10 @@ public class PlayerHealthBar : MonoBehaviour
     
     private void SetHealth(int health)
     {
+        if (Mathf.Abs(slider.value - health) < 0.001f)
+        {
+            return;
+        }
         slider.value = health;
     }
 }

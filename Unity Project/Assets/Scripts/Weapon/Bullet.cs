@@ -21,15 +21,11 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter (Collision collision)
     {
         Debug.Log(collision.transform.tag);
-        if (collision.transform.CompareTag("Enemy"))
+        var collisionEnemy = collision.gameObject.GetComponent<EnemyController>();
+        if (collisionEnemy)
         {
-            var collisionEnemy = collision.gameObject.GetComponent<EnemyController>();
-            if (collisionEnemy)
-            {
-                collisionEnemy.DamageEnemy(500);
-            }
+            collisionEnemy.DamageEnemy(500);
         }
-
         Destroy(gameObject);
     }
 }

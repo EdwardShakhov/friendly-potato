@@ -16,16 +16,24 @@ public class WeaponSwitch : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") > 0f && !GameManager.Instance.IsPlayerDead)
         {
             if (_selectedWeapon >= transform.childCount - 1)
+            {
                 _selectedWeapon = 0;
+            }
             else
+            {
                 _selectedWeapon++;
+            }
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0f && !GameManager.Instance.IsPlayerDead)
         {
             if (_selectedWeapon <= 0)
+            {
                 _selectedWeapon = transform.childCount - 1;
+            }
             else
+            {
                 _selectedWeapon--;
+            }
         }
 
         if (previousSelectedWeapon != _selectedWeapon)

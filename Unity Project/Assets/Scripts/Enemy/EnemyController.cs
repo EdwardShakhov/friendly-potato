@@ -9,7 +9,6 @@ public class EnemyController : MonoBehaviour
     
     [SerializeField] private Animator _enemyAnimator;
     [SerializeField] private float _enemyMoveSpeed;
-    [SerializeField] private float _distanceToPlayer;
     [SerializeField] private float _enemyChasingDistance;
     
     private Transform _playerToChase;
@@ -32,27 +31,25 @@ public class EnemyController : MonoBehaviour
         {
             transform.LookAt(_playerToChase);
         }
-        _distanceToPlayer = Vector3.Distance(transform.position, GameManager.Instance.Player.transform.position);
+        var _distanceToPlayer = Vector3.Distance(transform.position, GameManager.Instance.Player.transform.position);
         
-        //if distance to player between measures - chase
-        if (_distanceToPlayer >= _enemyAttackDistance &&
-            _distanceToPlayer <= _enemyChasingDistance && !_isDead)
+        if (_distanceToPlayer > _enemyAttackDistance &&
+            _distanceToPlayer < _enemyChasingDistance && !_isDead)
+            //if distance to player between measures - chase
         {
             var transform1 = transform;
             transform1.position += transform1.forward * (_enemyMoveSpeed * Time.deltaTime);
             _enemyAnimator.SetFloat(_movementHash, 1);
         }
-
-        //if distance to player is small - attack and don't move
-        else if ((_distanceToPlayer <= _enemyAttackDistance) && !_isDead)
+        else if (_distanceToPlayer <= _enemyAttackDistance && !_isDead)
+            //if distance to player is small - attack and don't move
         {
             _enemyAnimator.SetFloat(_movementHash, 0);
             _enemyAnimator.SetBool("attack", true);
             PlayerController.DamagePlayer(1);
         }
-        
-        //else don't move
-        else
+        else         
+            //else don't move
         {
             _enemyAnimator.SetFloat(_movementHash, 0);
         }

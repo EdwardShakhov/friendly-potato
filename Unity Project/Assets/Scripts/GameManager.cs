@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager _instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                Debug.LogError("GameManager instance not specified");
+            }
+            return _instance;
+        }
+    }
+    
     [Header("Player")]
     public GameObject Player;
     public bool IsPlayerDead;
@@ -27,19 +40,6 @@ public class GameManager : MonoBehaviour
     {
         Player = Instantiate(Player);
         SpawnEnemies = Instantiate(SpawnEnemies);
-    }
-
-    private static GameManager _instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                Debug.LogError("GameManager instance not specified");
-            }
-            return _instance;
-        }
     }
 
     protected void Awake()
