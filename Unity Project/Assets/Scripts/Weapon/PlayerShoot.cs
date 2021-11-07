@@ -17,7 +17,8 @@ public class PlayerShoot : MonoBehaviour
 
     protected void Update()
     {
-        if (Input.GetButtonDown("Fire1") && _mayFire && !GameManager.Instance.IsPlayerDead)
+        if (GameManager.Instance.IsPlayerDead) return;
+        if (Input.GetButtonDown("Fire1") && _mayFire)   //fire
         {
             var instantiatedProjectile = Instantiate(_bulletProjectile, transform.position, transform.rotation);
             instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, _bulletSpeed));
@@ -27,7 +28,7 @@ public class PlayerShoot : MonoBehaviour
                 _mayFire = false;
             }
         }
-        if (!_mayFire || Input.GetButtonUp("Fire2"))
+        if (Input.GetButtonUp("Fire2") || !_mayFire)    //reloading
         {
             Reloading();
         }
@@ -35,7 +36,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Reloading()
     {
-        ReloadBar += Time.deltaTime / 2;
+        ReloadBar += Time.deltaTime;
         _mayFire = false;
         if (ReloadBar >= 6)
         {

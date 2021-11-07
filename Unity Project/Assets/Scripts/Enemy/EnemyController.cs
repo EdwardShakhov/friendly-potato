@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour
         {
             _enemyAnimator.SetFloat(_movementHash, 0);
             _enemyAnimator.SetBool("attack", true);
-            PlayerController.DamagePlayer(1);
+            GameManager.Instance.Player.GetComponent<PlayerController>().DamagePlayer(1);
         }
         else         
             //else don't move

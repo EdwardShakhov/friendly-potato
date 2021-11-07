@@ -7,7 +7,7 @@ namespace Player
         [Header("Player Movement")]
         [SerializeField] private CharacterController _playerController;
         [SerializeField] private Transform _gameCamera;
-        [SerializeField] private static Animator _playerAnimator;
+        [SerializeField] private Animator _playerAnimator;
         [SerializeField] private float _playerSpeed;
         [SerializeField] private float _playerTurnSmoothTime;
         
@@ -45,7 +45,7 @@ namespace Player
             _playerAnimator.SetFloat(_movementHash, direction.magnitude);
         }
         
-        public static void DamagePlayer(int damage)
+        public void DamagePlayer(int damage)
         {
             PlayerHealth -= damage;
             if (PlayerHealth == 0)

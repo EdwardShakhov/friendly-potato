@@ -12,6 +12,10 @@ public class PlayerAmmoBar : MonoBehaviour
 
     private void SetReload(float reload)
     {
+        if (Mathf.Abs(slider.value - reload) < 0.001f)
+        {
+            return;
+        }
         slider.value = reload;
     }
 }
