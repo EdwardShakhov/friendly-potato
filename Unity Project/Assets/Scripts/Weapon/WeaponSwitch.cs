@@ -11,9 +11,10 @@ public class WeaponSwitch : MonoBehaviour
 
     protected void Update()
     {
+        if (GameManager.Instance.IsPlayerDead || GameManager.Instance.IsGamePaused) return;
+        
         var previousSelectedWeapon = _selectedWeapon;
-
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f && !GameManager.Instance.IsPlayerDead)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             if (_selectedWeapon >= transform.childCount - 1)
             {
@@ -24,7 +25,7 @@ public class WeaponSwitch : MonoBehaviour
                 _selectedWeapon++;
             }
         }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f && !GameManager.Instance.IsPlayerDead)
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             if (_selectedWeapon <= 0)
             {
@@ -35,7 +36,6 @@ public class WeaponSwitch : MonoBehaviour
                 _selectedWeapon--;
             }
         }
-
         if (previousSelectedWeapon != _selectedWeapon)
         {
             SelectWeapon();

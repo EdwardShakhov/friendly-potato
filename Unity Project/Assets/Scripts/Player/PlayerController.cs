@@ -33,6 +33,7 @@ namespace Player
 
         protected void Update()
         {
+            GameManager.Instance.GamePause();
             var direction = PlayerInput.GetDirection();
             if (direction.magnitude >= 0.5f)
             {

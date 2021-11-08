@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static PauseScreen;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,7 +23,6 @@ public class GameManager : MonoBehaviour
     [Header("Player")]
     public GameObject Player;
     public bool IsPlayerDead;
-    public GameOverScreen GameOverScreen;
 
     [Header("Enemies")]
     public GameObject Enemy;
@@ -34,6 +34,24 @@ public class GameManager : MonoBehaviour
     [Header("Map")]
     public int MapSize = 90;
     
+    [Header("UI")]
+    public GameOverScreen GameOverScreen;
+    public PauseScreen PauseScreen;
+    public bool IsGamePaused;
+
+    protected void Awake()
+    {
+        _instance = this;
+    }
+    
+    protected void OnDestroy()
+    {
+        if (_instance == this)
+        {
+            _instance = null;
+        }
+    }
+    
     protected void Start()
     {
         GameInit();
@@ -43,19 +61,13 @@ public class GameManager : MonoBehaviour
     {
         Player = Instantiate(Player);
         SpawnEnemies = Instantiate(SpawnEnemies);
+        IsPlayerDead = false;
+        IsGamePaused = false;
     }
 
-    protected void Awake()
+    public void GamePause()
     {
-        _instance = this;
-    }
-
-    protected void OnDestroy()
-    {
-        if (_instance == this)
-        {
-            _instance = null;
-        }
+        PauseScreen.SetActive();
     }
 
     public void GameOver()

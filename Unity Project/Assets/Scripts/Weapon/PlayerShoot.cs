@@ -17,7 +17,8 @@ public class PlayerShoot : MonoBehaviour
 
     protected void Update()
     {
-        if (GameManager.Instance.IsPlayerDead) return;
+        if (GameManager.Instance.IsPlayerDead || GameManager.Instance.IsGamePaused) return;
+        
         if (Input.GetButtonDown("Fire1") && _mayFire)   //fire
         {
             var instantiatedProjectile = Instantiate(_bulletProjectile, transform.position, transform.rotation);
