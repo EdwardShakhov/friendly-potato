@@ -24,7 +24,15 @@ public class Bullet : MonoBehaviour
         var collisionEnemy = collision.gameObject.GetComponent<EnemyController>();
         if (collisionEnemy)
         {
-            collisionEnemy.DamageEnemy(Random.Range(250, 500));
+            switch (WeaponSwitch.SelectedWeapon)
+            {
+                case 0: //gun
+                    collisionEnemy.DamageEnemy(Random.Range(250, 500));
+                    break;
+                case 1: //shotgun
+                    collisionEnemy.DamageEnemy(1000);
+                    break;
+            }
         }
         Destroy(gameObject);
     }
