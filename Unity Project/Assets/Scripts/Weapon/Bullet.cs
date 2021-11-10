@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -24,7 +25,7 @@ public class Bullet : MonoBehaviour
         var collisionEnemy = collision.gameObject.GetComponent<EnemyController>();
         if (collisionEnemy)
         {
-            switch (WeaponSwitch.SelectedWeapon)
+            switch (GameManager.Instance.Player.GetComponent<PlayerController>().Weapon.GetComponent<WeaponSwitch>().SelectedWeapon)
             {
                 case 0: //gun
                     collisionEnemy.DamageEnemy(Random.Range(250, 500));

@@ -5,15 +5,15 @@ using UnityEngine.UI;
 public class PlayerHealthBar : MonoBehaviour
 {
     [SerializeField] public Slider slider;
-
+    
     protected void Start()
     {
-        SetMaxHealth(PlayerController.PlayerMaxHealth);
+        SetMaxHealth(GameManager.Instance.Player.GetComponent<PlayerController>().PlayerMaxHealth);
     }
 
     protected void Update()
     {
-        SetHealth(PlayerController.PlayerHealth);
+        SetHealth(GameManager.Instance.Player.GetComponent<PlayerController>().PlayerHealth);
     }
     
     private void SetMaxHealth(int health)

@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class WeaponSwitch : MonoBehaviour
 {
-    public static int SelectedWeapon;
+    [SerializeField] private int _selectedWeapon;
+    public int SelectedWeapon => _selectedWeapon;
 
     protected void Start()
     {
@@ -18,22 +19,22 @@ public class WeaponSwitch : MonoBehaviour
         {
             if (SelectedWeapon >= transform.childCount - 1)
             {
-                SelectedWeapon = 0;
+                _selectedWeapon = 0;
             }
             else
             {
-                SelectedWeapon++;
+                _selectedWeapon++;
             }
         }
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             if (SelectedWeapon <= 0)
             {
-                SelectedWeapon = transform.childCount - 1;
+                _selectedWeapon = transform.childCount - 1;
             }
             else
             {
-                SelectedWeapon--;
+                _selectedWeapon--;
             }
         }
         if (previousSelectedWeapon != SelectedWeapon)
