@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectedWeapon: 0
+  _pistolSpawn: {fileID: 6486925872010631602}
+  _shotgunSpawn: {fileID: 8600620010052913635}
 --- !u!1001 &2517245106064780110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110,6 +112,11 @@ PrefabInstance:
 --- !u!4 &5838663600730562199 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8351948093961844185, guid: 9fb11258c99e81d43acd77e3c6f02909, type: 3}
+  m_PrefabInstance: {fileID: 2517245106064780110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6486925872010631602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8712562713054212860, guid: 9fb11258c99e81d43acd77e3c6f02909, type: 3}
   m_PrefabInstance: {fileID: 2517245106064780110}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6307070645123925187
@@ -204,5 +211,10 @@ PrefabInstance:
 --- !u!4 &7938553242014966893 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4155801322676035758, guid: 5a795a97a6b1c984e951fad901ed1a16, type: 3}
+  m_PrefabInstance: {fileID: 6307070645123925187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8600620010052913635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2367975316564331808, guid: 5a795a97a6b1c984e951fad901ed1a16, type: 3}
   m_PrefabInstance: {fileID: 6307070645123925187}
   m_PrefabAsset: {fileID: 0}
