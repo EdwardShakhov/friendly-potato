@@ -6,12 +6,12 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private Rigidbody _bulletProjectile;
     [SerializeField] private float _bulletSpeed = 20;
     
-    private float _reloadBar; public float ReloadBar => _reloadBar;
+    public static float ReloadBar;
     private bool _mayFire;
     
     protected void Start()
     {
-        _reloadBar = 6;
+        ReloadBar = 6;
         _mayFire = true;
     }
 
@@ -23,8 +23,8 @@ public class PlayerShoot : MonoBehaviour
         {
             var instantiatedProjectile = Instantiate(_bulletProjectile, transform.position, transform.rotation);
             instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, _bulletSpeed));
-            _reloadBar -= 1; //wait duration
-            if (_reloadBar <= 0.1)
+            ReloadBar -= 1; //wait duration
+            if (ReloadBar <= 0.1)
             {
                 _mayFire = false;
             }
@@ -37,9 +37,9 @@ public class PlayerShoot : MonoBehaviour
 
     private void Reloading()
     {
-        _reloadBar += Time.deltaTime;
+        ReloadBar += Time.deltaTime;
         _mayFire = false;
-        if (_reloadBar >= 6)
+        if (ReloadBar >= 6)
         {
             _mayFire = true;
         }

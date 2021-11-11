@@ -1,28 +1,13 @@
-using Player;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerAmmoBar : MonoBehaviour
 {
-    [SerializeField] private Slider slider;
-    private float _reloadBarPistol;
-    private float _reloadBarShotgun;
-
+    [SerializeField]private Slider slider;
+    
     protected void Update()
     {
-        if (GameManager.Instance.Player.GetComponent<PlayerController>().Weapon.GetComponent<WeaponSwitch>().SelectedWeapon == 0)
-        {
-            _reloadBarPistol = GameObject.Find("Player(Clone)/DummyRig/root/B-hips/B-spine/B-chest/B-upperChest/B-shoulder_R/B-upper_arm_R/B-forearm_R/B-hand_R/AllWeapons(Clone)/Pistol/SpawnPoint")
-                .GetComponent<PlayerShoot>().ReloadBar;
-            SetReload(_reloadBarPistol);
-        }
-
-        if (GameManager.Instance.Player.GetComponent<PlayerController>().Weapon.GetComponent<WeaponSwitch>().SelectedWeapon == 1)
-        {
-            _reloadBarShotgun = GameObject.Find("Player(Clone)/DummyRig/root/B-hips/B-spine/B-chest/B-upperChest/B-shoulder_R/B-upper_arm_R/B-forearm_R/B-hand_R/AllWeapons(Clone)/Shotgun/SpawnPoint")
-                .GetComponent<PlayerShoot>().ReloadBar;
-            SetReload(_reloadBarShotgun);
-        }
+        SetReload(PlayerShoot.ReloadBar);
     }
 
     private void SetReload(float reload)
