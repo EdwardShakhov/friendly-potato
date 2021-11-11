@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerHealthBar : MonoBehaviour
 {
-    [SerializeField] public Slider slider;
+    [SerializeField] private Slider slider;
     
     protected void Start()
     {
@@ -29,5 +29,10 @@ public class PlayerHealthBar : MonoBehaviour
             return;
         }
         slider.value = health;
+    }
+
+    public void SetActive()
+    {
+        gameObject.SetActive(true);
     }
 }

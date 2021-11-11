@@ -54,7 +54,6 @@ namespace Player
             _playerHealth -= damage;
             if (PlayerHealth <= 0)
             {
-                GameManager.Instance.IsPlayerDead = true;
                 _playerAnimator.SetBool("death", true);
                 GameManager.Instance.GameOver();
             }

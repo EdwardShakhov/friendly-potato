@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     public int MapSize = 90;
     
     [Header("UI")]
+    public PlayerHealthBar PlayerHealthBar;
+    public PlayerAmmoBar PlayerAmmoBar;
     public GameOverScreen GameOverScreen;
     public PauseScreen PauseScreen;
     public bool IsGamePaused;
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
     protected void Awake()
     {
         _instance = this;
+
     }
     
     protected void OnDestroy()
@@ -61,6 +64,8 @@ public class GameManager : MonoBehaviour
     {
         Player = Instantiate(Player);
         SpawnEnemies = Instantiate(SpawnEnemies);
+        PlayerHealthBar.SetActive();
+        PlayerAmmoBar.SetActive();
         IsPlayerDead = false;
         IsGamePaused = false;
     }
@@ -72,6 +77,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        IsPlayerDead = true;
         Invoke(nameof(GameOverScreenSetActive), 5f);
     }
 

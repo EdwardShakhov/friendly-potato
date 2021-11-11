@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class PlayerAmmoBar : MonoBehaviour
 {
-    public Slider slider;
-
+    [SerializeField]private Slider slider;
+    
     protected void Update()
     {
         SetReload(PlayerShoot.ReloadBar);
@@ -17,5 +17,10 @@ public class PlayerAmmoBar : MonoBehaviour
             return;
         }
         slider.value = reload;
+    }
+    
+    public void SetActive()
+    {
+        gameObject.SetActive(true);
     }
 }
