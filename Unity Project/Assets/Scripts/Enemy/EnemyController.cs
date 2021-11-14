@@ -46,7 +46,7 @@ public class EnemyController : MonoBehaviour
         {
             _enemyAnimator.SetFloat(_movementHash, 0);
             _enemyAnimator.SetBool("attack", true);
-            GameManager.Instance.Player.GetComponent<PlayerController>().DamagePlayer(1);
+            //GameManager.Instance.Player.GetComponent<PlayerController>().DamagePlayer(1);
         }
         else         
             //else don't move
@@ -55,6 +55,12 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void PlayerHit()
+    //triggered by animation event
+    {
+        GameManager.Instance.Player.GetComponent<PlayerController>().DamagePlayer(Random.Range(150, 350));
+    }
+    
     public void DamageEnemy(int damage)
     {
         _enemyHealth -= damage;
