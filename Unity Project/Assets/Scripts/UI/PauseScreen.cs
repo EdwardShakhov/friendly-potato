@@ -1,4 +1,5 @@
 ﻿using System;
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -44,5 +45,23 @@ public class PauseScreen : MonoBehaviour
     public void MainMenuButton()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void SaveGame()
+    {
+        SaveSystem.SaveGame(GameManager.Instance.Player.GetComponent<PlayerController>());
+    }
+
+    public void LoadGame()
+    {
+        var savedData = SaveSystem.LoadGame();
+        
+        GameManager.Instance.Player.GetComponent<PlayerController>().PlayerHealth = savedData.SavedPlayerHealth;
+
+        Vector3 position;
+        position.x = savedData.SavedPosition[0];
+        position.y = savedData.SavedPosition[1];
+        position.z = savedData.SavedPosition[2];
+        transform.position = position;
     }
 }

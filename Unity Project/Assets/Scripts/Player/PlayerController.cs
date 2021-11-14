@@ -15,7 +15,11 @@ namespace Player
         [SerializeField] private int _playerMaxHealth = 1000; 
         public int PlayerMaxHealth => _playerMaxHealth;
         [SerializeField] private int _playerHealth; 
-        public int PlayerHealth => _playerHealth;
+        public int PlayerHealth
+        {
+            get => _playerHealth;
+            set => _playerHealth = value;
+        }
 
         [Header("Player Weapon")]
         [SerializeField] private GameObject _weapon;
