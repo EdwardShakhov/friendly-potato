@@ -1643,7 +1643,8 @@ MonoBehaviour:
   _soundHit:
   - {fileID: 8300000, guid: ae4421881db1b0a46845104cd82e9cdc, type: 3}
   - {fileID: 8300000, guid: 0a4c6a5de00e30c4abdabb78a4cb05b2, type: 3}
-  _soundFall: []
+  _soundFall:
+  - {fileID: 8300000, guid: bc0d0e52cfbdacd49816cc6f87be4eef, type: 3}
 --- !u!1 &1261804499409134
 GameObject:
   m_ObjectHideFlags: 0
