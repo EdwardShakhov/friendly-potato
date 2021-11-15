@@ -56,7 +56,7 @@ public class EnemyController : MonoBehaviour
     }
 
     public void PlayerHit()
-    //triggered by animation event
+    //triggering by animation event
     {
         GameManager.Instance.Player.GetComponent<PlayerController>().DamagePlayer(Random.Range(150, 350));
     }

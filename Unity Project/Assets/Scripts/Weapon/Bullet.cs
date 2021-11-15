@@ -17,13 +17,13 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 }
-    
     void OnCollisionEnter (Collision collision)
     {
         Debug.Log(collision.transform.tag);
         var collisionEnemy = collision.gameObject.GetComponent<EnemyController>();
         if (collisionEnemy)
         {
+            GameManager.Instance.Player.GetComponent<PlayerSound>().HitEnemy();
             switch (WeaponSwitch.SelectedWeapon)
             {
                 case 0: //gun

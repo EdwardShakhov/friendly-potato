@@ -1,4 +1,5 @@
 using System;
+using Player;
 using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
@@ -24,6 +25,7 @@ public class PlayerShoot : MonoBehaviour
             var instantiatedProjectile = Instantiate(_bulletProjectile, transform.position, transform.rotation);
             instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, _bulletSpeed));
             ReloadBar -= 1; //wait duration
+            GameManager.Instance.Player.GetComponent<PlayerSound>().Shoot();
             if (ReloadBar <= 0.1)
             {
                 _mayFire = false;
