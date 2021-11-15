@@ -26,6 +26,8 @@ public class PauseScreen : MonoBehaviour
         gameObject.SetActive(true);
         Time.timeScale = 0f;
         GameManager.Instance.IsGamePaused = true;
+        
+        GameObject.Find("Canvas").GetComponent<UISound>().Click();
     }
 
     public void ResumeButton()
@@ -33,6 +35,8 @@ public class PauseScreen : MonoBehaviour
         gameObject.SetActive(false);
         Time.timeScale = 1f;
         GameManager.Instance.IsGamePaused = false;
+        
+        GameObject.Find("Canvas").GetComponent<UISound>().Click();
     }
 
     public void RestartButton()
@@ -40,16 +44,22 @@ public class PauseScreen : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
         GameManager.Instance.IsGamePaused = false;
+        
+        GameObject.Find("Canvas").GetComponent<UISound>().Click();
     }
 
     public void MainMenuButton()
     {
         SceneManager.LoadScene("MainMenu");
+        
+        GameObject.Find("Canvas").GetComponent<UISound>().Click();
     }
 
     public void SaveGame()
     {
         SaveSystem.SaveGame(GameManager.Instance.Player.GetComponent<PlayerController>());
+        
+        GameObject.Find("Canvas").GetComponent<UISound>().Click();
     }
 
     public void LoadGame()
@@ -63,5 +73,7 @@ public class PauseScreen : MonoBehaviour
         position.y = savedData.SavedPosition[1];
         position.z = savedData.SavedPosition[2];
         transform.position = position;
+        
+        GameObject.Find("Canvas").GetComponent<UISound>().Click();
     }
 }
