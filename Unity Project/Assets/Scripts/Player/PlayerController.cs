@@ -41,7 +41,7 @@ namespace Player
         protected void Update()
         {
             GameManager.Instance.GamePause();
-            var direction = PlayerInput.GetDirection();
+            var direction = GetDirection();
             if (direction.magnitude >= 0.5f)
             {
                 var targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + _gameCamera.eulerAngles.y;
@@ -53,6 +53,15 @@ namespace Player
             _playerAnimator.SetFloat(_movementHash, direction.magnitude);
         }
         
+        private Vector3 GetDirection()
+        {
+            if(!GameManager.Instance.IsPlayerDead)
+            {
+                return new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
+            }
+            return default;
+        }
+        
         public void DamagePlayer(int damage)
         {
             _playerHealth -= damage;
@@ -62,6 +71,5 @@ namespace Player
                 GameManager.Instance.GameOver();
             }
         }
-
     }
 }

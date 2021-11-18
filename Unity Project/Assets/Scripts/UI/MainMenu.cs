@@ -2,7 +2,7 @@ using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneSwitcher : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
     public void NewGame(int numberScenes)
     {

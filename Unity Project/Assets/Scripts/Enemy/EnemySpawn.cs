@@ -1,16 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyInstantiation : MonoBehaviour
+public class EnemySpawn : MonoBehaviour
 {
     [SerializeField] private int _enemyCount;
 
     protected void Start()
     {
-        StartCoroutine(EnemySpawn());
+        StartCoroutine(EnemyInstantiation());
     }
 
-    private IEnumerator EnemySpawn()
+    private IEnumerator EnemyInstantiation()
     {
         while (_enemyCount < GameManager.Instance.MaximumNumberOfEnemies)
         {
