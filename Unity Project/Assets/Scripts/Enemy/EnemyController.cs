@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    [Header("Enemy Condition")]
+    public EnemyHealthBar EnemyHealthBar;
     [SerializeField] private int _enemyMaxHealth = 1000;
     [SerializeField] private int _enemyHealth;
     [SerializeField] private bool _isDead;
     
+    [Header("Enemy Behavior")]
     [SerializeField] private Animator _enemyAnimator;
     [SerializeField] private float _enemyMoveSpeed;
     [SerializeField] private float _enemyChasingDistance;
-    
     private Transform _playerToChase;
     private readonly float _enemyAttackDistance = GameManager.EnemyAttackDistance;
     private readonly int _movementHash = Animator.StringToHash("speed");
@@ -20,13 +22,16 @@ public class EnemyController : MonoBehaviour
         _playerToChase = _playerToChase ? _playerToChase : GameManager.Instance.Player.transform;
         _enemyAnimator = _enemyAnimator ? _enemyAnimator : GetComponent<Animator>();
         _enemyChasingDistance = Random.Range(_enemyAttackDistance, GameManager.Instance.MapSize);
-        
+        EnemyHealthBar.Off();
         _enemyHealth = _enemyMaxHealth;
         _isDead = false;
+        EnemyHealthBar.SetMaxHealth(_enemyMaxHealth);
     }
 
     protected void Update()
     {
+        EnemyHealthBar.SetHealth(_enemyHealth);
+        
         if (!_isDead)
         {
             transform.LookAt(_playerToChase);

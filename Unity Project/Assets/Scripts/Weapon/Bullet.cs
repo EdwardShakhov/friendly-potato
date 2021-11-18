@@ -3,6 +3,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private const float _bulletDistance = 30;
+    public EnemyHealthBar EnemyHealthBar;
     protected void Start()
     {
         //Destroys bullet after 3 seconds
@@ -17,13 +18,14 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 }
-    void OnCollisionEnter (Collision collision)
+    protected void OnCollisionEnter (Collision collision)
     {
         Debug.Log(collision.transform.tag);
         var collisionEnemy = collision.gameObject.GetComponent<EnemyController>();
         if (collisionEnemy)
         {
             GameManager.Instance.Player.GetComponent<PlayerSound>().HitEnemy();
+            collisionEnemy.EnemyHealthBar.On();
             switch (WeaponSwitch.SelectedWeapon)
             {
                 case 0: //gun

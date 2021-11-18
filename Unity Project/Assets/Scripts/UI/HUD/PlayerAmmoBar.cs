@@ -19,7 +19,7 @@ public class PlayerAmmoBar : MonoBehaviour
         slider.value = reload;
     }
     
-    public void SetActive()
+    public void On()
     {
         gameObject.SetActive(true);
     }

@@ -64,8 +64,8 @@ public class GameManager : MonoBehaviour
     {
         Player = Instantiate(Player);
         SpawnEnemies = Instantiate(SpawnEnemies);
-        PlayerHealthBar.SetActive();
-        PlayerAmmoBar.SetActive();
+        PlayerHealthBar.On();
+        PlayerAmmoBar.On();
         IsPlayerDead = false;
         IsGamePaused = false;
     }
