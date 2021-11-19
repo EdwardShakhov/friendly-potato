@@ -7,6 +7,7 @@ namespace Player
         [Header("Player Movement")]
         [SerializeField] private CharacterController _playerController;
         [SerializeField] private Transform _gameCamera;
+        public Transform GameCamera => _gameCamera;
         [SerializeField] private Animator _playerAnimator;
         [SerializeField] private float _playerSpeed;
         [SerializeField] private float _playerTurnSmoothTime;

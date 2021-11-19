@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Player;
+using UnityEngine;
 using UnityEngine.UI;
 
     public class EnemyHealthBar : MonoBehaviour
@@ -29,5 +31,11 @@ using UnityEngine.UI;
         public void Off()
         {
             gameObject.SetActive(false);
+        }
+
+        protected void LateUpdate()
+        {
+            transform.LookAt(GameManager.Instance.Player.GetComponent<PlayerController>().GameCamera.transform);
+            transform.Rotate(0, 180,0);
         }
     }

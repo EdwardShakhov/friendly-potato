@@ -1216,7 +1216,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 2786442289063905198}
   m_HandleRect: {fileID: 0}
-  m_Direction: 1
+  m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
@@ -2100,6 +2100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyHealthBar: {fileID: 6758512871781680840}
+  _enemyMaxHealth: 1000
+  _enemyHealth: 0
   _isDead: 0
   _enemyAnimator: {fileID: 0}
   _enemyMoveSpeed: 0
