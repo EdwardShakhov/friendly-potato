@@ -18,8 +18,10 @@ namespace Player
         [SerializeField] private int _playerHealth;
         
         [Header("Player Weapon")]
+        [SerializeField] private Transform _allWeaponsHolder;
         [SerializeField] private GameObject _allWeapons;
-        [SerializeField] private Transform _weaponsHolder;
+        [SerializeField] private GameObject _pistol;
+        [SerializeField] private GameObject _shotgun;
         
         //getters/setters
         public Transform GameCamera => _gameCamera;
@@ -29,11 +31,14 @@ namespace Player
             get => _playerHealth;
             set => _playerHealth = value;
         }
+        public GameObject AllWeapons => _allWeapons;
         //getters/setters end
         
         protected void Awake()
         {
-            Instantiate(_allWeapons,_weaponsHolder);
+            Instantiate(_pistol, _allWeaponsHolder);
+            Instantiate(_shotgun,_allWeaponsHolder);
+            
             _playerAnimator = _playerAnimator ? _playerAnimator : GetComponent<Animator>();
             _movementHash = Animator.StringToHash("speed");
             _playerHealth = _playerMaxHealth;

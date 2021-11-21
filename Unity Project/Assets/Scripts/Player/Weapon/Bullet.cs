@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -26,7 +27,7 @@ public class Bullet : MonoBehaviour
         {
             GameManager.Instance.Player.GetComponent<PlayerSound>().HitEnemy();
             collisionEnemy.EnemyHealthBar.Show();
-            switch (WeaponSwitch.SelectedWeapon)
+            switch (GameManager.Instance.Player.GetComponent<PlayerController>().AllWeapons.GetComponent<WeaponController>().SelectedWeapon)
             {
                 case 0: //gun
                     collisionEnemy.DamageEnemy(Random.Range(25, 50));
