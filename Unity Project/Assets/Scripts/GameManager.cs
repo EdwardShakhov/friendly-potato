@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     public int EnemySpawnTime => _enemySpawnTime;
     public int MapSize => _mapSize;
     public GameObject Player => _player;
-    //getters/setters
+    //getters/setters end
     
     protected void Awake()
     {

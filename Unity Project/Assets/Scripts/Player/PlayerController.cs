@@ -7,31 +7,33 @@ namespace Player
         [Header("Player Movement")]
         [SerializeField] private CharacterController _playerController;
         [SerializeField] private Transform _gameCamera;
-        public Transform GameCamera => _gameCamera;
         [SerializeField] private Animator _playerAnimator;
         [SerializeField] private float _playerSpeed;
         [SerializeField] private float _playerTurnSmoothTime;
+        private float _turnSmoothVelocity; 
+        private int _movementHash;
         
         [Header("Player Health")]
-        [SerializeField] private int _playerMaxHealth = 100; 
+        [SerializeField] private int _playerMaxHealth = 100;
+        [SerializeField] private int _playerHealth;
+        
+        [Header("Player Weapon")]
+        [SerializeField] private GameObject _allWeapons;
+        [SerializeField] private Transform _weaponsHolder;
+        
+        //getters/setters
+        public Transform GameCamera => _gameCamera;
         public int PlayerMaxHealth => _playerMaxHealth;
-        [SerializeField] private int _playerHealth; 
         public int PlayerHealth
         {
             get => _playerHealth;
             set => _playerHealth = value;
         }
-
-        [Header("Player Weapon")]
-        [SerializeField] private GameObject _weapon;
-        [SerializeField] private Transform _weaponHolder;
-        
-        private float _turnSmoothVelocity; 
-        private int _movementHash;
+        //getters/setters end
         
         protected void Awake()
         {
-            Instantiate(_weapon,_weaponHolder);
+            Instantiate(_allWeapons,_weaponsHolder);
             _playerAnimator = _playerAnimator ? _playerAnimator : GetComponent<Animator>();
             _movementHash = Animator.StringToHash("speed");
             _playerHealth = _playerMaxHealth;
