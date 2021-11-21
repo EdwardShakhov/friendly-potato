@@ -6,44 +6,67 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private Rigidbody _bulletProjectile;
     [SerializeField] private float _bulletSpeed = 20;
-    
     public static float ReloadBar;
+    private float _shootDelay;
     private bool _mayFire;
+    private bool _barIsNotEmpty;
     
     protected void Start()
     {
         ReloadBar = 6;
         _mayFire = true;
+        _barIsNotEmpty = true;
     }
 
     protected void Update()
     {
         if (GameManager.Instance.IsPlayerDead || GameManager.Instance.IsGamePaused) return;
         
-        if (Input.GetButtonDown("Fire1") && _mayFire)   //fire
+        if (Input.GetButtonDown("Fire1") && _mayFire && _barIsNotEmpty)   //fire
         {
+            GameManager.Instance.Player.GetComponent<PlayerSound>().Shoot();
+            
             var instantiatedProjectile = Instantiate(_bulletProjectile, transform.position, transform.rotation);
             instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, _bulletSpeed));
-            ReloadBar -= 1; //wait duration
-            GameManager.Instance.Player.GetComponent<PlayerSound>().Shoot();
-            if (ReloadBar <= 0.1)
+            
+            _shootDelay = 1f;
+            ReloadBar -= 1;
+
+            if (_shootDelay > 0.01f)
             {
                 _mayFire = false;
             }
+            if (ReloadBar < 0.01f)
+            {
+                _barIsNotEmpty = false;
+            }
         }
-        if (Input.GetKeyDown(KeyCode.R) || !_mayFire)    //reloading
+        if (!_mayFire)
+        {
+            PrepareToShoot();
+        }
+        if (!_barIsNotEmpty || Input.GetKeyDown(KeyCode.R))
         {
             Reloading();
+        }
+    }
+
+    private void PrepareToShoot()
+    {
+        _shootDelay -= Time.deltaTime;
+        if (_shootDelay <= 0.01f)
+        {
+            _mayFire = true;
         }
     }
 
     private void Reloading()
     {
         ReloadBar += Time.deltaTime;
-        _mayFire = false;
+        _barIsNotEmpty = false;
         if (ReloadBar >= 6)
         {
-            _mayFire = true;
+            _barIsNotEmpty = true;
         }
     }
 }
