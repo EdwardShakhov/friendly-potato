@@ -5,47 +5,40 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private Rigidbody _bulletProjectile;
-    [SerializeField] private float _bulletSpeed = 20;
-    public static float ReloadBar;
-    private float _shootDelay;
-    private bool _mayFire;
-    private bool _barIsNotEmpty;
-    
-    protected void Start()
-    {
-        ReloadBar = 6;
-        _mayFire = true;
-        _barIsNotEmpty = true;
-    }
+    [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private Weapon activeWeapon;
 
     protected void Update()
     {
         if (GameManager.Instance.IsPlayerDead || GameManager.Instance.IsGamePaused) return;
         
-        if (Input.GetButtonDown("Fire1") && _mayFire && _barIsNotEmpty)   //fire
+        activeWeapon = GameManager.Instance.Player.GetComponent<PlayerController>().ActiveWeapon;
+        if (Input.GetButtonDown("Fire1") && activeWeapon.MayFire && activeWeapon.BarIsNotEmpty)   //fire
         {
             GameManager.Instance.Player.GetComponent<PlayerSound>().Shoot();
             
-            var instantiatedProjectile = Instantiate(_bulletProjectile, transform.position, transform.rotation);
-            instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, _bulletSpeed));
+            var instantiatedProjectile = Instantiate(_bulletProjectile, transform.position, transform.rotation, _spawnPoint);
+            instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, activeWeapon.BulletSpeed));
+            instantiatedProjectile.GetComponent<Bullet>().Damage = activeWeapon.Damage;
+            instantiatedProjectile.GetComponent<Bullet>().BulletDistance = activeWeapon.Distance;
             
-            _shootDelay = 1f;
-            ReloadBar -= 1;
+            activeWeapon.CurrentDelay = activeWeapon.ShootDelay;
+            activeWeapon.CurrentBar -= 1;
 
-            if (_shootDelay > 0.01f)
+            if (activeWeapon.CurrentDelay > 0.01f)
             {
-                _mayFire = false;
+                activeWeapon.MayFire = false;
             }
-            if (ReloadBar < 0.01f)
+            if (activeWeapon.CurrentBar < 0.01f)
             {
-                _barIsNotEmpty = false;
+                activeWeapon.BarIsNotEmpty = false;
             }
         }
-        if (!_mayFire)
+        if (!activeWeapon.MayFire)
         {
             PrepareToShoot();
         }
-        if (!_barIsNotEmpty || Input.GetKeyDown(KeyCode.R))
+        if (!activeWeapon.BarIsNotEmpty || Input.GetKeyDown(KeyCode.R))
         {
             Reloading();
         }
@@ -53,20 +46,20 @@ public class PlayerShoot : MonoBehaviour
 
     private void PrepareToShoot()
     {
-        _shootDelay -= Time.deltaTime;
-        if (_shootDelay <= 0.01f)
+        activeWeapon.CurrentDelay -= Time.deltaTime;
+        if (activeWeapon.CurrentDelay <= 0.01f)
         {
-            _mayFire = true;
+            activeWeapon.MayFire = true;
         }
     }
 
     private void Reloading()
     {
-        ReloadBar += Time.deltaTime;
-        _barIsNotEmpty = false;
-        if (ReloadBar >= 6)
+        activeWeapon.CurrentBar += Time.deltaTime;
+        activeWeapon.BarIsNotEmpty = false;
+        if (activeWeapon.CurrentBar >= activeWeapon.BarCapacity)
         {
-            _barIsNotEmpty = true;
+            activeWeapon.BarIsNotEmpty = true;
         }
     }
 }

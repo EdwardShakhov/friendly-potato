@@ -3,12 +3,18 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private const float _bulletDistance = 30;
-    public EnemyHealthBar EnemyHealthBar;
-    protected void Start()
+    [SerializeField] private float _bulletDistance;
+    public float BulletDistance
     {
-        //Destroys bullet after 3 seconds
-        //Destroy(gameObject, 3.0f);
+        get => _bulletDistance;
+        set => _bulletDistance = value;
+    }
+
+    [SerializeField] private int _damage;
+    public int Damage
+    {
+        get => _damage;
+        set => _damage = value;
     }
 
     protected void Update()
@@ -18,7 +24,8 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-}
+    }
+    
     protected void OnCollisionEnter (Collision collision)
     {
         Debug.Log(collision.transform.tag);
@@ -27,15 +34,7 @@ public class Bullet : MonoBehaviour
         {
             GameManager.Instance.Player.GetComponent<PlayerSound>().HitEnemy();
             collisionEnemy.EnemyHealthBar.Show();
-            switch (GameManager.Instance.Player.GetComponent<PlayerController>().AllWeapons.GetComponent<WeaponController>().SelectedWeapon)
-            {
-                case 0: //gun
-                    collisionEnemy.DamageEnemy(Random.Range(25, 50));
-                    break;
-                case 1: //shotgun
-                    collisionEnemy.DamageEnemy(100);
-                    break;
-            }
+            collisionEnemy.DamageEnemy(Random.Range((int)(0.8 * _damage),(int)(1.2 * _damage)));
         }
         Destroy(gameObject);
     }

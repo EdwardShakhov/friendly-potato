@@ -1,10 +1,10 @@
+using Player;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] private int _selectedWeapon;
-    public int SelectedWeapon => _selectedWeapon;
-
+    
     protected void Start()
     {
         SelectWeapon();
@@ -45,11 +45,16 @@ public class WeaponController : MonoBehaviour
 
     private void SelectWeapon ()
     {
+        var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
+        
         var i = 0;
         foreach (Transform weapon in transform)
         {
             weapon.gameObject.SetActive(i == _selectedWeapon);
             i++;
         }
+        
+        playerController.ActiveWeapon = playerController.Weapons[_selectedWeapon].GetComponent<Weapon>();
+        GameManager.Instance.PlayerAmmoBar.Slider.maxValue = playerController.ActiveWeapon.BarCapacity;
     }
 }

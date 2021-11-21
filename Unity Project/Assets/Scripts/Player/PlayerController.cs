@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player
@@ -19,10 +20,11 @@ namespace Player
         
         [Header("Player Weapon")]
         [SerializeField] private Transform _allWeaponsHolder;
-        [SerializeField] private GameObject _allWeapons;
+        [SerializeField] private List<GameObject> _weapons;
+        [SerializeField] private Weapon _activeWeapon;
         [SerializeField] private GameObject _pistol;
         [SerializeField] private GameObject _shotgun;
-        
+
         //getters/setters
         public Transform GameCamera => _gameCamera;
         public int PlayerMaxHealth => _playerMaxHealth;
@@ -31,13 +33,20 @@ namespace Player
             get => _playerHealth;
             set => _playerHealth = value;
         }
-        public GameObject AllWeapons => _allWeapons;
+        public List<GameObject> Weapons => _weapons;
+        public Weapon ActiveWeapon
+        {
+            get => _activeWeapon;
+            set => _activeWeapon = value;
+        }
         //getters/setters end
         
         protected void Awake()
         {
-            Instantiate(_pistol, _allWeaponsHolder);
-            Instantiate(_shotgun,_allWeaponsHolder);
+            _weapons ??= new List<GameObject>();
+            _weapons.Add(Instantiate(_pistol, _allWeaponsHolder));
+            _weapons.Add(Instantiate(_shotgun,_allWeaponsHolder));
+            _activeWeapon = _weapons[0].GetComponent<Weapon>();
             
             _playerAnimator = _playerAnimator ? _playerAnimator : GetComponent<Animator>();
             _movementHash = Animator.StringToHash("speed");

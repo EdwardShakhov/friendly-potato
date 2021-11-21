@@ -1,13 +1,15 @@
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerAmmoBar : MonoBehaviour
 {
     [SerializeField]private Slider slider;
-    
+    public Slider Slider => slider;
+
     protected void Update()
     {
-        SetReload(PlayerShoot.ReloadBar);
+        SetReload(GameManager.Instance.Player.GetComponent<PlayerController>().ActiveWeapon.CurrentBar);
     }
 
     private void SetReload(float reload)
