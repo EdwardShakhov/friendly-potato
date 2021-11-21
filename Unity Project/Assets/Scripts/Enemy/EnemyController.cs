@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
         _playerToChase = _playerToChase ? _playerToChase : GameManager.Instance.Player.transform;
         _enemyAnimator = _enemyAnimator ? _enemyAnimator : GetComponent<Animator>();
         _enemyChasingDistance = Random.Range(_enemyAttackDistance, GameManager.Instance.MapSize);
-        EnemyHealthBar.Off();
+        EnemyHealthBar.Hide();
         _enemyHealth = _enemyMaxHealth;
         _isDead = false;
         EnemyHealthBar.SetMaxHealth(_enemyMaxHealth);

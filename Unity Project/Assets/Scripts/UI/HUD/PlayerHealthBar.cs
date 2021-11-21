@@ -31,7 +31,7 @@ public class PlayerHealthBar : MonoBehaviour
         slider.value = health;
     }
 
-    public void On()
+    public void Show()
     {
         gameObject.SetActive(true);
     }

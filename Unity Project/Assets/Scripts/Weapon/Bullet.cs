@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
         if (collisionEnemy)
         {
             GameManager.Instance.Player.GetComponent<PlayerSound>().HitEnemy();
-            collisionEnemy.EnemyHealthBar.On();
+            collisionEnemy.EnemyHealthBar.Show();
             switch (WeaponSwitch.SelectedWeapon)
             {
                 case 0: //gun

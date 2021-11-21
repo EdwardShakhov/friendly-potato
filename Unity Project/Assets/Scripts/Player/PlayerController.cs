@@ -24,7 +24,6 @@ namespace Player
 
         [Header("Player Weapon")]
         [SerializeField] private GameObject _weapon;
-        public GameObject Weapon => _weapon;
         [SerializeField] private Transform _weaponHolder;
         
         private float _turnSmoothVelocity; 

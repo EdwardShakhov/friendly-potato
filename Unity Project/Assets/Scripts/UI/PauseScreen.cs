@@ -24,7 +24,7 @@ public class PauseScreen : MonoBehaviour
     private void Pause()
     {
         gameObject.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 1e-10f;
         GameManager.Instance.IsGamePaused = true;
         
         GameObject.Find("Canvas").GetComponent<UISound>().Click();

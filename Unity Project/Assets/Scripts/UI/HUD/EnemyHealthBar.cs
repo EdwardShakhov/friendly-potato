@@ -22,13 +22,13 @@ using UnityEngine.UI;
             slider.value = health;
         }
 
-        public void On()
+        public void Show()
         {
             gameObject.SetActive(true);
-            Invoke(nameof(Off), 4f);
+            Invoke(nameof(Hide), 4f);
         }
 
-        public void Off()
+        public void Hide()
         {
             gameObject.SetActive(false);
         }
