@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
     public int MapSize = 90;
     
     [Header("UI")]
-    private PlayerHealthBar _playerHealthBar;
-    private PlayerAmmoBar _playerAmmoBar;
-    private GameOverScreen _gameOverScreen;
-    private PauseScreen _pauseScreen;
+    [SerializeField] private PlayerHealthBar _playerHealthBar;
+    [SerializeField] private PlayerAmmoBar _playerAmmoBar;
+    [SerializeField] private GameOverScreen _gameOverScreen;
+    [SerializeField] private PauseScreen _pauseScreen;
     public bool IsGamePaused;
 
     protected void Awake()
