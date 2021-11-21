@@ -5,7 +5,7 @@ public class EnemyController : MonoBehaviour
 {
     [Header("Enemy Condition")]
     public EnemyHealthBar EnemyHealthBar;
-    [SerializeField] private int _enemyMaxHealth = 1000;
+    [SerializeField] private int _enemyMaxHealth = 100;
     [SerializeField] private int _enemyHealth;
     [SerializeField] private bool _isDead;
     
@@ -63,7 +63,7 @@ public class EnemyController : MonoBehaviour
     public void PlayerHit()
     //triggering by animation event
     {
-        GameManager.Instance.Player.GetComponent<PlayerController>().DamagePlayer(Random.Range(150, 350));
+        GameManager.Instance.Player.GetComponent<PlayerController>().DamagePlayer(Random.Range(15, 35));
     }
     
     public void DamageEnemy(int damage)

@@ -2100,7 +2100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyHealthBar: {fileID: 6758512871781680840}
-  _enemyMaxHealth: 1000
+  _enemyMaxHealth: 100
   _enemyHealth: 0
   _isDead: 0
   _enemyAnimator: {fileID: 0}

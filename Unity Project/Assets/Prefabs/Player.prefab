@@ -150,7 +150,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391796301}
-  m_LocalRotation: {x: -0.23761243, y: 0.75298953, z: -0.36009347, w: -0.49687004}
+  m_LocalRotation: {x: -0.2376124, y: 0.75298953, z: -0.36009347, w: -0.4968701}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -300,7 +300,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368188685}
-  m_LocalRotation: {x: -0.2587236, y: 0.7368369, z: -0.39208668, w: -0.4862115}
+  m_LocalRotation: {x: -0.25872353, y: 0.7368369, z: -0.3920866, w: -0.4862116}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1502,7 +1502,7 @@ MonoBehaviour:
   _playerAnimator: {fileID: 95509902755735526}
   _playerSpeed: 5
   _playerTurnSmoothTime: 0.1
-  _playerMaxHealth: 1000
+  _playerMaxHealth: 100
   _playerHealth: 0
   _weapon: {fileID: 6066412580313516929, guid: a52bfa4d2305f96428e07c1d3ec30820, type: 3}
   _weaponHolder: {fileID: 4741556435874038}

@@ -29,10 +29,10 @@ public class Bullet : MonoBehaviour
             switch (WeaponSwitch.SelectedWeapon)
             {
                 case 0: //gun
-                    collisionEnemy.DamageEnemy(Random.Range(250, 500));
+                    collisionEnemy.DamageEnemy(Random.Range(25, 50));
                     break;
                 case 1: //shotgun
-                    collisionEnemy.DamageEnemy(1000);
+                    collisionEnemy.DamageEnemy(100);
                     break;
             }
         }

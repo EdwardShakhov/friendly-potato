@@ -13,7 +13,7 @@ namespace Player
         [SerializeField] private float _playerTurnSmoothTime;
         
         [Header("Player Health")]
-        [SerializeField] private int _playerMaxHealth = 1000; 
+        [SerializeField] private int _playerMaxHealth = 100; 
         public int PlayerMaxHealth => _playerMaxHealth;
         [SerializeField] private int _playerHealth; 
         public int PlayerHealth
