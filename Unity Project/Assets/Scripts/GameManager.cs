@@ -20,27 +20,31 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    [Header("Player")]
-    public GameObject Player;
-    public bool IsPlayerDead;
+    [Header("Game State")]
+    [SerializeField] protected internal bool IsGamePaused;
+    [SerializeField] protected internal bool IsPlayerDead;
 
-    [Header("Enemies")]
-    public GameObject Enemy;
-    public GameObject SpawnEnemies;
-    public int MaximumNumberOfEnemies = 50;
-    public int EnemySpawnTime;
-    public const float EnemyAttackDistance = 1.3f;
+    [Header("Level Essentials")]
+    [SerializeField] protected internal int NumberOfEnemies;
+    [SerializeField] protected internal int MapSize = 90;
+    [SerializeField] protected internal int MaximumNumberOfEnemies = 50;
+    [SerializeField] protected internal int EnemySpawnTime = 1;
 
-    [Header("Map")]
-    public int MapSize = 90;
-    
+    [Header("Instantiated Objects")]
+    [SerializeField] protected internal GameObject Player;
+    [SerializeField] private GameObject _spawnEnemies;
+    private List<GameObject> Enemies; //[SerializeField]
+
+    [Header("Prefabs")]
+    [SerializeField] private GameObject _playerPrefab;
+    [SerializeField] private GameObject _spawnEnemiesPrefab;
+
     [Header("UI")]
     [SerializeField] private PlayerHealthBar _playerHealthBar;
     [SerializeField] private PlayerAmmoBar _playerAmmoBar;
     [SerializeField] private GameOverScreen _gameOverScreen;
     [SerializeField] private PauseScreen _pauseScreen;
-    public bool IsGamePaused;
-
+    
     protected void Awake()
     {
         _instance = this;
@@ -62,12 +66,18 @@ public class GameManager : MonoBehaviour
 
     private void GameInit()
     {
-        Player = Instantiate(Player);
-        SpawnEnemies = Instantiate(SpawnEnemies);
+        Player = Instantiate(_playerPrefab);
+        _spawnEnemies = Instantiate(_spawnEnemiesPrefab);
         _playerHealthBar.Show(); //объединить - Hud.Show();
         _playerAmmoBar.Show();
         IsPlayerDead = false;
         IsGamePaused = false;
+    }
+    
+    public void EnemiesList(GameObject enemy)
+    {
+        Enemies ??= new List<GameObject>();
+        Enemies.Add(enemy);
     }
 
     public void GamePause()

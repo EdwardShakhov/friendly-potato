@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    [SerializeField] private int _enemyCount;
-
+    [SerializeField] private GameObject _enemyPrefab;
     protected void Start()
     {
         StartCoroutine(EnemyInstantiation());
@@ -12,12 +11,13 @@ public class EnemySpawn : MonoBehaviour
 
     private IEnumerator EnemyInstantiation()
     {
-        while (_enemyCount < GameManager.Instance.MaximumNumberOfEnemies)
+        while (GameManager.Instance.NumberOfEnemies < GameManager.Instance.MaximumNumberOfEnemies)
         {
-            Instantiate(GameManager.Instance.Enemy, new Vector3(Random.Range(-1f, 1f) * GameManager.Instance.MapSize, 
-                0, Random.Range(-1f, 1f) * GameManager.Instance.MapSize), Quaternion.identity);
+            GameManager.Instance.EnemiesList(Instantiate(_enemyPrefab, 
+                new Vector3(Random.Range(-1f, 1f) * GameManager.Instance.MapSize, 
+                    0, Random.Range(-1f, 1f) * GameManager.Instance.MapSize), Quaternion.identity));
+            GameManager.Instance.NumberOfEnemies ++;
             yield return new WaitForSeconds(GameManager.Instance.EnemySpawnTime);
-            _enemyCount ++;
         }
 
     }

@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _enemyMoveSpeed;
     [SerializeField] private float _enemyChasingDistance;
     private Transform _playerToChase;
-    private readonly float _enemyAttackDistance = GameManager.EnemyAttackDistance;
+    private readonly float _enemyAttackDistance = 1.3f;
     private readonly int _movementHash = Animator.StringToHash("speed");
 
     protected void Awake()
@@ -76,6 +76,7 @@ public class EnemyController : MonoBehaviour
             _enemyAnimator.SetFloat(_movementHash, 0);
             _enemyAnimator.SetBool("death", true);
             Destroy(gameObject, 7.0f);
+            GameManager.Instance.NumberOfEnemies--;
         }
     }
 }

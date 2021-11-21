@@ -7185,18 +7185,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2210cd2101808514f9eb38f03ab9a273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1260597861999642, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
+  IsGamePaused: 0
   IsPlayerDead: 0
-  Enemy: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
-  SpawnEnemies: {fileID: 7645181264718658607, guid: c317b880021453545ac43adbdade4ffc, type: 3}
+  NumberOfEnemies: 0
+  MapSize: 90
   MaximumNumberOfEnemies: 50
   EnemySpawnTime: 1
-  MapSize: 90
+  Player: {fileID: 0}
+  _spawnEnemies: {fileID: 0}
+  _playerPrefab: {fileID: 1260597861999642, guid: d6d06c887a1aae94f8c6e8cc2c0c557b, type: 3}
+  _spawnEnemiesPrefab: {fileID: 7645181264718658607, guid: c317b880021453545ac43adbdade4ffc, type: 3}
   _playerHealthBar: {fileID: 701843095}
   _playerAmmoBar: {fileID: 1518980706}
   _gameOverScreen: {fileID: 1600837149744979277}
   _pauseScreen: {fileID: 2750499815291699860}
-  IsGamePaused: 0
 --- !u!4 &1650535610
 Transform:
   m_ObjectHideFlags: 0
