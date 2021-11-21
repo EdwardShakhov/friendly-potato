@@ -21,17 +21,17 @@ public class GameManager : MonoBehaviour
     }
     
     [Header("Game State")]
-    [SerializeField] protected internal bool IsGamePaused;
-    [SerializeField] protected internal bool IsPlayerDead;
+    [SerializeField] private bool _isGamePaused;
+    [SerializeField] private bool _isPlayerDead;
 
     [Header("Level Essentials")]
-    [SerializeField] protected internal int NumberOfEnemies;
-    [SerializeField] protected internal int MapSize = 90;
-    [SerializeField] protected internal int MaximumNumberOfEnemies = 50;
-    [SerializeField] protected internal int EnemySpawnTime = 1;
+    [SerializeField] private int _currentNumberOfEnemiesOnMap;
+    [SerializeField] private int _maximumNumberOfEnemies = 50;
+    [SerializeField] private int _enemySpawnTime = 1;
+    [SerializeField] private int _mapSize = 90;
 
     [Header("Instantiated Objects")]
-    [SerializeField] protected internal GameObject Player;
+    [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _spawnEnemies;
     private List<GameObject> Enemies; //[SerializeField]
 
@@ -44,6 +44,28 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerAmmoBar _playerAmmoBar;
     [SerializeField] private GameOverScreen _gameOverScreen;
     [SerializeField] private PauseScreen _pauseScreen;
+    
+    //getters/setters
+    public bool IsGamePaused
+    {
+        get => _isGamePaused;
+        set => _isGamePaused = value;
+    }
+    public bool IsPlayerDead
+    {
+        get => _isPlayerDead;
+        set => _isPlayerDead = value;
+    }
+    public int CurrentNumberOfEnemiesOnMap
+    {
+        get => _currentNumberOfEnemiesOnMap;
+        set => _currentNumberOfEnemiesOnMap = value;
+    }
+    public int MaximumNumberOfEnemies => _maximumNumberOfEnemies;
+    public int EnemySpawnTime => _enemySpawnTime;
+    public int MapSize => _mapSize;
+    public GameObject Player => _player;
+    //getters/setters
     
     protected void Awake()
     {
@@ -66,12 +88,12 @@ public class GameManager : MonoBehaviour
 
     private void GameInit()
     {
-        Player = Instantiate(_playerPrefab);
+        _player = Instantiate(_playerPrefab);
         _spawnEnemies = Instantiate(_spawnEnemiesPrefab);
         _playerHealthBar.Show(); //объединить - Hud.Show();
         _playerAmmoBar.Show();
-        IsPlayerDead = false;
-        IsGamePaused = false;
+        _isPlayerDead = false;
+        _isGamePaused = false;
     }
     
     public void EnemiesList(GameObject enemy)
@@ -87,7 +109,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        IsPlayerDead = true;
+        _isPlayerDead = true;
         Invoke(nameof(GameOverScreenSetActive), 5f);
     }
 

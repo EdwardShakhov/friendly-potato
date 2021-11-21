@@ -11,12 +11,12 @@ public class EnemySpawn : MonoBehaviour
 
     private IEnumerator EnemyInstantiation()
     {
-        while (GameManager.Instance.NumberOfEnemies < GameManager.Instance.MaximumNumberOfEnemies)
+        while (GameManager.Instance.CurrentNumberOfEnemiesOnMap < GameManager.Instance.MaximumNumberOfEnemies)
         {
             GameManager.Instance.EnemiesList(Instantiate(_enemyPrefab, 
                 new Vector3(Random.Range(-1f, 1f) * GameManager.Instance.MapSize, 
                     0, Random.Range(-1f, 1f) * GameManager.Instance.MapSize), Quaternion.identity));
-            GameManager.Instance.NumberOfEnemies ++;
+            GameManager.Instance.CurrentNumberOfEnemiesOnMap ++;
             yield return new WaitForSeconds(GameManager.Instance.EnemySpawnTime);
         }
 

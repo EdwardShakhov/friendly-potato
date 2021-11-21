@@ -76,7 +76,7 @@ public class EnemyController : MonoBehaviour
             _enemyAnimator.SetFloat(_movementHash, 0);
             _enemyAnimator.SetBool("death", true);
             Destroy(gameObject, 7.0f);
-            GameManager.Instance.NumberOfEnemies--;
+            GameManager.Instance.CurrentNumberOfEnemiesOnMap--;
         }
     }
 }
