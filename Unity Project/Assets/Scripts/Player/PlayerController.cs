@@ -20,6 +20,7 @@ namespace Player
         
         [Header("Player Weapon")]
         [SerializeField] private Transform _allWeaponsHolder;
+        [SerializeField] private GameObject _allWeapons;
         [SerializeField] private List<GameObject> _weapons;
         [SerializeField] private Weapon _activeWeapon;
         [SerializeField] private GameObject _pistol;
@@ -33,6 +34,7 @@ namespace Player
             get => _playerHealth;
             set => _playerHealth = value;
         }
+        public GameObject AllWeapons => _allWeapons;
         public List<GameObject> Weapons => _weapons;
         public Weapon ActiveWeapon
         {

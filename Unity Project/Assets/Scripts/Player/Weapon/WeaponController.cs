@@ -4,7 +4,9 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] private int _selectedWeapon;
-    
+
+    public int SelectedWeapon => _selectedWeapon;
+
     protected void Start()
     {
         SelectWeapon();
@@ -56,5 +58,17 @@ public class WeaponController : MonoBehaviour
         
         playerController.ActiveWeapon = playerController.Weapons[_selectedWeapon].GetComponent<Weapon>();
         GameManager.Instance.PlayerAmmoBar.Slider.maxValue = playerController.ActiveWeapon.BarCapacity;
+
+        switch (playerController.AllWeapons.GetComponent<WeaponController>().SelectedWeapon)
+        {
+            case 0:
+                GameManager.Instance.PlayerWeaponHUD.PistolIcon.SetActive(true);
+                GameManager.Instance.PlayerWeaponHUD.ShotgunIcon.SetActive(false);
+                break;
+            case 1:
+                GameManager.Instance.PlayerWeaponHUD.PistolIcon.SetActive(false);
+                GameManager.Instance.PlayerWeaponHUD.ShotgunIcon.SetActive(true);
+                break;
+        }
     }
 }

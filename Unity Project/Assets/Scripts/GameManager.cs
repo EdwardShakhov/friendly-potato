@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private PlayerHealthBar _playerHealthBar;
     [SerializeField] private PlayerAmmoBar _playerAmmoBar;
+    [SerializeField] private PlayerWeaponHUD _playerWeaponHUD;
     [SerializeField] private GameOverScreen _gameOverScreen;
     [SerializeField] private PauseScreen _pauseScreen;
     
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
     public int MapSize => _mapSize;
     public GameObject Player => _player;
     public PlayerAmmoBar PlayerAmmoBar => _playerAmmoBar;
+    public PlayerWeaponHUD PlayerWeaponHUD => _playerWeaponHUD;
     //getters/setters end
     
     protected void Awake()
