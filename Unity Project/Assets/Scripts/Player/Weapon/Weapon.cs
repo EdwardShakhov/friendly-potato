@@ -12,6 +12,9 @@ public class Weapon : MonoBehaviour
         [SerializeField] private float _shootDelay;
         [SerializeField] private float _currentDelay;
         [SerializeField] private float _currentBar;
+        [SerializeField] private string _weaponName;
+
+        public string WeaponName => _weaponName;
 
         //getters/setters
         public float ShootDelay => _shootDelay;

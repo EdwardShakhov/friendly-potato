@@ -295,6 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletProjectile: {fileID: 6282942858798883039, guid: b5319be778030b94c8d75ee5333165ff, type: 3}
   _spawnPoint: {fileID: 7340251280642273861}
+  activeWeapon: {fileID: 0}
 --- !u!114 &7891581998635714015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,14 +308,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0159e341951d4a788f33720984535a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootDelay: 1
-  _barCapacity: 6
-  _currentBar: 0
-  _damage: 30
-  _distance: 30
   _mayFire: 0
   _barIsNotEmpty: 0
+  _damage: 30
+  _barCapacity: 6
+  _distance: 30
   _bulletSpeed: 20
+  _shootDelay: 1
+  _currentDelay: 0
+  _currentBar: 0
+  _weaponName: Pistol
 --- !u!1 &4955337327926757261
 GameObject:
   m_ObjectHideFlags: 0
