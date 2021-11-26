@@ -13,6 +13,8 @@ public class Weapon : MonoBehaviour
         [SerializeField] private float _currentDelay;
         [SerializeField] private float _currentBar;
         [SerializeField] private string _weaponName;
+        
+        [SerializeField] private Rigidbody _bulletProjectile;
 
         public string WeaponName => _weaponName;
 
@@ -49,6 +51,8 @@ public class Weapon : MonoBehaviour
         }
         
         public float BulletSpeed => _bulletSpeed;
+
+        public Rigidbody BulletProjectile => _bulletProjectile;
         //getters/setters end
 
         
