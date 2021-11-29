@@ -187,7 +187,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2367975316564331808}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0.7}
+  m_LocalPosition: {x: -0.197, y: 0.0841, z: 0.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4155801322676035758}
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee44bf20482a8264aaba931b7d22148b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPoint: {fileID: 0}
+  _spawnPoint: {fileID: 1156931595755998227}
   activeWeapon: {fileID: 0}
 --- !u!1 &6464721956790400608
 GameObject:
@@ -281,7 +281,6 @@ MonoBehaviour:
   _currentBar: 0
   _weaponName: ShotGun
   _bulletProjectile: {fileID: 6282942858798883039, guid: b5319be778030b94c8d75ee5333165ff, type: 3}
-  _raycast: {fileID: 7674340129531686490, guid: 12db60d5f3775ee47964d8f2561b1352, type: 3}
 --- !u!1 &6749386663966636107
 GameObject:
   m_ObjectHideFlags: 0

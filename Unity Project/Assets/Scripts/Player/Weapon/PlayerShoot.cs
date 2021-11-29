@@ -76,7 +76,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void ProjectileShoot()
     {
-        var instantiatedProjectile = Instantiate(gameObject.GetComponent<Weapon>().BulletProjectile, transform.position, transform.rotation, _spawnPoint);
+        var instantiatedProjectile = Instantiate(gameObject.GetComponent<Weapon>().BulletProjectile, _spawnPoint.position, transform.rotation);
         instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, activeWeapon.BulletSpeed));
         instantiatedProjectile.GetComponent<Bullet>().Damage = activeWeapon.Damage;
         instantiatedProjectile.GetComponent<Bullet>().BulletDistance = activeWeapon.Distance;

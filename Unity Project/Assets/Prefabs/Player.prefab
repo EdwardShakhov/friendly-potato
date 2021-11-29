@@ -835,7 +835,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086710295}
-  m_LocalRotation: {x: -0.19702569, y: 0.7972105, z: -0.45353672, w: -0.34632462}
+  m_LocalRotation: {x: -0.19702566, y: 0.7972106, z: -0.45353675, w: -0.34632453}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1505,7 +1505,7 @@ MonoBehaviour:
   _playerMaxHealth: 100
   _playerHealth: 0
   _allWeaponsHolder: {fileID: 4003667263797773132}
-  _allWeapons: {fileID: 5850074469112101731}
+  _allWeapons: {fileID: 6066412580313516929, guid: a52bfa4d2305f96428e07c1d3ec30820, type: 3}
   _weapons: []
   _activeWeapon: {fileID: 0}
   _pistol: {fileID: 3332254614726548681, guid: 9fb11258c99e81d43acd77e3c6f02909, type: 3}
@@ -3412,11 +3412,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a52bfa4d2305f96428e07c1d3ec30820, type: 3}
---- !u!1 &5850074469112101731 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6066412580313516929, guid: a52bfa4d2305f96428e07c1d3ec30820, type: 3}
-  m_PrefabInstance: {fileID: 369182631361671394}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4003667263797773132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3643547955573076910, guid: a52bfa4d2305f96428e07c1d3ec30820, type: 3}

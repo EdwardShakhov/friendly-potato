@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee44bf20482a8264aaba931b7d22148b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPoint: {fileID: 0}
+  _spawnPoint: {fileID: 7340251280642273861}
   activeWeapon: {fileID: 0}
 --- !u!114 &7891581998635714015
 MonoBehaviour:
