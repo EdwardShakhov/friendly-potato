@@ -25,6 +25,10 @@ namespace Player
         [SerializeField] private Weapon _activeWeapon;
         [SerializeField] private GameObject _pistol;
         [SerializeField] private GameObject _shotgun;
+        
+        [Header("Player Level")]
+        [SerializeField] private int _playerLevel;
+        [SerializeField] private float _playerIncreaseCoeff = 1f;
 
         //getters/setters
         public Transform GameCamera => _gameCamera;
@@ -88,6 +92,11 @@ namespace Player
                 _playerAnimator.SetBool("death", true);
                 GameManager.Instance.GameOver();
             }
+        }
+        
+        private void LevelUp()
+        {
+
         }
     }
 }
