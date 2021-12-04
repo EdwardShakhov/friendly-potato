@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
         
         [SerializeField] private float _shootDelay;
         [SerializeField] private float _currentDelay;
+        [SerializeField] private float _reloadDelay;
         [SerializeField] private float _currentBar;
         [SerializeField] private string _weaponName;
         
@@ -37,6 +38,8 @@ public class Weapon : MonoBehaviour
             get => _currentDelay;
             set => _currentDelay = value;
         }
+
+        public float ReloadDelay => _reloadDelay;
 
         public bool MayFire
         {

@@ -93,7 +93,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Reloading()
     {
-        activeWeapon.CurrentBar += Time.deltaTime;
+        activeWeapon.CurrentBar += Time.deltaTime / activeWeapon.ReloadDelay;
         activeWeapon.BarIsNotEmpty = false;
         if (activeWeapon.CurrentBar >= activeWeapon.BarCapacity)
         {

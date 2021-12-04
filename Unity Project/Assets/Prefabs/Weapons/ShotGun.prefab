@@ -273,12 +273,13 @@ MonoBehaviour:
   _mayFire: 0
   _barIsNotEmpty: 0
   _damage: 100
-  _barCapacity: 10
+  _barCapacity: 2
   _distance: 30
-  _bulletSpeed: 20
-  _shootDelay: 2
+  _bulletSpeed: 25
+  _shootDelay: 1
   _currentDelay: 0
-  _currentBar: 0
+  _reloadDelay: 4
+  _currentBar: 10
   _weaponName: ShotGun
   _bulletProjectile: {fileID: 6282942858798883039, guid: b5319be778030b94c8d75ee5333165ff, type: 3}
 --- !u!1 &6749386663966636107
