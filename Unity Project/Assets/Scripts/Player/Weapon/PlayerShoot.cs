@@ -1,5 +1,3 @@
-using System;
-using Cinemachine.Utility;
 using Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,6 +6,8 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Weapon activeWeapon;
+    [SerializeField] private ParticleSystem _hitSfx;
+    [SerializeField] private ParticleSystem _shootSfx;
 
     protected void Update()
     {
@@ -56,12 +56,14 @@ public class PlayerShoot : MonoBehaviour
         var ray = new Ray(transform.position, transform.forward);
         Physics.Raycast(ray, out hit);
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.blue, 1f);
-
+        Destroy(Instantiate(_shootSfx, _spawnPoint.transform.position, _spawnPoint.transform.rotation, _spawnPoint).gameObject, 3f);
         if (hit.collider != null)
         {
             if (hit.collider.gameObject.GetComponent<EnemyController>())
             {
                 Debug.Log("Enemy Hit!");
+                Destroy(Instantiate(hit.collider.gameObject.GetComponent<EnemyController>().BloodSfx, 
+                    hit.collider.gameObject.transform.position, Quaternion.identity).gameObject, 3f);
                 var hitEnemy = hit.collider.gameObject.GetComponent<EnemyController>();
                 hitEnemy.EnemyHealthBar.Show();
                 hitEnemy.DamageEnemy(Random.Range((int)(0.8 * activeWeapon.Damage),(int)(1.2 * activeWeapon.Damage)));
@@ -69,6 +71,7 @@ public class PlayerShoot : MonoBehaviour
             else
             {
                 Debug.Log("Hit " + hit.collider.name);
+                Destroy(Instantiate(_hitSfx, hit.collider.transform.position, Quaternion.identity).gameObject, 3f);
             }
             Debug.DrawLine(ray.origin, hit.point, Color.red,1f);
         }
@@ -77,6 +80,7 @@ public class PlayerShoot : MonoBehaviour
     private void ProjectileShoot()
     {
         var instantiatedProjectile = Instantiate(gameObject.GetComponent<Weapon>().BulletProjectile, _spawnPoint.position, transform.rotation);
+        Destroy(Instantiate(_shootSfx, _spawnPoint.transform.position, _spawnPoint.transform.rotation, _spawnPoint).gameObject, 3f);
         instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, activeWeapon.BulletSpeed));
         instantiatedProjectile.GetComponent<Bullet>().Damage = activeWeapon.Damage;
         instantiatedProjectile.GetComponent<Bullet>().BulletDistance = activeWeapon.Distance;

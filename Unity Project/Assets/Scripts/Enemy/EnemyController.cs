@@ -17,8 +17,16 @@ public class EnemyController : MonoBehaviour
     private readonly float _enemyAttackDistance = 1.3f;
     private readonly int _movementHash = Animator.StringToHash("speed");
 
+    [Header("Enemy SFX")]
+    [SerializeField] private ParticleSystem _bloodDeathSfx;
+    [SerializeField] private ParticleSystem _bloodSfx;
+    [SerializeField] private ParticleSystem _instantiateSfx;
+    public ParticleSystem BloodSfx => _bloodSfx;
+
     protected void Awake()
     {
+        Destroy(Instantiate(_instantiateSfx, transform.position, Quaternion.identity).gameObject, 3f);
+
         _playerToChase = _playerToChase ? _playerToChase : GameManager.Instance.Player.transform;
         _enemyAnimator = _enemyAnimator ? _enemyAnimator : GetComponent<Animator>();
         _enemyChasingDistance = Random.Range(_enemyAttackDistance, GameManager.Instance.MapSize);
@@ -73,6 +81,7 @@ public class EnemyController : MonoBehaviour
         if (_enemyHealth <= 0)
         {
             _isDead = true;
+            Destroy(Instantiate(_bloodDeathSfx, transform.position, transform.rotation).gameObject, 3f);
             _enemyAnimator.SetFloat(_movementHash, 0);
             _enemyAnimator.SetBool("death", true);
             Destroy(gameObject, 7.0f);

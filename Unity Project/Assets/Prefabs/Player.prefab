@@ -835,7 +835,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086710295}
-  m_LocalRotation: {x: -0.19702566, y: 0.7972106, z: -0.45353675, w: -0.34632453}
+  m_LocalRotation: {x: -0.19702564, y: 0.7972105, z: -0.4535368, w: -0.3463245}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1510,6 +1510,8 @@ MonoBehaviour:
   _activeWeapon: {fileID: 0}
   _pistol: {fileID: 3332254614726548681, guid: 9fb11258c99e81d43acd77e3c6f02909, type: 3}
   _shotgun: {fileID: 6464721956790400608, guid: 5a795a97a6b1c984e951fad901ed1a16, type: 3}
+  _playerLevel: 0
+  _playerIncreaseCoeff: 1
 --- !u!82 &2186129738312732831
 AudioSource:
   m_ObjectHideFlags: 0

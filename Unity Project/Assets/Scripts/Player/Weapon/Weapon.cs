@@ -16,10 +16,13 @@ public class Weapon : MonoBehaviour
         [SerializeField] private string _weaponName;
         
         [SerializeField] private Rigidbody _bulletProjectile;
+            
+        [SerializeField] private ParticleSystem _hitSfx;
+
+        public ParticleSystem HitSfx => _hitSfx;
 
         public string WeaponName => _weaponName;
-
-        //getters/setters
+        
         public float ShootDelay => _shootDelay;
 
         public float BarCapacity => _barCapacity;
@@ -56,9 +59,8 @@ public class Weapon : MonoBehaviour
         public float BulletSpeed => _bulletSpeed;
 
         public Rigidbody BulletProjectile => _bulletProjectile;
-        //getters/setters end
 
-        
+
         protected void Start()
         {
             _currentBar = _barCapacity;
