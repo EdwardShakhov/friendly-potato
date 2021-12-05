@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private PlayerHealthBar _playerHealthBar;
     [SerializeField] private PlayerAmmoBar _playerAmmoBar;
+    [SerializeField] private PlayerExperienceBar _playerExperienceBar;
     [SerializeField] private PlayerWeaponHUD _playerWeaponHUD;
     [SerializeField] private GameOverScreen _gameOverScreen;
     [SerializeField] private PauseScreen _pauseScreen;
@@ -95,6 +96,7 @@ public class GameManager : MonoBehaviour
         _spawnEnemies = Instantiate(_spawnEnemiesPrefab);
         _playerHealthBar.Show(); //объединить - Hud.Show();
         _playerAmmoBar.Show();
+        _playerExperienceBar.Show();
         _isPlayerDead = false;
         _isGamePaused = false;
     }
