@@ -15,7 +15,7 @@ namespace Player
         private int _movementHash;
         
         [Header("Player Health")]
-        [SerializeField] private int _playerMaxHealth = 100;
+        [SerializeField] private int _playerMaxHealth;
         [SerializeField] private int _playerHealth;
         
         [Header("Player Weapon")]
@@ -28,7 +28,9 @@ namespace Player
         
         [Header("Player Level")]
         [SerializeField] private int _playerLevel;
-        [SerializeField] private float _playerIncreaseCoeff = 1f;
+        [SerializeField] private int _playerExperience;
+        private const int _playerExperienceToTheNextLevel = 100;
+        [SerializeField] private float _playerStatsIncreaseCoeff;
 
         //getters/setters
         public Transform GameCamera => _gameCamera;
@@ -45,6 +47,15 @@ namespace Player
             get => _activeWeapon;
             set => _activeWeapon = value;
         }
+
+        public float PlayerStatsIncreaseCoeff => _playerStatsIncreaseCoeff;
+
+        public int PlayerExperience
+        {
+            get => _playerExperience;
+            set => _playerExperience = value;
+        }
+        
         //getters/setters end
         
         protected void Awake()
@@ -56,6 +67,10 @@ namespace Player
             
             _playerAnimator = _playerAnimator ? _playerAnimator : GetComponent<Animator>();
             _movementHash = Animator.StringToHash("speed");
+            
+            _playerLevel = 1;
+            _playerExperience = 0;
+            _playerStatsIncreaseCoeff = 1;
             _playerHealth = _playerMaxHealth;
             GameManager.Instance.IsPlayerDead = false;
         }
@@ -63,6 +78,7 @@ namespace Player
         protected void Update()
         {
             GameManager.Instance.GamePause();
+            LevelUp();
             var direction = GetDirection();
             if (direction.magnitude >= 0.5f)
             {
@@ -96,7 +112,14 @@ namespace Player
         
         private void LevelUp()
         {
-
+            if (_playerExperience >= _playerExperienceToTheNextLevel)
+            {
+                _playerLevel += 1;
+                _playerExperience = 0;
+                _playerStatsIncreaseCoeff += 0.1f;
+                _playerMaxHealth = (int)(100 * _playerStatsIncreaseCoeff);
+                _playerHealth = _playerMaxHealth;
+            }
         }
     }
 }

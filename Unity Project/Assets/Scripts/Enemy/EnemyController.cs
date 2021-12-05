@@ -59,7 +59,6 @@ public class EnemyController : MonoBehaviour
         {
             _enemyAnimator.SetFloat(_movementHash, 0);
             _enemyAnimator.SetBool("attack", true);
-            //GameManager.Instance.Player.GetComponent<PlayerController>().DamagePlayer(1);
         }
         else         
             //else don't move
@@ -85,6 +84,7 @@ public class EnemyController : MonoBehaviour
             _enemyAnimator.SetFloat(_movementHash, 0);
             _enemyAnimator.SetBool("death", true);
             Destroy(gameObject, 7.0f);
+            GameManager.Instance.Player.GetComponent<PlayerController>().PlayerExperience += Random.Range(15, 30);
             GameManager.Instance.CurrentNumberOfEnemiesOnMap--;
         }
     }

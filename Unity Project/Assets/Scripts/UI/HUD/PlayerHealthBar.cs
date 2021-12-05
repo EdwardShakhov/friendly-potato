@@ -13,6 +13,7 @@ public class PlayerHealthBar : MonoBehaviour
 
     protected void Update()
     {
+        SetMaxHealth(GameManager.Instance.Player.GetComponent<PlayerController>().PlayerMaxHealth);
         SetHealth(GameManager.Instance.Player.GetComponent<PlayerController>().PlayerHealth);
     }
     

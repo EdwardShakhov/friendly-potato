@@ -65,8 +65,10 @@ public class PlayerShoot : MonoBehaviour
                 Destroy(Instantiate(hit.collider.gameObject.GetComponent<EnemyController>().BloodSfx, 
                     hit.collider.gameObject.transform.position, Quaternion.identity).gameObject, 3f);
                 var hitEnemy = hit.collider.gameObject.GetComponent<EnemyController>();
+                var PlayerStatsIncreaseCoeff = GameManager.Instance.Player.GetComponent<PlayerController>().PlayerStatsIncreaseCoeff;
                 hitEnemy.EnemyHealthBar.Show();
-                hitEnemy.DamageEnemy(Random.Range((int)(0.8 * activeWeapon.Damage),(int)(1.2 * activeWeapon.Damage)));
+                hitEnemy.DamageEnemy((int) (Random.Range((int)(0.8 * activeWeapon.Damage),(int)(1.2 * activeWeapon.Damage))
+                                            * PlayerStatsIncreaseCoeff));
             }
             else
             {
@@ -97,7 +99,8 @@ public class PlayerShoot : MonoBehaviour
 
     private void Reloading()
     {
-        activeWeapon.CurrentBar += Time.deltaTime / activeWeapon.ReloadDelay;
+        var PlayerStatsIncreaseCoeff = GameManager.Instance.Player.GetComponent<PlayerController>().PlayerStatsIncreaseCoeff;
+        activeWeapon.CurrentBar += Time.deltaTime / activeWeapon.ReloadDelay * PlayerStatsIncreaseCoeff;
         activeWeapon.BarIsNotEmpty = false;
         if (activeWeapon.CurrentBar >= activeWeapon.BarCapacity)
         {
