@@ -28,6 +28,9 @@ namespace Player
         
         [Header("Player Level")]
         [SerializeField] private int _playerLevel;
+
+        public int PlayerLevel => _playerLevel;
+
         [SerializeField] private int _playerExperience;
         private const int _playerExperienceToTheNextLevel = 100;
         [SerializeField] private float _playerStatsIncreaseCoeff;
