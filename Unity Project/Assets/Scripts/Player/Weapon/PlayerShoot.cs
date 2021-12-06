@@ -59,7 +59,7 @@ public class PlayerShoot : MonoBehaviour
         Destroy(Instantiate(_shootSfx, _spawnPoint.transform.position, _spawnPoint.transform.rotation, _spawnPoint).gameObject, 3f);
         if (hit.collider != null)
         {
-            if (hit.collider.gameObject.GetComponent<EnemyController>())
+            if (hit.collider.gameObject.GetComponent<EnemyController>() && !hit.collider.gameObject.GetComponent<EnemyController>().IsDead)
             {
                 Debug.Log("Enemy Hit!");
                 Destroy(Instantiate(hit.collider.gameObject.GetComponent<EnemyController>().BloodSfx, 

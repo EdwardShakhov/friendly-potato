@@ -7,8 +7,9 @@ public class EnemyController : MonoBehaviour
     public EnemyHealthBar EnemyHealthBar;
     [SerializeField] private int _enemyMaxHealth = 100;
     [SerializeField] private int _enemyHealth;
-    [SerializeField] private bool _isDead;
-    
+    [SerializeField] private bool _isDead; 
+    public bool IsDead => _isDead;
+
     [Header("Enemy Behavior")]
     [SerializeField] private Animator _enemyAnimator;
     [SerializeField] private float _enemyMoveSpeed;

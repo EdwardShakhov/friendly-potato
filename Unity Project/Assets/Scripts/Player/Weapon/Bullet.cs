@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
         Debug.Log(collision.transform.tag);
         Destroy(Instantiate(_hitSfx, transform.position, Quaternion.identity).gameObject, 3f);
         var collisionEnemy = collision.gameObject.GetComponent<EnemyController>();
-        if (collisionEnemy)
+        if (collisionEnemy && !collisionEnemy.gameObject.GetComponent<EnemyController>().IsDead)
         {
             GameManager.Instance.Player.GetComponent<PlayerSound>().HitEnemy();
             collisionEnemy.EnemyHealthBar.Show();
