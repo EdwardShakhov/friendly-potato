@@ -1,5 +1,6 @@
 using Player;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyController : MonoBehaviour
 {
@@ -35,6 +36,15 @@ public class EnemyController : MonoBehaviour
         _enemyHealth = _enemyMaxHealth;
         _isDead = false;
         EnemyHealthBar.SetMaxHealth(_enemyMaxHealth);
+    }
+
+    protected void Start()
+    {
+        if (Vector3.Distance(GameManager.Instance.Player.transform.position, gameObject.transform.position) 
+            < gameObject.GetComponent<EnemySound>().SoundDistanceToPlayer)
+        {
+            gameObject.GetComponent<EnemyController>().GetComponent<EnemySound>().Instantiation();
+        }
     }
 
     protected void Update()
