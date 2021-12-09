@@ -1,7 +1,5 @@
-﻿using System;
-using Player;
+﻿using Player;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseScreen : MonoBehaviour

@@ -1,9 +1,5 @@
-using System;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using static PauseScreen;
 
 public class GameManager : MonoBehaviour
 {
