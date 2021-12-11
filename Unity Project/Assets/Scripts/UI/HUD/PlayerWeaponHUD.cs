@@ -18,6 +18,7 @@ public class PlayerWeaponHUD : MonoBehaviour
 
     public void ReloadIcon()
     {
-        _gunIcon.GetComponent<Image>().sprite = _spriteDictionary[GameManager.Instance.Player.GetComponent<PlayerController>().ActiveWeapon.WeaponName];
+        _gunIcon.GetComponent<Image>().sprite = 
+            _spriteDictionary[GameManager.Instance.Player.GetComponent<PlayerController>().ActiveWeapon.WeaponName];
     }
 }

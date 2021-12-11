@@ -21,7 +21,8 @@ public class PauseScreen : MonoBehaviour
 
     private void Pause()
     {
-        if(GameManager.Instance.IsPlayerDead) return;
+        if (GameManager.Instance.IsPlayerDead) 
+            return;
         gameObject.SetActive(true);
         Time.timeScale = 1e-10f;
         GameManager.Instance.IsGamePaused = true;

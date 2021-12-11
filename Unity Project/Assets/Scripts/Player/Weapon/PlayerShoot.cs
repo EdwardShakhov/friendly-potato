@@ -8,13 +8,15 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private Weapon activeWeapon;
     [SerializeField] private ParticleSystem _hitSfx;
     [SerializeField] private ParticleSystem _shootSfx;
-
+    private const float _destroySfxTime = 3f;
+    
     protected void Update()
     {
-        if (GameManager.Instance.IsPlayerDead || GameManager.Instance.IsGamePaused) return;
+        if (GameManager.Instance.IsPlayerDead || GameManager.Instance.IsGamePaused) 
+            return;
         
         activeWeapon = GameManager.Instance.Player.GetComponent<PlayerController>().ActiveWeapon;
-        if (Input.GetButtonDown("Fire1") && activeWeapon.MayFire && activeWeapon.BarIsNotEmpty)   //fire
+        if (Input.GetButtonDown("Fire1") && activeWeapon.MayFire && activeWeapon.BarIsNotEmpty)
         {
             GameManager.Instance.Player.GetComponent<PlayerSound>().Shoot();
 
@@ -29,7 +31,7 @@ public class PlayerShoot : MonoBehaviour
             }
 
             activeWeapon.CurrentDelay = activeWeapon.ShootDelay;
-            activeWeapon.CurrentBar -= 1;
+            activeWeapon.CurrentBar--;
 
             if (activeWeapon.CurrentDelay > 0.01f)
             {
@@ -56,24 +58,28 @@ public class PlayerShoot : MonoBehaviour
         var ray = new Ray(transform.position, transform.forward);
         Physics.Raycast(ray, out hit);
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.blue, 1f);
-        Destroy(Instantiate(_shootSfx, _spawnPoint.transform.position, _spawnPoint.transform.rotation, _spawnPoint).gameObject, 3f);
+        Destroy(Instantiate(_shootSfx, 
+            _spawnPoint.transform.position, _spawnPoint.transform.rotation, _spawnPoint).gameObject, _destroySfxTime);
         if (hit.collider != null)
         {
-            if (hit.collider.gameObject.GetComponent<EnemyController>() && !hit.collider.gameObject.GetComponent<EnemyController>().IsDead)
+            if (hit.collider.gameObject.GetComponent<EnemyController>() && 
+                !hit.collider.gameObject.GetComponent<EnemyController>().IsDead)
             {
                 Debug.Log("Enemy Hit!");
                 Destroy(Instantiate(hit.collider.gameObject.GetComponent<EnemyController>().BloodSfx, 
                     hit.collider.gameObject.transform.position, Quaternion.identity).gameObject, 3f);
                 var hitEnemy = hit.collider.gameObject.GetComponent<EnemyController>();
-                var PlayerStatsIncreaseCoeff = GameManager.Instance.Player.GetComponent<PlayerController>().PlayerStatsIncreaseCoeff;
                 hitEnemy.EnemyHealthBar.Show();
-                hitEnemy.DamageEnemy((int) (Random.Range((int)(0.8 * activeWeapon.Damage),(int)(1.2 * activeWeapon.Damage))
-                                            * PlayerStatsIncreaseCoeff));
+                var playerStatsIncreaseCoeff = 
+                    GameManager.Instance.Player.GetComponent<PlayerController>().PlayerStatsIncreaseCoeff;
+                hitEnemy.DamageEnemy((int)(activeWeapon.Damage * playerStatsIncreaseCoeff 
+                                                               * Random.Range(0.9f, 1.1f)));
             }
             else
             {
                 Debug.Log("Hit " + hit.collider.name);
-                Destroy(Instantiate(_hitSfx, hit.collider.transform.position, Quaternion.identity).gameObject, 3f);
+                Destroy(Instantiate(_hitSfx, 
+                    hit.collider.transform.position, Quaternion.identity).gameObject, _destroySfxTime);
             }
             Debug.DrawLine(ray.origin, hit.point, Color.red,1f);
         }
@@ -81,8 +87,10 @@ public class PlayerShoot : MonoBehaviour
 
     private void ProjectileShoot()
     {
-        var instantiatedProjectile = Instantiate(gameObject.GetComponent<Weapon>().BulletProjectile, _spawnPoint.position, transform.rotation);
-        Destroy(Instantiate(_shootSfx, _spawnPoint.transform.position, _spawnPoint.transform.rotation, _spawnPoint).gameObject, 3f);
+        var instantiatedProjectile = Instantiate(gameObject.GetComponent<Weapon>().BulletProjectile, 
+            _spawnPoint.position, transform.rotation);
+        Destroy(Instantiate(_shootSfx, 
+            _spawnPoint.transform.position, _spawnPoint.transform.rotation, _spawnPoint).gameObject, _destroySfxTime);
         instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, activeWeapon.BulletSpeed));
         instantiatedProjectile.GetComponent<Bullet>().Damage = activeWeapon.Damage;
         instantiatedProjectile.GetComponent<Bullet>().BulletDistance = activeWeapon.Distance;
@@ -99,8 +107,9 @@ public class PlayerShoot : MonoBehaviour
 
     private void Reloading()
     {
-        var PlayerStatsIncreaseCoeff = GameManager.Instance.Player.GetComponent<PlayerController>().PlayerStatsIncreaseCoeff;
-        activeWeapon.CurrentBar += Time.deltaTime / activeWeapon.ReloadDelay * PlayerStatsIncreaseCoeff;
+        var playerStatsIncreaseCoeff = 
+            GameManager.Instance.Player.GetComponent<PlayerController>().PlayerStatsIncreaseCoeff;
+        activeWeapon.CurrentBar += Time.deltaTime / activeWeapon.ReloadDelay * playerStatsIncreaseCoeff;
         activeWeapon.BarIsNotEmpty = false;
         if (activeWeapon.CurrentBar >= activeWeapon.BarCapacity)
         {

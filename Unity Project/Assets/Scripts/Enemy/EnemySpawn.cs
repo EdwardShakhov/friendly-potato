@@ -8,7 +8,6 @@ public class EnemySpawn : MonoBehaviour
     
     [SerializeField] private float _multipleEnemyInstantiationDelay;
     [SerializeField] private float _oneEnemyInstantiationDelay;
-    
     [SerializeField] private float _firstEnemyPositionX;
     [SerializeField] private float _firstEnemyPositionY;
     [SerializeField] private float _firstEnemyPositionZ;
@@ -31,8 +30,8 @@ public class EnemySpawn : MonoBehaviour
     
     private void InstantiateOneEnemy()
     {
-        GameManager.Instance.EnemiesList(Instantiate(
-            _enemyPrefab, new Vector3(_firstEnemyPositionX, _firstEnemyPositionY, _firstEnemyPositionZ), Quaternion.identity));
+        GameManager.Instance.EnemiesList(Instantiate(_enemyPrefab, 
+            new Vector3(_firstEnemyPositionX, _firstEnemyPositionY, _firstEnemyPositionZ), Quaternion.identity));
     }
 
     private void InstantiateManyEnemies()

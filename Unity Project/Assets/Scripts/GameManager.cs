@@ -40,8 +40,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerAmmoBar _playerAmmoBar;
     [SerializeField] private PlayerExperienceBar _playerExperienceBar;
     [SerializeField] private PlayerWeaponHUD _playerWeaponHUD;
-    [SerializeField] private GameOverScreen _gameOverScreen;
     [SerializeField] private PauseScreen _pauseScreen;
+    [SerializeField] private GameOverScreen _gameOverScreen;
+    private const int _showScreenTime = 5;
     
     //getters/setters
     public bool IsGamePaused
@@ -90,7 +91,7 @@ public class GameManager : MonoBehaviour
     {
         _player = Instantiate(_playerPrefab);
         _spawnEnemies = Instantiate(_spawnEnemiesPrefab);
-        _playerHealthBar.Show(); //объединить - Hud.Show();
+        _playerHealthBar.Show();
         _playerAmmoBar.Show();
         _playerExperienceBar.Show();
         _isPlayerDead = false;
@@ -111,7 +112,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         _isPlayerDead = true;
-        Invoke(nameof(GameOverScreenSetActive), 5f);
+        Invoke(nameof(GameOverScreenSetActive), _showScreenTime);
     }
 
     public void GameOverScreenSetActive()

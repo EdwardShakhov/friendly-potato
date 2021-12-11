@@ -33,8 +33,8 @@ public class PlayerSound : MonoBehaviour
         _audioSource.PlayOneShot(clip);
     }
     
+    //triggering by animation event
     public void Fall()
-        //triggering by animation event
     {
         var clip = GetRandomFall();
         _audioSource.PlayOneShot(clip);

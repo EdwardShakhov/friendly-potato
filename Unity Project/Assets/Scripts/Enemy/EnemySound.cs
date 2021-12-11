@@ -16,15 +16,15 @@ public class EnemySound : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
     
-    public void HitPlayer() 
-        //triggering by animation event
+    // triggering by animation event
+    public void HitPlayer()
     {
         var clip = GetRandomHitPlayer();
         _audioSource.PlayOneShot(clip);
     }
     
-    public void Fall() 
-        //triggering by animation event
+    // triggering by animation event
+    public void Fall()
     {
         var clip = GetRandomFall();
         _audioSource.PlayOneShot(clip);
