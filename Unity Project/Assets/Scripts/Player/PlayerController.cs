@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player
@@ -10,30 +11,78 @@ namespace Player
         [SerializeField] private Animator _playerAnimator;
         [SerializeField] private float _playerSpeed;
         [SerializeField] private float _playerTurnSmoothTime;
-        
-        [Header("Player Health")]
-        public static int PlayerMaxHealth = 1000;
-        public static int PlayerHealth;
-
-        [Header("Player Weapon")]
-        [SerializeField] private GameObject _weapon;
-        [SerializeField] private Transform _weaponHolder;
-        
         private float _turnSmoothVelocity; 
         private int _movementHash;
         
+        [Header("Player Health")]
+        [SerializeField] private int _playerMaxHealth;
+        [SerializeField] private int _playerHealth;
+        
+        [Header("Player Weapon")]
+        [SerializeField] private Transform _allWeaponsHolder;
+        [SerializeField] private GameObject _allWeapons;
+        [SerializeField] private List<GameObject> _weapons;
+        [SerializeField] private Weapon _activeWeapon;
+        [SerializeField] private GameObject _pistol;
+        [SerializeField] private GameObject _shotgun;
+        
+        [Header("Player Level")]
+        [SerializeField] private int _playerLevel;
+
+        public int PlayerLevel => _playerLevel;
+
+        [SerializeField] private int _playerExperience;
+        private const int _playerExperienceToTheNextLevel = 100;
+        [SerializeField] private float _playerStatsIncreaseCoeff;
+
+        //getters/setters
+        public Transform GameCamera => _gameCamera;
+        public int PlayerMaxHealth => _playerMaxHealth;
+        public int PlayerHealth
+        {
+            get => _playerHealth;
+            set => _playerHealth = value;
+        }
+        public GameObject AllWeapons => _allWeapons;
+        public List<GameObject> Weapons => _weapons;
+        public Weapon ActiveWeapon
+        {
+            get => _activeWeapon;
+            set => _activeWeapon = value;
+        }
+
+        public float PlayerStatsIncreaseCoeff => _playerStatsIncreaseCoeff;
+
+        public int PlayerExperience
+        {
+            get => _playerExperience;
+            set => _playerExperience = value;
+        }
+        
+        //getters/setters end
+        
         protected void Awake()
         {
-            Instantiate(_weapon,_weaponHolder);
+            _weapons ??= new List<GameObject>();
+            _weapons.Add(Instantiate(_pistol, _allWeaponsHolder));
+            _weapons.Add(Instantiate(_shotgun,_allWeaponsHolder));
+            _activeWeapon = _weapons[0].GetComponent<Weapon>();
+            
             _playerAnimator = _playerAnimator ? _playerAnimator : GetComponent<Animator>();
             _movementHash = Animator.StringToHash("speed");
-            PlayerHealth = PlayerMaxHealth;
+            
+            _playerLevel = 1;
+            _playerExperience = 0;
+            _playerStatsIncreaseCoeff = 1;
+            _playerHealth = _playerMaxHealth;
             GameManager.Instance.IsPlayerDead = false;
         }
 
         protected void Update()
         {
-            var direction = PlayerInput.GetDirection();
+            GameManager.Instance.GamePause();
+            LevelUp();
+            var direction = GetDirection();
             if (direction.magnitude >= 0.5f)
             {
                 var targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + _gameCamera.eulerAngles.y;
@@ -45,16 +94,35 @@ namespace Player
             _playerAnimator.SetFloat(_movementHash, direction.magnitude);
         }
         
+        private Vector3 GetDirection()
+        {
+            if(!GameManager.Instance.IsPlayerDead)
+            {
+                return new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
+            }
+            return default;
+        }
+        
         public void DamagePlayer(int damage)
         {
-            PlayerHealth -= damage;
+            _playerHealth -= damage;
             if (PlayerHealth <= 0)
             {
-                GameManager.Instance.IsPlayerDead = true;
                 _playerAnimator.SetBool("death", true);
                 GameManager.Instance.GameOver();
             }
         }
-
+        
+        private void LevelUp()
+        {
+            if (_playerExperience >= _playerExperienceToTheNextLevel)
+            {
+                _playerLevel += 1;
+                _playerExperience = 0;
+                _playerStatsIncreaseCoeff += 0.1f;
+                _playerMaxHealth = (int)(100 * _playerStatsIncreaseCoeff);
+                _playerHealth = _playerMaxHealth;
+            }
+        }
     }
 }

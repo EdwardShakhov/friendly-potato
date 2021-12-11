@@ -253,6 +253,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8351948093961844185}
+  - component: {fileID: 6276474687140476655}
+  - component: {fileID: 7891581998635714015}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -267,8 +269,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3332254614726548681}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.72110325, y: -0.088767186, z: -0.6862642, w: -0.034232635}
+  m_LocalPosition: {x: -0.25639987, y: 0.09249998, z: -0.033900063}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2694211061580238247}
@@ -279,6 +281,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6276474687140476655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3332254614726548681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee44bf20482a8264aaba931b7d22148b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnPoint: {fileID: 7340251280642273861}
+  activeWeapon: {fileID: 0}
+  _hitSfx: {fileID: 198000011002288308, guid: beb3acff7ab73944fb8f470f24d74ed3, type: 3}
+  _shootSfx: {fileID: 198000013440722320, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
+--- !u!114 &7891581998635714015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3332254614726548681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0159e341951d4a788f33720984535a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mayFire: 0
+  _barIsNotEmpty: 0
+  _damage: 30
+  _barCapacity: 6
+  _distance: 30
+  _bulletSpeed: 20
+  _shootDelay: 0
+  _currentDelay: 0
+  _reloadDelay: 0.5
+  _currentBar: 0
+  _weaponName: Pistol
+  _bulletProjectile: {fileID: 6282942858798883039, guid: b5319be778030b94c8d75ee5333165ff, type: 3}
+  _hitSfx: {fileID: 0}
 --- !u!1 &4955337327926757261
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +412,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7340251280642273861}
-  - component: {fileID: 546158099}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -391,17 +433,3 @@ Transform:
   m_Father: {fileID: 8351948093961844185}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &546158099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8712562713054212860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee44bf20482a8264aaba931b7d22148b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 6282942858798883039, guid: b5319be778030b94c8d75ee5333165ff, type: 3}
-  speed: 20

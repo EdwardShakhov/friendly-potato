@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,19 +16,70 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    [Header("Player")]
-    public GameObject Player;
-    public bool IsPlayerDead;
-    
-    [Header("Enemies")]
-    public GameObject Enemy;
-    public GameObject SpawnEnemies;
-    public int MaximumNumberOfEnemies = 50;
-    public int EnemySpawnTime;
-    public const float EnemyAttackDistance = 1.3f;
+    [Header("Game State")]
+    [SerializeField] private bool _isGamePaused;
+    [SerializeField] private bool _isPlayerDead;
 
-    [Header("Map")]
-    public int MapSize = 90;
+    [Header("Level Essentials")]
+    [SerializeField] private int _currentNumberOfEnemiesOnMap;
+    [SerializeField] private int _maximumNumberOfEnemies = 50;
+    [SerializeField] private int _enemySpawnTime = 1;
+    [SerializeField] private int _mapSize = 90;
+
+    [Header("Instantiated Objects")]
+    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _spawnEnemies;
+    private List<GameObject> Enemies; //[SerializeField]
+
+    [Header("Prefabs")]
+    [SerializeField] private GameObject _playerPrefab;
+    [SerializeField] private GameObject _spawnEnemiesPrefab;
+
+    [Header("UI")]
+    [SerializeField] private PlayerHealthBar _playerHealthBar;
+    [SerializeField] private PlayerAmmoBar _playerAmmoBar;
+    [SerializeField] private PlayerExperienceBar _playerExperienceBar;
+    [SerializeField] private PlayerWeaponHUD _playerWeaponHUD;
+    [SerializeField] private GameOverScreen _gameOverScreen;
+    [SerializeField] private PauseScreen _pauseScreen;
+    
+    //getters/setters
+    public bool IsGamePaused
+    {
+        get => _isGamePaused;
+        set => _isGamePaused = value;
+    }
+    public bool IsPlayerDead
+    {
+        get => _isPlayerDead;
+        set => _isPlayerDead = value;
+    }
+    public int CurrentNumberOfEnemiesOnMap
+    {
+        get => _currentNumberOfEnemiesOnMap;
+        set => _currentNumberOfEnemiesOnMap = value;
+    }
+    public int MaximumNumberOfEnemies => _maximumNumberOfEnemies;
+    public int EnemySpawnTime => _enemySpawnTime;
+    public int MapSize => _mapSize;
+    public GameObject Player => _player;
+    public PlayerAmmoBar PlayerAmmoBar => _playerAmmoBar;
+    public PlayerWeaponHUD PlayerWeaponHUD => _playerWeaponHUD;
+    //getters/setters end
+    
+    protected void Awake()
+    {
+        _instance = this;
+
+    }
+    
+    protected void OnDestroy()
+    {
+        if (_instance == this)
+        {
+            _instance = null;
+        }
+    }
     
     protected void Start()
     {
@@ -40,34 +88,34 @@ public class GameManager : MonoBehaviour
 
     private void GameInit()
     {
-        Player = Instantiate(Player);
-        SpawnEnemies = Instantiate(SpawnEnemies);
+        _player = Instantiate(_playerPrefab);
+        _spawnEnemies = Instantiate(_spawnEnemiesPrefab);
+        _playerHealthBar.Show(); //объединить - Hud.Show();
+        _playerAmmoBar.Show();
+        _playerExperienceBar.Show();
+        _isPlayerDead = false;
+        _isGamePaused = false;
+    }
+    
+    public void EnemiesList(GameObject enemy)
+    {
+        Enemies ??= new List<GameObject>();
+        Enemies.Add(enemy);
     }
 
-    protected void Awake()
+    public void GamePause()
     {
-        _instance = this;
-    }
-
-    protected void OnDestroy()
-    {
-        if (_instance == this)
-        {
-            _instance = null;
-        }
+        _pauseScreen.SetActive();
     }
 
     public void GameOver()
     {
-        if (IsPlayerDead)
-        {
-            Debug.Log("Game Over");
-            Invoke(nameof(RestartLevel), 4f);
-        }
+        _isPlayerDead = true;
+        Invoke(nameof(GameOverScreenSetActive), 5f);
     }
 
-    public void RestartLevel()
+    public void GameOverScreenSetActive()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        _gameOverScreen.SetActive();
     }
 }
