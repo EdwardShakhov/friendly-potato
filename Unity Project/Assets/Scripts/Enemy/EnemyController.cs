@@ -1,5 +1,6 @@
 using Player;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 public class EnemyController : MonoBehaviour
@@ -19,7 +20,7 @@ public class EnemyController : MonoBehaviour
     private const float _enemyAttackDistance = 1.3f;
 
     [SerializeField] private Animator _enemyAnimator;
-    private static readonly int _movementHash = Animator.StringToHash("speed");
+    private static readonly int _speedHash = Animator.StringToHash("speed");
     private static readonly int _attackHash = Animator.StringToHash("attack");
     private static readonly int _damageHash = Animator.StringToHash("damage");
     private static readonly int _deathHash = Animator.StringToHash("death");
@@ -37,6 +38,7 @@ public class EnemyController : MonoBehaviour
 
         _playerToChase = _playerToChase ? _playerToChase : GameManager.Instance.Player.transform;
         _enemyAnimator = _enemyAnimator ? _enemyAnimator : GetComponent<Animator>();
+        gameObject.GetComponent<Animator>().speed = Random.Range(0.8f, 1.2f);
         _enemyChasingDistance = Random.Range(_enemyAttackDistance, GameManager.Instance.MapSize);
         EnemyHealthBar.Hide();
         _enemyHealth = _enemyMaxHealth;
@@ -70,18 +72,18 @@ public class EnemyController : MonoBehaviour
         {
             var transform1 = transform;
             transform1.position += transform1.forward * (_enemyMoveSpeed * Time.deltaTime);
-            _enemyAnimator.SetFloat(_movementHash, 1);
+            _enemyAnimator.SetFloat(_speedHash, 1);
         }
         //if distance to player is small - attack and don't move
         else if (distanceToPlayer <= _enemyAttackDistance && !_isDead)
         {
-            _enemyAnimator.SetFloat(_movementHash, 0);
+            _enemyAnimator.SetFloat(_speedHash, 0);
             _enemyAnimator.SetBool(_attackHash, true);
         }
         //else don't move
         else
         {
-            _enemyAnimator.SetFloat(_movementHash, 0);
+            _enemyAnimator.SetFloat(_speedHash, 0);
         }
     }
 
@@ -98,8 +100,9 @@ public class EnemyController : MonoBehaviour
         if (_enemyHealth <= 0)
         {
             _isDead = true;
+            gameObject.GetComponent<NavMeshAgent>().enabled = false;
             Destroy(Instantiate(_bloodDeathSfx, transform.position, transform.rotation).gameObject, _destroySfxTime);
-            _enemyAnimator.SetFloat(_movementHash, 0);
+            _enemyAnimator.SetFloat(_speedHash, 0);
             _enemyAnimator.SetBool(_deathHash, true);
             Destroy(gameObject, _destroyEnemyObjectTime);
             GameManager.Instance.Player.GetComponent<PlayerController>().PlayerExperience += Random.Range(15, 31);

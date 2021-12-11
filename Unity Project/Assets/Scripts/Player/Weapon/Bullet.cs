@@ -21,14 +21,14 @@ public class Bullet : MonoBehaviour
     
     protected void Update()
     {
-        //Destroys bullet when it's far from player
+        //Destroy bullet when it's far from player
         if (Vector3.Distance(GameManager.Instance.Player.transform.position, gameObject.transform.position) 
             > _bulletDistance)
         {
             Destroy(gameObject);
         }
 
-        //Destroys bullet after 5 seconds anyway
+        //Destroy bullet after 5 seconds anyway
         Destroy(gameObject, 5f);
     }
     

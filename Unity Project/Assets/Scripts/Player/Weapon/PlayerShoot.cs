@@ -60,16 +60,20 @@ public class PlayerShoot : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.blue, 1f);
         Destroy(Instantiate(_shootSfx, 
             _spawnPoint.transform.position, _spawnPoint.transform.rotation, _spawnPoint).gameObject, _destroySfxTime);
+        
+        var hitEnemy = hit.collider.gameObject.GetComponent<EnemyController>();
         if (hit.collider != null)
         {
-            if (hit.collider.gameObject.GetComponent<EnemyController>() && 
-                !hit.collider.gameObject.GetComponent<EnemyController>().IsDead)
+            if (hitEnemy && !hitEnemy.IsDead)
             {
                 Debug.Log("Enemy Hit!");
-                Destroy(Instantiate(hit.collider.gameObject.GetComponent<EnemyController>().BloodSfx, 
-                    hit.collider.gameObject.transform.position, Quaternion.identity).gameObject, 3f);
-                var hitEnemy = hit.collider.gameObject.GetComponent<EnemyController>();
+                
+                Destroy(Instantiate(hitEnemy.BloodSfx, 
+                    hitEnemy.transform.position + new Vector3(0,1,0), 
+                    Quaternion.identity).gameObject, _destroySfxTime);
+                
                 hitEnemy.EnemyHealthBar.Show();
+                
                 var playerStatsIncreaseCoeff = 
                     GameManager.Instance.Player.GetComponent<PlayerController>().PlayerStatsIncreaseCoeff;
                 hitEnemy.DamageEnemy((int)(activeWeapon.Damage * playerStatsIncreaseCoeff 
@@ -87,13 +91,13 @@ public class PlayerShoot : MonoBehaviour
 
     private void ProjectileShoot()
     {
-        var instantiatedProjectile = Instantiate(gameObject.GetComponent<Weapon>().BulletProjectile, 
+        var instantiatedBullet = Instantiate(gameObject.GetComponent<Weapon>().BulletProjectile, 
             _spawnPoint.position, transform.rotation);
         Destroy(Instantiate(_shootSfx, 
             _spawnPoint.transform.position, _spawnPoint.transform.rotation, _spawnPoint).gameObject, _destroySfxTime);
-        instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, activeWeapon.BulletSpeed));
-        instantiatedProjectile.GetComponent<Bullet>().Damage = activeWeapon.Damage;
-        instantiatedProjectile.GetComponent<Bullet>().BulletDistance = activeWeapon.Distance;
+        instantiatedBullet.velocity = transform.TransformDirection(new Vector3(0, 0, activeWeapon.BulletSpeed));
+        instantiatedBullet.GetComponent<Bullet>().Damage = activeWeapon.Damage;
+        instantiatedBullet.GetComponent<Bullet>().BulletDistance = activeWeapon.Distance;
     }
     
     private void PrepareToShoot()
