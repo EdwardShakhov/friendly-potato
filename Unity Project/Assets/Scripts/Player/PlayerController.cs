@@ -17,6 +17,8 @@ namespace Player
         [Header("Player Health")]
         [SerializeField] private int _playerMaxHealth;
         [SerializeField] private int _playerHealth;
+        [SerializeField] private ParticleSystem _bloodSfx;
+        private const float _destroySfxTime = 3f;
         private readonly int _deathHash = Animator.StringToHash("death");
         
         [Header("Player Weapon")]
@@ -103,6 +105,10 @@ namespace Player
         
         public void DamagePlayer(int damage)
         {
+            Destroy(Instantiate(_bloodSfx, 
+                gameObject.transform.position + new Vector3(0,1,0), 
+                Quaternion.identity).gameObject, _destroySfxTime);
+            
             _playerHealth -= damage;
             if (PlayerHealth <= 0)
             {

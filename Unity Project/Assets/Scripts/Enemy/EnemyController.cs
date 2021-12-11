@@ -38,7 +38,7 @@ public class EnemyController : MonoBehaviour
 
         _playerToChase = _playerToChase ? _playerToChase : GameManager.Instance.Player.transform;
         _enemyAnimator = _enemyAnimator ? _enemyAnimator : GetComponent<Animator>();
-        gameObject.GetComponent<Animator>().speed = Random.Range(0.8f, 1.2f);
+        gameObject.GetComponent<Animator>().speed = Random.Range(0.9f, 1.2f);
         _enemyChasingDistance = Random.Range(_enemyAttackDistance, GameManager.Instance.MapSize);
         EnemyHealthBar.Hide();
         _enemyHealth = _enemyMaxHealth;
