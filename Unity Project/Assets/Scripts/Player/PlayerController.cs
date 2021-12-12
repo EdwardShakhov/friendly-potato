@@ -18,7 +18,7 @@ namespace Player
         [SerializeField] private int _playerMaxHealth;
         [SerializeField] private int _playerHealth;
         [SerializeField] private ParticleSystem _bloodSfx;
-        private const float _destroySfxTime = 3f;
+        private const float _destroySfxTime = 4f;
         private readonly int _deathHash = Animator.StringToHash("death");
         
         [Header("Player Weapon")]
@@ -34,6 +34,7 @@ namespace Player
         [SerializeField] private int _playerExperience;
         private const int _playerExperienceToTheNextLevel = 100;
         [SerializeField] private float _playerStatsIncreaseCoeff;
+        [SerializeField] private ParticleSystem _LevelUpSfx;
 
         //getters/setters
         public Transform GameCamera => _gameCamera;
@@ -128,6 +129,10 @@ namespace Player
             if (_playerExperience >= _playerExperienceToTheNextLevel)
             {
                 _playerLevel++;
+                GameManager.Instance.Player.GetComponent<PlayerSound>().LevelUp();
+                Destroy(Instantiate(_LevelUpSfx, 
+                    gameObject.transform.position + new Vector3(0,1,0), 
+                    Quaternion.identity, gameObject.transform).gameObject, _destroySfxTime);
                 _playerExperience = 0;
                 _playerStatsIncreaseCoeff += 0.1f;
                 _playerMaxHealth = (int)(100 * _playerStatsIncreaseCoeff);

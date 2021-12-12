@@ -1514,6 +1514,7 @@ MonoBehaviour:
   _playerLevel: 0
   _playerExperience: 0
   _playerStatsIncreaseCoeff: 0
+  _LevelUpSfx: {fileID: 6935084420887518977, guid: 479360615ed0af34aa823198c4b25232, type: 3}
 --- !u!82 &2186129738312732831
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1642,6 +1643,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bc0d0e52cfbdacd49816cc6f87be4eef, type: 3}
   _soundLoot:
   - {fileID: 8300000, guid: a4a9327e98855524c846cc8e2f559e96, type: 3}
+  _soundLevelUp:
+  - {fileID: 8300000, guid: 6477845e3a99d304c93738202c0396d1, type: 3}
 --- !u!1 &1261804499409134
 GameObject:
   m_ObjectHideFlags: 0

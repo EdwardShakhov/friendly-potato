@@ -7,6 +7,7 @@ public class PlayerSound : MonoBehaviour
     [SerializeField] private AudioClip[] _soundHit;
     [SerializeField] private AudioClip[] _soundFall;
     [SerializeField] private AudioClip[] _soundLoot;
+    [SerializeField] private AudioClip[] _soundLevelUp;
 
     private AudioSource _audioSource;
 
@@ -46,6 +47,12 @@ public class PlayerSound : MonoBehaviour
         var clip = GetRandomLoot();
         _audioSource.PlayOneShot(clip);
     }
+    
+    public void LevelUp()
+    {
+        var clip = GetRandomLevelUp();
+        _audioSource.PlayOneShot(clip);
+    }
 
     private AudioClip GetRandomStep()
     {
@@ -70,5 +77,10 @@ public class PlayerSound : MonoBehaviour
     private AudioClip GetRandomLoot()
     {
         return _soundLoot[Random.Range(0, _soundLoot.Length)];
+    }
+    
+    private AudioClip GetRandomLevelUp()
+    {
+        return _soundLevelUp[Random.Range(0, _soundLevelUp.Length)];
     }
 }
