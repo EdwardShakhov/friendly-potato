@@ -81,11 +81,8 @@ namespace Player
         protected void Update()
         {
             GameManager.Instance.GamePause();
+            HoldHealthBetweenZeroAndMaxValue();
             LevelUp();
-            if (_playerHealth > _playerMaxHealth)
-            {
-                _playerHealth = _playerMaxHealth;
-            }
 
             var direction = GetDirection();
             if (direction.magnitude >= 0.5f)
@@ -121,6 +118,19 @@ namespace Player
             {
                 _playerAnimator.SetBool(_deathHash, true);
                 GameManager.Instance.GameOver();
+            }
+        }
+
+        protected void HoldHealthBetweenZeroAndMaxValue()
+        {
+            if (_playerHealth > _playerMaxHealth)
+            {
+                _playerHealth = _playerMaxHealth;
+            }
+
+            if (_playerHealth < 0)
+            {
+                _playerHealth = 0;
             }
         }
         
