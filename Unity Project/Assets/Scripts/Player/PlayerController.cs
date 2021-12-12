@@ -79,7 +79,11 @@ namespace Player
         {
             GameManager.Instance.GamePause();
             LevelUp();
-            
+            if (_playerHealth > _playerMaxHealth)
+            {
+                _playerHealth = _playerMaxHealth;
+            }
+
             var direction = GetDirection();
             if (direction.magnitude >= 0.5f)
             {

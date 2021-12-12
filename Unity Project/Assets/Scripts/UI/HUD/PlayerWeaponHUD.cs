@@ -8,6 +8,8 @@ public class PlayerWeaponHUD : MonoBehaviour
     [SerializeField] private GameObject _gunIcon;
     [SerializeField] private Dictionary<string, Sprite> _spriteDictionary;
 
+    public GameObject GunIcon => _gunIcon;
+
     void Start()
     {
         _spriteDictionary ??= new Dictionary<string, Sprite>();

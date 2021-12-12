@@ -31,6 +31,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private ParticleSystem _instantiateSfx;
     private const float _destroySfxTime = 3f;
     public ParticleSystem BloodSfx => _bloodSfx;
+    
+    [Header("Enemy Loot")]
+    [SerializeField] private GameObject _healthKit;
+    [SerializeField] private float _dropChanceHealthKit = 0.5f;
+    [SerializeField] private GameObject _ammoKit;
+    [SerializeField] private float _dropChanceAmmoKit = 0.5f;
 
     protected void Awake()
     {
@@ -107,6 +113,20 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject, _destroyEnemyObjectTime);
             GameManager.Instance.Player.GetComponent<PlayerController>().PlayerExperience += Random.Range(15, 31);
             GameManager.Instance.CurrentNumberOfEnemiesOnMap--;
+            
+            if (Random.value < _dropChanceHealthKit)
+            { 
+                Instantiate(_healthKit, 
+                    gameObject.transform.position + new Vector3(Random.Range(-1f, 1f),1,Random.Range(-1f, 1f)), 
+                    transform.rotation);
+            }
+            
+            if (Random.value < _dropChanceAmmoKit)
+            { 
+                Instantiate(_ammoKit, 
+                    gameObject.transform.position + new Vector3(Random.Range(-1f, 1f),1,Random.Range(-1f, 1f)), 
+                    transform.rotation);
+            }
         }
     }
 }

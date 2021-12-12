@@ -1,5 +1,6 @@
 using Player;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class PlayerShoot : MonoBehaviour
@@ -12,12 +13,20 @@ public class PlayerShoot : MonoBehaviour
     
     protected void Update()
     {
+        activeWeapon = GameManager.Instance.Player.GetComponent<PlayerController>().ActiveWeapon;
+
+        if (activeWeapon.NumberOfBullets >= activeWeapon.MaxNumberOfBullets)
+        {
+            activeWeapon.NumberOfBullets = activeWeapon.MaxNumberOfBullets;
+        }
+        
         if (GameManager.Instance.IsPlayerDead || GameManager.Instance.IsGamePaused) 
             return;
         
-        activeWeapon = GameManager.Instance.Player.GetComponent<PlayerController>().ActiveWeapon;
-        if (Input.GetButtonDown("Fire1") && activeWeapon.MayFire && activeWeapon.BarIsNotEmpty)
+        if (Input.GetButtonDown("Fire1") && activeWeapon.MayFire && activeWeapon.BarIsNotEmpty &&
+            activeWeapon.NumberOfBullets != 0)
         {
+            activeWeapon.NumberOfBullets--;
             GameManager.Instance.Player.GetComponent<PlayerSound>().Shoot();
 
             switch (activeWeapon.WeaponName)
@@ -33,19 +42,21 @@ public class PlayerShoot : MonoBehaviour
             activeWeapon.CurrentDelay = activeWeapon.ShootDelay;
             activeWeapon.CurrentBar--;
 
-            if (activeWeapon.CurrentDelay > 0.01f)
+            if (activeWeapon.CurrentDelay > 0.1f)
             {
                 activeWeapon.MayFire = false;
             }
-            if (activeWeapon.CurrentBar < 0.01f)
+            if (activeWeapon.CurrentBar < 0.1f)
             {
                 activeWeapon.BarIsNotEmpty = false;
             }
         }
+        
         if (!activeWeapon.MayFire)
         {
             PrepareToShoot();
         }
+        
         if (!activeWeapon.BarIsNotEmpty || Input.GetKeyDown(KeyCode.R))
         {
             Reloading();
@@ -111,12 +122,20 @@ public class PlayerShoot : MonoBehaviour
 
     private void Reloading()
     {
+        if (activeWeapon.NumberOfBullets == 0)
+            return;
+
         var playerStatsIncreaseCoeff = 
             GameManager.Instance.Player.GetComponent<PlayerController>().PlayerStatsIncreaseCoeff;
+        
         activeWeapon.CurrentBar += Time.deltaTime / activeWeapon.ReloadDelay * playerStatsIncreaseCoeff;
+        GameObject.Find("Canvas/WeaponHUD").GetComponent<PlayerWeaponHUD>().GunIcon.GetComponent<Image>().color = 
+            Color.red;
         activeWeapon.BarIsNotEmpty = false;
         if (activeWeapon.CurrentBar >= activeWeapon.BarCapacity)
         {
+            GameObject.Find("Canvas/WeaponHUD").GetComponent<PlayerWeaponHUD>().GunIcon.GetComponent<Image>().color = 
+                Color.white;
             activeWeapon.BarIsNotEmpty = true;
         }
     }

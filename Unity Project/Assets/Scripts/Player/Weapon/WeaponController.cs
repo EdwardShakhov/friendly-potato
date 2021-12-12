@@ -48,7 +48,8 @@ public class WeaponController : MonoBehaviour
 
     private void SelectWeapon ()
     {
-        if(!GameManager.Instance.Player.GetComponent<PlayerController>().ActiveWeapon.BarIsNotEmpty) 
+        if(!GameManager.Instance.Player.GetComponent<PlayerController>().ActiveWeapon.BarIsNotEmpty 
+           && GameManager.Instance.Player.GetComponent<PlayerController>().ActiveWeapon.NumberOfBullets != 0) 
             return;
         
         var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();

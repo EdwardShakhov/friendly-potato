@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 public class Weapon : MonoBehaviour
     {
         [SerializeField] private bool _mayFire;
@@ -8,7 +9,9 @@ public class Weapon : MonoBehaviour
         [SerializeField] private float _barCapacity;
         [SerializeField] private float _distance;
         [SerializeField] private float _bulletSpeed;
-        
+        [SerializeField] private int _numberOfBullets;
+        [SerializeField] private int _maxNumberOfBullets;
+
         [SerializeField] private float _shootDelay;
         [SerializeField] private float _currentDelay;
         [SerializeField] private float _reloadDelay;
@@ -19,10 +22,20 @@ public class Weapon : MonoBehaviour
             
         [SerializeField] private ParticleSystem _hitSfx;
 
-        public ParticleSystem HitSfx => _hitSfx;
+        public int NumberOfBullets
+        {
+            get => _numberOfBullets;
+            set => _numberOfBullets = value;
+        }
 
-        public string WeaponName => _weaponName;
+        public int MaxNumberOfBullets => _maxNumberOfBullets;
         
+        public string WeaponName
+        {
+            get => _weaponName;
+            set => _weaponName = value;
+        }
+
         public float ShootDelay => _shootDelay;
 
         public float BarCapacity => _barCapacity;
@@ -67,5 +80,6 @@ public class Weapon : MonoBehaviour
             _mayFire = true;
             _barIsNotEmpty = true;
             _currentDelay = 0;
+            _numberOfBullets = _maxNumberOfBullets / 2;
         }
     }
