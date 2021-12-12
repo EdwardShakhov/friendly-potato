@@ -209,7 +209,6 @@ MonoBehaviour:
   activeWeapon: {fileID: 0}
   _hitSfx: {fileID: 0}
   _shootSfx: {fileID: 0}
-  _bulletTrailSfx: {fileID: 0}
 --- !u!1 &6464721956790400608
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,8 +261,7 @@ MonoBehaviour:
   _spawnPoint: {fileID: 1156931595755998227}
   activeWeapon: {fileID: 0}
   _hitSfx: {fileID: 198000011002288308, guid: beb3acff7ab73944fb8f470f24d74ed3, type: 3}
-  _shootSfx: {fileID: 198000013440722320, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
-  _bulletTrailSfx: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
+  _shootSfx: {fileID: 198000012942003240, guid: ecdd96beb7f93494880c052dfccf9dc1, type: 3}
 --- !u!114 &7843327638685761371
 MonoBehaviour:
   m_ObjectHideFlags: 0

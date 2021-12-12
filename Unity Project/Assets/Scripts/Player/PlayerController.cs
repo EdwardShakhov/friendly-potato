@@ -57,6 +57,8 @@ namespace Player
             get => _playerExperience;
             set => _playerExperience = value;
         }
+        public GameObject Pistol => _pistol;
+        public GameObject Shotgun => _shotgun;
         //getters/setters end
         
         protected void Awake()

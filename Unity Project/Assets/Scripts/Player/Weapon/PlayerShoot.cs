@@ -70,7 +70,7 @@ public class PlayerShoot : MonoBehaviour
         Physics.Raycast(ray, out hit);
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.blue, 1f);
         Destroy(Instantiate(_shootSfx, 
-            _spawnPoint.transform.position, _spawnPoint.transform.rotation, _spawnPoint).gameObject, _destroySfxTime);
+            _spawnPoint.transform.position, _spawnPoint.transform.rotation).gameObject, _destroySfxTime);
         
         var hitEnemy = hit.collider.gameObject.GetComponent<EnemyController>();
         if (hit.collider != null)
@@ -105,7 +105,7 @@ public class PlayerShoot : MonoBehaviour
         var instantiatedBullet = Instantiate(gameObject.GetComponent<Weapon>().BulletProjectile, 
             _spawnPoint.position, transform.rotation);
         Destroy(Instantiate(_shootSfx, 
-            _spawnPoint.transform.position, _spawnPoint.transform.rotation, _spawnPoint).gameObject, _destroySfxTime);
+            _spawnPoint.transform.position, _spawnPoint.transform.rotation).gameObject, _destroySfxTime);
         instantiatedBullet.velocity = transform.TransformDirection(new Vector3(0, 0, activeWeapon.BulletSpeed));
         instantiatedBullet.GetComponent<Bullet>().Damage = activeWeapon.Damage;
         instantiatedBullet.GetComponent<Bullet>().BulletDistance = activeWeapon.Distance;
