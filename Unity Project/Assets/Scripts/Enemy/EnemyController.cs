@@ -32,12 +32,12 @@ public class EnemyController : MonoBehaviour
     private const float _destroySfxTime = 3f;
     public ParticleSystem BloodSfx => _bloodSfx;
     
-    [Header("Enemy Loot")]
+    [Header("Loot From Enemy")]
     [SerializeField] private GameObject _healthKit;
     [SerializeField] private float _dropChanceHealthKit = 0.5f;
-    [SerializeField] private GameObject _pistolKit;
+    [SerializeField] private GameObject _ammoPistolKit;
     [SerializeField] private float _dropChancePistolKit = 0.5f;
-    [SerializeField] private GameObject _shotgunKit;
+    [SerializeField] private GameObject _ammoShotgunKit;
     [SerializeField] private float _dropChanceShotgunKit = 0.5f;
 
     protected void Awake()
@@ -52,6 +52,10 @@ public class EnemyController : MonoBehaviour
         _enemyHealth = _enemyMaxHealth;
         _isDead = false;
         EnemyHealthBar.SetMaxHealth(_enemyMaxHealth);
+        
+        _healthKit = _healthKit ? _healthKit : GameManager.Instance.HealthKit;
+        _ammoPistolKit = _ammoPistolKit ? _ammoPistolKit : GameManager.Instance.AmmoPistolKit;
+        _ammoShotgunKit = _ammoShotgunKit ? _ammoShotgunKit : GameManager.Instance.AmmoShotgunKit;
     }
 
     protected void Start()
@@ -131,14 +135,14 @@ public class EnemyController : MonoBehaviour
             
         if (Random.value < _dropChancePistolKit)
         { 
-            Instantiate(_pistolKit, 
+            Instantiate(_ammoPistolKit, 
                 gameObject.transform.position + new Vector3(Random.Range(-1f, 1f),1,Random.Range(-1f, 1f)), 
                 transform.rotation);
         }
             
         if (Random.value < _dropChanceShotgunKit)
         { 
-            Instantiate(_shotgunKit, 
+            Instantiate(_ammoShotgunKit, 
                 gameObject.transform.position + new Vector3(Random.Range(-1f, 1f),1,Random.Range(-1f, 1f)), 
                 transform.rotation);
         }

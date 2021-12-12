@@ -29,11 +29,15 @@ public class GameManager : MonoBehaviour
     [Header("Instantiated Objects")]
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _spawnEnemies;
-    private List<GameObject> Enemies; //[SerializeField]
+    private List<GameObject> Enemies;
 
     [Header("Prefabs")]
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private GameObject _spawnEnemiesPrefab;
+    
+    [SerializeField] private GameObject _healthKit;
+    [SerializeField] private GameObject _ammoPistolKit;
+    [SerializeField] private GameObject _ammoShotgunKit;
 
     [Header("UI")]
     [SerializeField] private PlayerHealthBar _playerHealthBar;
@@ -45,6 +49,9 @@ public class GameManager : MonoBehaviour
     private const int _showScreenTime = 5;
     
     //getters/setters
+    public GameObject HealthKit => _healthKit;
+    public GameObject AmmoPistolKit => _ammoPistolKit;
+    public GameObject AmmoShotgunKit => _ammoShotgunKit;
     public bool IsGamePaused
     {
         get => _isGamePaused;
