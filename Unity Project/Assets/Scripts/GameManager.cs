@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool _isPlayerDead;
 
     [Header("Level Essentials")]
+    [SerializeField] private GameObject _keyPrefab;
+    [SerializeField] private GameObject _door;
     [SerializeField] private int _currentNumberOfEnemiesOnMap;
     [SerializeField] private int _maximumNumberOfEnemies = 50;
     [SerializeField] private int _enemySpawnTime = 1;
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
     [Header("Instantiated Objects")]
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _spawnEnemies;
+    [SerializeField] private GameObject _key;
     private List<GameObject> Enemies;
 
     [Header("Prefabs")]
@@ -75,6 +78,8 @@ public class GameManager : MonoBehaviour
     public GameObject Player => _player;
     public PlayerAmmoBar PlayerAmmoBar => _playerAmmoBar;
     public PlayerWeaponHUD PlayerWeaponHUD => _playerWeaponHUD;
+    public GameObject Key => _key;
+    public GameObject Door => _door;
     //getters/setters end
     
     protected void Awake()
@@ -100,6 +105,7 @@ public class GameManager : MonoBehaviour
     {
         _player = Instantiate(_playerPrefab);
         _spawnEnemies = Instantiate(_spawnEnemiesPrefab);
+        _key = Instantiate(_keyPrefab, new Vector3(83f,1f,-2f), Quaternion.identity);
         _playerHealthBar.Show();
         _playerAmmoBar.Show();
         _playerExperienceBar.Show();

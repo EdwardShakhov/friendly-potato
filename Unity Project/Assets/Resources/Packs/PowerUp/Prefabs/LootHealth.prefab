@@ -5055,7 +5055,7 @@ GameObject:
   - component: {fileID: 7697841851608594295}
   - component: {fileID: 2264989077238817449}
   m_Layer: 0
-  m_Name: PowerUpContainerRed
+  m_Name: LootHealth
   m_TagString: LootHealth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
