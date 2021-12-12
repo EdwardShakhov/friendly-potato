@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 public class EnemySpawn : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyPrefab;
+    [SerializeField] private GameObject _spiderPrefab;
     
     [SerializeField] private float _oneEnemyInstantiationDelay;
     [SerializeField] private float _firstEnemyPositionX;
@@ -14,29 +15,36 @@ public class EnemySpawn : MonoBehaviour
     protected void Start()
     {
         StartCoroutine(EnemyInstantiation());
-        Invoke(nameof(InstantiateOneEnemy), _oneEnemyInstantiationDelay);
+        Invoke(nameof(InstantiateOneZombie), _oneEnemyInstantiationDelay);
+        Invoke(nameof(InstantiateOneSpider), 5f);
     }
     
     private IEnumerator EnemyInstantiation()
     {
         while (GameManager.Instance.CurrentNumberOfEnemiesOnMap < GameManager.Instance.MaximumNumberOfEnemies)
         {
-            InstantiateManyEnemies();
+            InstantiateManyZombies();
             GameManager.Instance.CurrentNumberOfEnemiesOnMap ++;
             yield return new WaitForSeconds(GameManager.Instance.EnemySpawnTime);
         }
     }
     
-    private void InstantiateOneEnemy()
+    private void InstantiateOneZombie()
     {
         GameManager.Instance.EnemiesList(Instantiate(_enemyPrefab, 
             new Vector3(_firstEnemyPositionX, _firstEnemyPositionY, _firstEnemyPositionZ), Quaternion.identity));
     }
 
-    private void InstantiateManyEnemies()
+    private void InstantiateManyZombies()
     {
         GameManager.Instance.EnemiesList(Instantiate(_enemyPrefab, 
             new Vector3(Random.Range(-1f, 1f) * GameManager.Instance.MapSize, 
                 0, Random.Range(-1f, 1f) * GameManager.Instance.MapSize), Quaternion.identity));
+    }
+
+    private void InstantiateOneSpider()
+    {
+        Instantiate(_spiderPrefab, 
+            new Vector3(_firstEnemyPositionX, _firstEnemyPositionY, _firstEnemyPositionZ), Quaternion.identity);
     }
 }

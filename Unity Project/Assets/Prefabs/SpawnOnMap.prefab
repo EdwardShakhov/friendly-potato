@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 4493914613880827488, guid: 6dc4cf4496348884d8ee27743ae38562, type: 3}
-  _multipleEnemyInstantiationDelay: 0
+  _spiderPrefab: {fileID: 3143675300578378568, guid: fc8caba04bb69dd479086a45affcb7c6, type: 3}
   _oneEnemyInstantiationDelay: 2.5
   _firstEnemyPositionX: -6
   _firstEnemyPositionY: 0
@@ -62,9 +62,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df8aa6d27178c748aef25e86cd22fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthKit: {fileID: 0}
-  _ammoPistolKit: {fileID: 0}
-  _ammoShotgunKit: {fileID: 0}
-  _positionHealthkit: {x: 0, y: 0, z: 0}
-  _positionAmmoPistolKit: {x: 0, y: 0, z: 0}
-  _positionAmmoShotgunKit: {x: 0, y: 0, z: 0}

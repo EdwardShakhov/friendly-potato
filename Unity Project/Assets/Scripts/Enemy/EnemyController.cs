@@ -82,8 +82,7 @@ public class EnemyController : MonoBehaviour
         //if distance to player between measures - chase
         if (distanceToPlayer > _enemyAttackDistance && distanceToPlayer < _enemyChasingDistance && !_isDead)
         {
-            var transform1 = transform;
-            transform1.position += transform1.forward * (_enemyMoveSpeed * Time.deltaTime);
+            transform.position += transform.forward * (_enemyMoveSpeed * Time.deltaTime);
             _enemyAnimator.SetFloat(_speedHash, 1);
         }
         //if distance to player is small - attack and don't move
