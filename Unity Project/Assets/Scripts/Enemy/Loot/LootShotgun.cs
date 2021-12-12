@@ -17,7 +17,7 @@ public class LootShotgun : MonoBehaviour
             var i = GameManager.Instance.Player.GetComponent<PlayerController>().Weapons;
             foreach (var weapon in i)
             {
-                if (weapon.GetComponent<Weapon>().WeaponName == "ShotGun")
+                if (weapon.GetComponent<Weapon>().WeaponName == "Shotgun")
                 {
                     weapon.GetComponent<Weapon>().NumberOfBullets += 4;
                 }

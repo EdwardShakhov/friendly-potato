@@ -286,9 +286,8 @@ MonoBehaviour:
   _currentDelay: 0
   _reloadDelay: 4
   _currentBar: 10
-  _weaponName: ShotGun
+  _weaponName: Shotgun
   _bulletProjectile: {fileID: 6282942858798883039, guid: b5319be778030b94c8d75ee5333165ff, type: 3}
-  _hitSfx: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360, type: 3}
 --- !u!1 &6749386663966636107
 GameObject:
   m_ObjectHideFlags: 0

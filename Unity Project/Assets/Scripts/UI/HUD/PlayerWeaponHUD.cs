@@ -14,7 +14,7 @@ public class PlayerWeaponHUD : MonoBehaviour
     {
         _spriteDictionary ??= new Dictionary<string, Sprite>();
         _spriteDictionary.Add("Pistol", Resources.Load<Sprite>("Materials/UI/Pistol_Icon"));
-        _spriteDictionary.Add("ShotGun", Resources.Load<Sprite>("Materials/UI/Shotgun_Icon"));
+        _spriteDictionary.Add("Shotgun", Resources.Load<Sprite>("Materials/UI/Shotgun_Icon"));
         ReloadIcon();
     }
 

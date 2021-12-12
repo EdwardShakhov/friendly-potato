@@ -19,8 +19,6 @@ public class Weapon : MonoBehaviour
         [SerializeField] private string _weaponName;
         
         [SerializeField] private Rigidbody _bulletProjectile;
-            
-        [SerializeField] private ParticleSystem _hitSfx;
 
         public int NumberOfBullets
         {

@@ -34,7 +34,7 @@ public class PlayerShoot : MonoBehaviour
                 case "Pistol":
                     RaycastShoot();
                     break;
-                case "ShotGun":
+                case "Shotgun":
                     ProjectileShoot();
                     break;
             }
