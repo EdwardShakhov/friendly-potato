@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _maximumNumberOfEnemies = 50;
     [SerializeField] private int _enemySpawnTime = 1;
     [SerializeField] private int _mapSize = 90;
+    [SerializeField] private int _lootInstantiationTime = 15;
 
     [Header("Instantiated Objects")]
     [SerializeField] private GameObject _player;
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
     private const int _showScreenTime = 5;
     
     //getters/setters
+    public int LootInstantiationTime => _lootInstantiationTime;
     public GameObject HealthKit => _healthKit;
     public GameObject AmmoPistolKit => _ammoPistolKit;
     public GameObject AmmoShotgunKit => _ammoShotgunKit;

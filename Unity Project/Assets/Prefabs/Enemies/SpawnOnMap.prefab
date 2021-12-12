@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7645181264718658609}
   - component: {fileID: 7645181264718658608}
+  - component: {fileID: -7338279393705843287}
   m_Layer: 0
-  m_Name: SpawnEnemies
+  m_Name: SpawnOnMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,3 +50,21 @@ MonoBehaviour:
   _firstEnemyPositionX: -6
   _firstEnemyPositionY: 0
   _firstEnemyPositionZ: 4.3
+--- !u!114 &-7338279393705843287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7645181264718658607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df8aa6d27178c748aef25e86cd22fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthKit: {fileID: 0}
+  _ammoPistolKit: {fileID: 0}
+  _ammoShotgunKit: {fileID: 0}
+  _positionHealthkit: {x: 0, y: 0, z: 0}
+  _positionAmmoPistolKit: {x: 0, y: 0, z: 0}
+  _positionAmmoShotgunKit: {x: 0, y: 0, z: 0}

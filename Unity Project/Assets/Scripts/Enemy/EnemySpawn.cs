@@ -6,7 +6,6 @@ public class EnemySpawn : MonoBehaviour
 {
     [SerializeField] private GameObject _enemyPrefab;
     
-    [SerializeField] private float _multipleEnemyInstantiationDelay;
     [SerializeField] private float _oneEnemyInstantiationDelay;
     [SerializeField] private float _firstEnemyPositionX;
     [SerializeField] private float _firstEnemyPositionY;
@@ -22,7 +21,7 @@ public class EnemySpawn : MonoBehaviour
     {
         while (GameManager.Instance.CurrentNumberOfEnemiesOnMap < GameManager.Instance.MaximumNumberOfEnemies)
         {
-            Invoke(nameof(InstantiateManyEnemies), _multipleEnemyInstantiationDelay);
+            InstantiateManyEnemies();
             GameManager.Instance.CurrentNumberOfEnemiesOnMap ++;
             yield return new WaitForSeconds(GameManager.Instance.EnemySpawnTime);
         }
