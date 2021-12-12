@@ -76,6 +76,12 @@ public class EnemyController : MonoBehaviour
             transform.LookAt(_playerToChase);
         }
 
+        ZombieBehaviour();
+        
+    }
+
+    private void ZombieBehaviour()
+    {
         var distanceToPlayer = 
             Vector3.Distance(transform.position, GameManager.Instance.Player.transform.position);
 
@@ -97,7 +103,7 @@ public class EnemyController : MonoBehaviour
             _enemyAnimator.SetFloat(_speedHash, 0);
         }
     }
-
+    
     //triggering by animation event
     public void PlayerHit()
     {
@@ -112,6 +118,7 @@ public class EnemyController : MonoBehaviour
         {
             _isDead = true;
             gameObject.GetComponent<NavMeshAgent>().enabled = false;
+            gameObject.GetComponent<CapsuleCollider>().enabled = false;
             Destroy(Instantiate(_bloodDeathSfx, transform.position, transform.rotation).gameObject, _destroySfxTime);
             _enemyAnimator.SetFloat(_speedHash, 0);
             _enemyAnimator.SetBool(_deathHash, true);
