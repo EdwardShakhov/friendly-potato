@@ -2030,7 +2030,7 @@ MonoBehaviour:
   _soundSpiderDeath:
   - {fileID: 8300000, guid: 915752d0cfdc1544391fcb75672c539e, type: 3}
   _soundInstantiation:
-  - {fileID: 8300000, guid: 95c30151451b3554490dbaa4bea5aa46, type: 3}
+  - {fileID: 8300000, guid: 915752d0cfdc1544391fcb75672c539e, type: 3}
   _soundDistanceToPlayer: 20
 --- !u!1 &3143675300578378570
 GameObject:

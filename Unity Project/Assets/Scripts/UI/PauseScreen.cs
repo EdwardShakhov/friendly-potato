@@ -67,7 +67,9 @@ public class PauseScreen : MonoBehaviour
         GameObject.Find("Canvas").GetComponent<UISound>().Click();
         
         var savedData = SaveSystem.LoadGame();
-
+        //SceneManager.LoadScene(savedData.SavedActiveScene);
+        //Time.timeScale = 1f;
+        
         Vector3 position;
         position.x = savedData.SavedPosition[0];
         position.y = savedData.SavedPosition[1];
