@@ -36,7 +36,6 @@ namespace Player
         [SerializeField] private float _playerStatsIncreaseCoeff;
         [SerializeField] private ParticleSystem _LevelUpSfx;
 
-        //getters/setters
         public Transform GameCamera => _gameCamera;
         public int PlayerMaxHealth => _playerMaxHealth;
         public int PlayerHealth
@@ -44,23 +43,19 @@ namespace Player
             get => _playerHealth;
             set => _playerHealth = value;
         }
-        public GameObject AllWeapons => _allWeapons;
         public List<GameObject> Weapons => _weapons;
         public Weapon ActiveWeapon
         {
             get => _activeWeapon;
             set => _activeWeapon = value;
         }
-        public float PlayerStatsIncreaseCoeff => _playerStatsIncreaseCoeff;
         public int PlayerLevel => _playerLevel;
         public int PlayerExperience
         {
             get => _playerExperience;
             set => _playerExperience = value;
         }
-        public GameObject Pistol => _pistol;
-        public GameObject Shotgun => _shotgun;
-        //getters/setters end
+        public float PlayerStatsIncreaseCoeff => _playerStatsIncreaseCoeff;
         
         protected void Awake()
         {
@@ -121,7 +116,7 @@ namespace Player
             }
         }
 
-        protected void HoldHealthBetweenZeroAndMaxValue()
+        private void HoldHealthBetweenZeroAndMaxValue()
         {
             if (_playerHealth > _playerMaxHealth)
             {

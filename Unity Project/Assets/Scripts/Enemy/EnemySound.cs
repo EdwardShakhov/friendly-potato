@@ -6,7 +6,6 @@ public class EnemySound : MonoBehaviour
     [SerializeField] private AudioClip[] _soundFall;
     [SerializeField] private AudioClip[] _soundInstantiation;
     [SerializeField] private int _soundDistanceToPlayer;
-
     private AudioSource _audioSource;
 
     public int SoundDistanceToPlayer => _soundDistanceToPlayer;

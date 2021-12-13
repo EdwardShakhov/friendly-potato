@@ -5,8 +5,6 @@ public class WeaponController : MonoBehaviour
 {
     [SerializeField] private int _selectedWeapon;
 
-    public int SelectedWeapon => _selectedWeapon;
-
     protected void Start()
     {
         SelectWeapon();

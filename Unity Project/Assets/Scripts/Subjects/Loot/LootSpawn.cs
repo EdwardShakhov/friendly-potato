@@ -1,11 +1,8 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LootSpawn : MonoBehaviour
 {
-    
     private GameObject _healthKit;
     private GameObject _ammoPistolKit;
     private GameObject _ammoShotgunKit;

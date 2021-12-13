@@ -4723,7 +4723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21cd1688b3cd40279a8c658d04b2e613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletDistance: 10
+  _bulletDistance: 1
   _damage: 10
 --- !u!136 &8808739363824673618
 CapsuleCollider:
@@ -4738,7 +4738,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 0
   m_Direction: 1
-  m_Center: {x: 1, y: 0, z: 0}
+  m_Center: {x: 1, y: 1, z: 0}
 --- !u!1 &1000010920581966
 GameObject:
   m_ObjectHideFlags: 0

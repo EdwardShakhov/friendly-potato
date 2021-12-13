@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerWeaponHUD : MonoBehaviour
 {
     [SerializeField] private GameObject _gunIcon;
-    [SerializeField] private Dictionary<string, Sprite> _spriteDictionary;
+    private Dictionary<string, Sprite> _spriteDictionary;
 
     public GameObject GunIcon => _gunIcon;
 

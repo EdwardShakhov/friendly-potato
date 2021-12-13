@@ -3,20 +3,7 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    [SerializeField] private float _bulletDistance;
-    public float BulletDistance
-    {
-        get => _bulletDistance;
-        set => _bulletDistance = value;
-    }
-
     [SerializeField] private int _damage;
-    public int Damage
-    {
-        get => _damage;
-        set => _damage = value;
-    }
-    
     
     protected void Update()
     {
@@ -31,6 +18,7 @@ public class EnemyProjectile : MonoBehaviour
         {
             GameManager.Instance.Player.GetComponent<PlayerSound>().HitEnemy();
             collisionPlayer.DamagePlayer(Random.Range((int)(0.8 * _damage),(int)(1.2 * _damage)));
+            gameObject.GetComponent<Collider>().enabled = false;
         }
     }
 }

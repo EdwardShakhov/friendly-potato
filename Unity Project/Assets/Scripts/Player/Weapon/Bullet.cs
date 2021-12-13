@@ -3,21 +3,20 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _bulletDistance;
+    [SerializeField] private int _damage;
+    [SerializeField] private ParticleSystem _hitSfx;
+    private const float _destroySfxTime = 3f;
+    
     public float BulletDistance
     {
         get => _bulletDistance;
         set => _bulletDistance = value;
     }
-
-    [SerializeField] private int _damage;
     public int Damage
     {
         get => _damage;
         set => _damage = value;
     }
-    
-    [SerializeField] private ParticleSystem _hitSfx;
-    private const float _destroySfxTime = 3f;
     
     protected void Update()
     {

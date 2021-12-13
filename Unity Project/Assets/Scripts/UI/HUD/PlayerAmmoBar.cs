@@ -7,6 +7,7 @@ public class PlayerAmmoBar : MonoBehaviour
 {
     [SerializeField]private Slider slider;
     public TextMeshProUGUI Bullets;
+    
     public Slider Slider => slider;
 
     protected void Update()

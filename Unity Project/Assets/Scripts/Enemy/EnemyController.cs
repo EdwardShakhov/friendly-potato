@@ -11,7 +11,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int _enemyHealth;
     [SerializeField] private bool _isDead;
     private const float _destroyEnemyObjectTime = 7f;
-    public bool IsDead => _isDead;
 
     [Header("Enemy Behavior")]
     [SerializeField] private float _enemyMoveSpeed;
@@ -20,7 +19,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Rigidbody _enemyProjectile;
     [SerializeField] private Transform _enemyProjectileSpawnPoint;
     private Transform _playerToChase;
-    
     private Animator _enemyAnimator;
     private static readonly int _speedHash = Animator.StringToHash("speed");
     private static readonly int _attackHash = Animator.StringToHash("attack");
@@ -32,15 +30,17 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private ParticleSystem _bloodSfx;
     [SerializeField] private ParticleSystem _instantiateSfx;
     private const float _destroySfxTime = 3f;
-    public ParticleSystem BloodSfx => _bloodSfx;
-    
+
     [Header("Loot From Enemy")]
     [SerializeField] private GameObject _healthKit;
-    [SerializeField] private float _dropChanceHealthKit = 0.5f;
+    [SerializeField] private float _dropChanceHealthKit;
     [SerializeField] private GameObject _ammoPistolKit;
-    [SerializeField] private float _dropChancePistolKit = 0.5f;
+    [SerializeField] private float _dropChancePistolKit;
     [SerializeField] private GameObject _ammoShotgunKit;
-    [SerializeField] private float _dropChanceShotgunKit = 0.5f;
+    [SerializeField] private float _dropChanceShotgunKit;
+    
+    public bool IsDead => _isDead;
+    public ParticleSystem BloodSfx => _bloodSfx;
 
     protected void Awake()
     {
@@ -148,21 +148,21 @@ public class EnemyController : MonoBehaviour
         if (Random.value < _dropChanceHealthKit)
         { 
             Instantiate(_healthKit, 
-                gameObject.transform.position + new Vector3(Random.Range(-1f, 1f),1,Random.Range(-1f, 1f)), 
+                gameObject.transform.position + new Vector3(Random.Range(-1f, 1f),1f,Random.Range(-1f, 1f)), 
                 transform.rotation);
         }
             
         if (Random.value < _dropChancePistolKit)
         { 
             Instantiate(_ammoPistolKit, 
-                gameObject.transform.position + new Vector3(Random.Range(-1f, 1f),1,Random.Range(-1f, 1f)), 
+                gameObject.transform.position + new Vector3(Random.Range(-1f, 1f),1f,Random.Range(-1f, 1f)), 
                 transform.rotation);
         }
             
         if (Random.value < _dropChanceShotgunKit)
         { 
             Instantiate(_ammoShotgunKit, 
-                gameObject.transform.position + new Vector3(Random.Range(-1f, 1f),1,Random.Range(-1f, 1f)), 
+                gameObject.transform.position + new Vector3(Random.Range(-1f, 1f),1f,Random.Range(-1f, 1f)), 
                 transform.rotation);
         }
     }

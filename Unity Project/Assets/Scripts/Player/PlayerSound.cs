@@ -16,8 +16,8 @@ public class PlayerSound : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void Footstep() 
-        //triggering by animation event
+    //triggering by animation event
+    public void Footstep()
     {
         var clip = GetRandomStep();
         _audioSource.PlayOneShot(clip);
