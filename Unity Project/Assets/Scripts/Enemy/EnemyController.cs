@@ -148,6 +148,8 @@ public class EnemyController : MonoBehaviour
                     GameManager.Instance.CurrentNumberOfSpiders--;
                     break;
             }
+
+            DropLoot();
         }
     }
 

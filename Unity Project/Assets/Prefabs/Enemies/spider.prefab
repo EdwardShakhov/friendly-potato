@@ -1874,11 +1874,11 @@ MonoBehaviour:
   _bloodDeathSfx: {fileID: 198000014159833656, guid: a3768c8a9d1b90d4bb0eb0e4bdbe730c, type: 3}
   _bloodSfx: {fileID: 198000013597187216, guid: 83e55d3418297934fab882559d009285, type: 3}
   _instantiateSfx: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
-  _healthKit: {fileID: 0}
+  _healthKit: {fileID: 100008, guid: 879451a5e2214f143a7edf5dd3e32020, type: 3}
   _dropChanceHealthKit: 0.5
-  _ammoPistolKit: {fileID: 0}
+  _ammoPistolKit: {fileID: 100006, guid: 4016b3cfe33cb3641832846aeb27153a, type: 3}
   _dropChancePistolKit: 0.5
-  _ammoShotgunKit: {fileID: 0}
+  _ammoShotgunKit: {fileID: 100006, guid: 339ec13e94b70ca469275f6f7e29bac3, type: 3}
   _dropChanceShotgunKit: 0.5
 --- !u!136 &6664318492623232732
 CapsuleCollider:
