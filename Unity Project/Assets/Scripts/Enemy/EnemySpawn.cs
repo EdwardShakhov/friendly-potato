@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -17,25 +18,31 @@ public class EnemySpawn : MonoBehaviour
         Invoke(nameof(InstantiateOneZombie), 2.5f);
         Invoke(nameof(InstantiateOneSpider), 5f);
     }
-    
+
+    protected void Update()
+    {
+        GameManager.Instance.CurrentTotalNumberOfEnemies = 
+            GameManager.Instance.CurrentNumberOfZombies + GameManager.Instance.CurrentNumberOfSpiders;
+    }
+
     private IEnumerator ZombieInstantiation()
     {
-        while (GameManager.Instance.CurrentNumberOfZombiesOnMap < GameManager.Instance.MaximumNumberOfZombies)
+        while (GameManager.Instance.CurrentNumberOfZombies < GameManager.Instance.MaximumNumberOfZombies)
         {
             InstantiateManyZombies();
-            GameManager.Instance.CurrentNumberOfZombiesOnMap++;
+            GameManager.Instance.CurrentNumberOfZombies++;
             yield return new WaitForSeconds(GameManager.Instance.ZombieSpawnTime);
         }
     }
 
     private IEnumerator SpiderInstantiation()
     {
-        while (GameManager.Instance.CurrentNumberOfSpidersOnMap < GameManager.Instance.MaximumNumberOfSpiders)
+        while (GameManager.Instance.CurrentNumberOfSpiders < GameManager.Instance.MaximumNumberOfSpiders)
         {
             if (GameManager.Instance.Key.GetComponent<LevelKey>().IsTaken)
             {
                 InstantiateManySpiders();
-                GameManager.Instance.CurrentNumberOfSpidersOnMap++;
+                GameManager.Instance.CurrentNumberOfSpiders++;
             }
             yield return new WaitForSeconds(GameManager.Instance.SpiderSpawnTime);
         }
@@ -44,7 +51,7 @@ public class EnemySpawn : MonoBehaviour
     private void InstantiateOneZombie()
     {
         GameManager.Instance.EnemiesList(Instantiate(_enemyPrefab, _firstZombiePosition, Quaternion.identity));
-        GameManager.Instance.CurrentNumberOfZombiesOnMap++;
+        GameManager.Instance.CurrentNumberOfZombies++;
     }
 
     private void InstantiateManyZombies()
@@ -57,7 +64,7 @@ public class EnemySpawn : MonoBehaviour
     private void InstantiateOneSpider()
     {
         GameManager.Instance.EnemiesList(Instantiate(_spiderPrefab, _firstSpiderPosition, Quaternion.identity));
-        GameManager.Instance.CurrentNumberOfSpidersOnMap++;
+        GameManager.Instance.CurrentNumberOfSpiders++;
     }
     
     private void InstantiateManySpiders()

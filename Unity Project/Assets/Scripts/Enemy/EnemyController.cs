@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Player;
 using UnityEngine;
 using UnityEngine.AI;
@@ -137,9 +138,16 @@ public class EnemyController : MonoBehaviour
             _enemyAnimator.SetBool(_deathHash, true);
             Destroy(gameObject, _destroyEnemyObjectTime);
             GameManager.Instance.Player.GetComponent<PlayerController>().PlayerExperience += Random.Range(15, 31);
-            GameManager.Instance.CurrentNumberOfEnemiesOnMap--;
-            
-            DropLoot();
+
+            switch (gameObject.name)
+            {
+                case "Zombie(Clone)":
+                    GameManager.Instance.CurrentNumberOfZombies--;
+                    break;
+                case "Spider(Clone)":
+                    GameManager.Instance.CurrentNumberOfSpiders--;
+                    break;
+            }
         }
     }
 

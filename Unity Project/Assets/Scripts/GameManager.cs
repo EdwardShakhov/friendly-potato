@@ -48,13 +48,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _keyPrefab;
     
     [Header("Level Enemies")]
-    [SerializeField] private int _currentNumberOfZombiesOnMap;
     [SerializeField] private int _maximumNumberOfZombies = 25;
-    [SerializeField] private int _zombieSpawnTime = 1;
-    [SerializeField] private int _currentNumberOfSpidersOnMap;
     [SerializeField] private int _maximumNumberOfSpiders = 25;
+    [SerializeField] private int _zombieSpawnTime = 1;
     [SerializeField] private int _spiderSpawnTime = 1;
-    [SerializeField] private int _currentNumberOfEnemiesOnMap;
+    [SerializeField] private int currentNumberOfZombies;
+    [SerializeField] private int currentNumberOfSpiders;
+    [SerializeField] private int currentTotalNumberOfEnemies;
     
     public bool IsGamePaused
     {
@@ -75,25 +75,26 @@ public class GameManager : MonoBehaviour
     public GameObject Key => _key;
     public int MapSize => _mapSize;
     public int LootInstantiationTime => _lootInstantiationTime;
-    public int CurrentNumberOfZombiesOnMap
+    public int CurrentNumberOfZombies
     {
-        get => _currentNumberOfZombiesOnMap;
-        set => _currentNumberOfZombiesOnMap = value;
+        get => currentNumberOfZombies;
+        set => currentNumberOfZombies = value;
     }
     public int MaximumNumberOfZombies => _maximumNumberOfZombies;
     public int ZombieSpawnTime => _zombieSpawnTime;
-    public int CurrentNumberOfSpidersOnMap
+    public int CurrentNumberOfSpiders
     {
-        get => _currentNumberOfSpidersOnMap;
-        set => _currentNumberOfSpidersOnMap = value;
+        get => currentNumberOfSpiders;
+        set => currentNumberOfSpiders = value;
     }
     public int MaximumNumberOfSpiders => _maximumNumberOfSpiders;
     public int SpiderSpawnTime => _spiderSpawnTime;
-    public int CurrentNumberOfEnemiesOnMap
+    public int CurrentTotalNumberOfEnemies
     {
-        get => _currentNumberOfEnemiesOnMap;
-        set => _currentNumberOfEnemiesOnMap = value;
+        get => currentTotalNumberOfEnemies;
+        set => currentTotalNumberOfEnemies = value;
     }
+    
     
     protected void Awake()
     {
@@ -118,7 +119,6 @@ public class GameManager : MonoBehaviour
     {
         _player = Instantiate(_playerPrefab);
         _spawnEnemies = Instantiate(_spawnEnemiesPrefab);
-        _currentNumberOfEnemiesOnMap = _currentNumberOfZombiesOnMap + _currentNumberOfSpidersOnMap;
         _key = Instantiate(_keyPrefab, new Vector3(83f,1f,-2f), Quaternion.identity);
         _playerHealthBar.Show();
         _playerAmmoBar.Show();
