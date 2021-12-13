@@ -14,8 +14,8 @@ public class LootPistol : MonoBehaviour
             Destroy(gameObject);
             GameManager.Instance.Player.GetComponent<PlayerSound>().Loot();
 
-            var i = GameManager.Instance.Player.GetComponent<PlayerController>().Weapons;
-            foreach (var weapon in i)
+            var weapons = GameManager.Instance.Player.GetComponent<PlayerController>().Weapons;
+            foreach (var weapon in weapons)
             {
                 if (weapon.GetComponent<Weapon>().WeaponName == "Pistol")
                 {

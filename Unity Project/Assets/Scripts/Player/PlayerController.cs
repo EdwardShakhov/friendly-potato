@@ -49,7 +49,12 @@ namespace Player
             get => _activeWeapon;
             set => _activeWeapon = value;
         }
-        public int PlayerLevel => _playerLevel;
+        public int PlayerLevel
+        {
+            get => _playerLevel;
+            set => _playerLevel = value;
+        }
+
         public int PlayerExperience
         {
             get => _playerExperience;

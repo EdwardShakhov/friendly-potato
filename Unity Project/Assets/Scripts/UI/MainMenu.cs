@@ -5,25 +5,25 @@ public class MainMenu : MonoBehaviour
 {
     public void NewGame(int numberScenes)
     {
+        GameObject.Find("Canvas").GetComponent<UISound>().Click();
+        
         SceneManager.LoadScene(numberScenes);
         Time.timeScale = 1f;
-        
-        GameObject.Find("Canvas").GetComponent<UISound>().Click();
     }
 
     public void Exit()
     {
-        Application.Quit();
-        
         GameObject.Find("Canvas").GetComponent<UISound>().Click();
+        
+        Application.Quit();
     }
     
     public void LoadGame()
     {
-        var savedData = SaveSystem.LoadGame();
-        
         GameObject.Find("Canvas").GetComponent<UISound>().Click();
         
+        var savedData = SaveSystem.LoadGame();
         SceneManager.LoadScene(savedData.SavedActiveScene);
+        Time.timeScale = 1f;
     }
 }
