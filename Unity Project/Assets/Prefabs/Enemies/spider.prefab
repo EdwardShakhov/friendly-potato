@@ -1827,6 +1827,7 @@ Transform:
   - {fileID: 3143675300578287356}
   - {fileID: 3143675300578287278}
   - {fileID: 5031827636927417003}
+  - {fileID: 6260215335173790435}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1867,7 +1868,9 @@ MonoBehaviour:
   _isDead: 0
   _enemyMoveSpeed: 3
   _enemyChasingDistance: 0
-  _enemyAnimator: {fileID: 0}
+  _enemyAttackDistance: 10
+  _enemyProjectile: {fileID: 2297301580234436380, guid: 5934271af670c3842b9b8a4ff47bf4f1, type: 3}
+  _enemyProjectileSpawnPoint: {fileID: 6260215335173790435}
   _bloodDeathSfx: {fileID: 198000014159833656, guid: a3768c8a9d1b90d4bb0eb0e4bdbe730c, type: 3}
   _bloodSfx: {fileID: 198000013597187216, guid: 83e55d3418297934fab882559d009285, type: 3}
   _instantiateSfx: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
@@ -1888,7 +1891,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.45
-  m_Height: 4.44
+  m_Height: 5.7
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!195 &5591989844812324311
@@ -2264,6 +2267,36 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6342537270826950839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6260215335173790435}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6260215335173790435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6342537270826950839}
+  m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.71, z: 1.9}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 3143675300578287272}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6740913609048612932
 GameObject:
   m_ObjectHideFlags: 0

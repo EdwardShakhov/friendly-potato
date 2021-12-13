@@ -16,10 +16,12 @@ public class EnemyController : MonoBehaviour
     [Header("Enemy Behavior")]
     [SerializeField] private float _enemyMoveSpeed;
     [SerializeField] private float _enemyChasingDistance;
+    [SerializeField] private float _enemyAttackDistance; //1.3f for Zombie, 10f for Spider
+    [SerializeField] private Rigidbody _enemyProjectile;
+    [SerializeField] private Transform _enemyProjectileSpawnPoint;
     private Transform _playerToChase;
-    private const float _enemyAttackDistance = 1.3f;
-
-    [SerializeField] private Animator _enemyAnimator;
+    
+    private Animator _enemyAnimator;
     private static readonly int _speedHash = Animator.StringToHash("speed");
     private static readonly int _attackHash = Animator.StringToHash("attack");
     private static readonly int _damageHash = Animator.StringToHash("damage");
@@ -76,11 +78,11 @@ public class EnemyController : MonoBehaviour
             transform.LookAt(_playerToChase);
         }
 
-        ZombieBehaviour();
+        EnemiesBehaviour();
         
     }
 
-    private void ZombieBehaviour()
+    private void EnemiesBehaviour()
     {
         var distanceToPlayer = 
             Vector3.Distance(transform.position, GameManager.Instance.Player.transform.position);
@@ -104,10 +106,21 @@ public class EnemyController : MonoBehaviour
         }
     }
     
-    //triggering by animation event
+    //triggering by Zombie animation event
     public void PlayerHit()
     {
         GameManager.Instance.Player.GetComponent<PlayerController>().DamagePlayer(Random.Range(15, 36));
+    }
+
+    //triggering by Spider animation event
+    public void PlayerShot()
+    {
+        if (_enemyAttackDistance > 2)
+        {
+            var instantiatedBullet = Instantiate(_enemyProjectile,
+                _enemyProjectileSpawnPoint.transform.position, transform.rotation);
+            instantiatedBullet.velocity = transform.TransformDirection(new Vector3(0, 0, 20f));
+        }
     }
 
     public void DamageEnemy(int damage)
