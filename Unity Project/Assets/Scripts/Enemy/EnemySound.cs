@@ -4,6 +4,7 @@ public class EnemySound : MonoBehaviour
 {
     [SerializeField] private AudioClip[] _soundHit;
     [SerializeField] private AudioClip[] _soundFall;
+    [SerializeField] private AudioClip[] _soundSpiderDeath;
     [SerializeField] private AudioClip[] _soundInstantiation;
     [SerializeField] private int _soundDistanceToPlayer;
     private AudioSource _audioSource;
@@ -19,6 +20,13 @@ public class EnemySound : MonoBehaviour
     public void HitPlayer()
     {
         var clip = GetRandomHitPlayer();
+        _audioSource.PlayOneShot(clip);
+    }
+    
+    // triggering by animation event
+    public void SpiderDeath()
+    {
+        var clip = GetRandomSpiderDeath();
         _audioSource.PlayOneShot(clip);
     }
     
@@ -48,5 +56,10 @@ public class EnemySound : MonoBehaviour
     private AudioClip GetRandomInstantiation()
     {
         return _soundInstantiation[Random.Range(0, _soundInstantiation.Length)];
+    }
+    
+    private AudioClip GetRandomSpiderDeath()
+    {
+        return _soundSpiderDeath[Random.Range(0, _soundSpiderDeath.Length)];
     }
 }

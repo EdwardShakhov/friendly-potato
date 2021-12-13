@@ -2264,9 +2264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soundHit:
-  - {fileID: 8300000, guid: 23b0f2655c0a5b546917338b45f63a5b, type: 3}
-  - {fileID: 8300000, guid: 34377a5c87d6baf458b71687a3a5cd4c, type: 3}
-  - {fileID: 8300000, guid: 21805e5cd302dc24bb789b8f0a4e6a7e, type: 3}
+  - {fileID: 8300000, guid: 533e8ab4564a0184ca433753d83ae77e, type: 3}
   _soundFall:
   - {fileID: 8300000, guid: 2f0bf632a8645d041954b69e87356e0d, type: 3}
   - {fileID: 8300000, guid: 2510172b646fdd340aa6e0ab10e23f52, type: 3}
