@@ -21,58 +21,76 @@ public class PauseScreen : MonoBehaviour
 
     private void Pause()
     {
-        if(GameManager.Instance.IsPlayerDead) return;
+        GameObject.Find("Canvas").GetComponent<UISound>().Click();
+        
+        if (GameManager.Instance.IsPlayerDead) 
+            return;
         gameObject.SetActive(true);
         Time.timeScale = 1e-10f;
         GameManager.Instance.IsGamePaused = true;
-        
-        GameObject.Find("Canvas").GetComponent<UISound>().Click();
     }
 
     public void ResumeButton()
     {
+        GameObject.Find("Canvas").GetComponent<UISound>().Click();
+        
         gameObject.SetActive(false);
         Time.timeScale = 1f;
         GameManager.Instance.IsGamePaused = false;
-        
-        GameObject.Find("Canvas").GetComponent<UISound>().Click();
     }
 
     public void RestartButton()
     {
+        GameObject.Find("Canvas").GetComponent<UISound>().Click();
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
         GameManager.Instance.IsGamePaused = false;
-        
-        GameObject.Find("Canvas").GetComponent<UISound>().Click();
     }
 
     public void MainMenuButton()
     {
-        SceneManager.LoadScene("MainMenu");
-        
         GameObject.Find("Canvas").GetComponent<UISound>().Click();
+        
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void SaveGame()
     {
-        SaveSystem.SaveGame(GameManager.Instance.Player.GetComponent<PlayerController>());
-        
         GameObject.Find("Canvas").GetComponent<UISound>().Click();
+        
+        SaveSystem.SaveGame(GameManager.Instance.Player.GetComponent<PlayerController>());
     }
 
     public void LoadGame()
     {
-        var savedData = SaveSystem.LoadGame();
+        GameObject.Find("Canvas").GetComponent<UISound>().Click();
         
-        GameManager.Instance.Player.GetComponent<PlayerController>().PlayerHealth = savedData.SavedPlayerHealth;
-
+        var savedData = SaveSystem.LoadGame();
+        //SceneManager.LoadScene(savedData.SavedActiveScene);
+        //Time.timeScale = 1f;
+        
         Vector3 position;
         position.x = savedData.SavedPosition[0];
         position.y = savedData.SavedPosition[1];
         position.z = savedData.SavedPosition[2];
-        transform.position = position;
+        GameManager.Instance.Player.GetComponent<PlayerController>().transform.position = position;
         
-        GameObject.Find("Canvas").GetComponent<UISound>().Click();
+        GameManager.Instance.Player.GetComponent<PlayerController>().PlayerHealth = savedData.SavedPlayerHealth;
+        GameManager.Instance.Player.GetComponent<PlayerController>().PlayerLevel = savedData.SavedPlayerLevel;
+        GameManager.Instance.Player.GetComponent<PlayerController>().PlayerExperience = savedData.SavedPlayerExperience;
+        
+        var weapons = GameManager.Instance.Player.GetComponent<PlayerController>().Weapons;
+        foreach (var weapon in weapons)
+        {
+            if (weapon.GetComponent<Weapon>().WeaponName == "Pistol")
+            {
+                weapon.GetComponent<Weapon>().NumberOfBullets = savedData.SavedPlayerAmmoPistol;
+            }
+            if (weapon.GetComponent<Weapon>().WeaponName == "Shotgun")
+            {
+                weapon.GetComponent<Weapon>().NumberOfBullets = savedData.SavedPlayerAmmoShotgun;
+            }
+        }
     }
 }

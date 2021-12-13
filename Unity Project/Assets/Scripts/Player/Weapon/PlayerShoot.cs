@@ -1,5 +1,6 @@
 using Player;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class PlayerShoot : MonoBehaviour
@@ -8,14 +9,24 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private Weapon activeWeapon;
     [SerializeField] private ParticleSystem _hitSfx;
     [SerializeField] private ParticleSystem _shootSfx;
-
+    private const float _destroySfxTime = 3f;
+    
     protected void Update()
     {
-        if (GameManager.Instance.IsPlayerDead || GameManager.Instance.IsGamePaused) return;
-        
         activeWeapon = GameManager.Instance.Player.GetComponent<PlayerController>().ActiveWeapon;
-        if (Input.GetButtonDown("Fire1") && activeWeapon.MayFire && activeWeapon.BarIsNotEmpty)   //fire
+
+        if (activeWeapon.NumberOfBullets >= activeWeapon.MaxNumberOfBullets)
         {
+            activeWeapon.NumberOfBullets = activeWeapon.MaxNumberOfBullets;
+        }
+        
+        if (GameManager.Instance.IsPlayerDead || GameManager.Instance.IsGamePaused) 
+            return;
+        
+        if (Input.GetButtonDown("Fire1") && activeWeapon.MayFire && activeWeapon.BarIsNotEmpty &&
+            activeWeapon.NumberOfBullets != 0)
+        {
+            activeWeapon.NumberOfBullets--;
             GameManager.Instance.Player.GetComponent<PlayerSound>().Shoot();
 
             switch (activeWeapon.WeaponName)
@@ -23,27 +34,29 @@ public class PlayerShoot : MonoBehaviour
                 case "Pistol":
                     RaycastShoot();
                     break;
-                case "ShotGun":
+                case "Shotgun":
                     ProjectileShoot();
                     break;
             }
 
             activeWeapon.CurrentDelay = activeWeapon.ShootDelay;
-            activeWeapon.CurrentBar -= 1;
+            activeWeapon.CurrentBar--;
 
-            if (activeWeapon.CurrentDelay > 0.01f)
+            if (activeWeapon.CurrentDelay > 0.1f)
             {
                 activeWeapon.MayFire = false;
             }
-            if (activeWeapon.CurrentBar < 0.01f)
+            if (activeWeapon.CurrentBar < 0.1f)
             {
                 activeWeapon.BarIsNotEmpty = false;
             }
         }
+        
         if (!activeWeapon.MayFire)
         {
             PrepareToShoot();
         }
+        
         if (!activeWeapon.BarIsNotEmpty || Input.GetKeyDown(KeyCode.R))
         {
             Reloading();
@@ -56,24 +69,32 @@ public class PlayerShoot : MonoBehaviour
         var ray = new Ray(transform.position, transform.forward);
         Physics.Raycast(ray, out hit);
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.blue, 1f);
-        Destroy(Instantiate(_shootSfx, _spawnPoint.transform.position, _spawnPoint.transform.rotation, _spawnPoint).gameObject, 3f);
+        Destroy(Instantiate(_shootSfx, 
+            _spawnPoint.transform.position, _spawnPoint.transform.rotation).gameObject, _destroySfxTime);
+        
+        var hitEnemy = hit.collider.gameObject.GetComponent<EnemyController>();
         if (hit.collider != null)
         {
-            if (hit.collider.gameObject.GetComponent<EnemyController>() && !hit.collider.gameObject.GetComponent<EnemyController>().IsDead)
+            if (hitEnemy && !hitEnemy.IsDead)
             {
                 Debug.Log("Enemy Hit!");
-                Destroy(Instantiate(hit.collider.gameObject.GetComponent<EnemyController>().BloodSfx, 
-                    hit.collider.gameObject.transform.position, Quaternion.identity).gameObject, 3f);
-                var hitEnemy = hit.collider.gameObject.GetComponent<EnemyController>();
-                var PlayerStatsIncreaseCoeff = GameManager.Instance.Player.GetComponent<PlayerController>().PlayerStatsIncreaseCoeff;
+                
+                Destroy(Instantiate(hitEnemy.BloodSfx, 
+                    hitEnemy.transform.position + new Vector3(0,1,0), 
+                    Quaternion.identity).gameObject, _destroySfxTime);
+                
                 hitEnemy.EnemyHealthBar.Show();
-                hitEnemy.DamageEnemy((int) (Random.Range((int)(0.8 * activeWeapon.Damage),(int)(1.2 * activeWeapon.Damage))
-                                            * PlayerStatsIncreaseCoeff));
+                
+                var playerStatsIncreaseCoeff = 
+                    GameManager.Instance.Player.GetComponent<PlayerController>().PlayerStatsIncreaseCoeff;
+                hitEnemy.DamageEnemy((int)(activeWeapon.Damage * playerStatsIncreaseCoeff 
+                                                               * Random.Range(0.9f, 1.1f)));
             }
             else
             {
                 Debug.Log("Hit " + hit.collider.name);
-                Destroy(Instantiate(_hitSfx, hit.collider.transform.position, Quaternion.identity).gameObject, 3f);
+                Destroy(Instantiate(_hitSfx, 
+                    hit.collider.transform.position, Quaternion.identity).gameObject, _destroySfxTime);
             }
             Debug.DrawLine(ray.origin, hit.point, Color.red,1f);
         }
@@ -81,11 +102,13 @@ public class PlayerShoot : MonoBehaviour
 
     private void ProjectileShoot()
     {
-        var instantiatedProjectile = Instantiate(gameObject.GetComponent<Weapon>().BulletProjectile, _spawnPoint.position, transform.rotation);
-        Destroy(Instantiate(_shootSfx, _spawnPoint.transform.position, _spawnPoint.transform.rotation, _spawnPoint).gameObject, 3f);
-        instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, activeWeapon.BulletSpeed));
-        instantiatedProjectile.GetComponent<Bullet>().Damage = activeWeapon.Damage;
-        instantiatedProjectile.GetComponent<Bullet>().BulletDistance = activeWeapon.Distance;
+        var instantiatedBullet = Instantiate(gameObject.GetComponent<Weapon>().BulletProjectile, 
+            _spawnPoint.position, transform.rotation);
+        Destroy(Instantiate(_shootSfx, 
+            _spawnPoint.transform.position, _spawnPoint.transform.rotation).gameObject, _destroySfxTime);
+        instantiatedBullet.velocity = transform.TransformDirection(new Vector3(0, 0, activeWeapon.BulletSpeed));
+        instantiatedBullet.GetComponent<Bullet>().Damage = activeWeapon.Damage;
+        instantiatedBullet.GetComponent<Bullet>().BulletDistance = activeWeapon.Distance;
     }
     
     private void PrepareToShoot()
@@ -99,11 +122,20 @@ public class PlayerShoot : MonoBehaviour
 
     private void Reloading()
     {
-        var PlayerStatsIncreaseCoeff = GameManager.Instance.Player.GetComponent<PlayerController>().PlayerStatsIncreaseCoeff;
-        activeWeapon.CurrentBar += Time.deltaTime / activeWeapon.ReloadDelay * PlayerStatsIncreaseCoeff;
+        if (activeWeapon.NumberOfBullets == 0)
+            return;
+
+        var playerStatsIncreaseCoeff = 
+            GameManager.Instance.Player.GetComponent<PlayerController>().PlayerStatsIncreaseCoeff;
+        
+        activeWeapon.CurrentBar += Time.deltaTime / activeWeapon.ReloadDelay * playerStatsIncreaseCoeff;
+        GameObject.Find("Canvas/WeaponHUD").GetComponent<PlayerWeaponHUD>().GunIcon.GetComponent<Image>().color = 
+            Color.red;
         activeWeapon.BarIsNotEmpty = false;
         if (activeWeapon.CurrentBar >= activeWeapon.BarCapacity)
         {
+            GameObject.Find("Canvas/WeaponHUD").GetComponent<PlayerWeaponHUD>().GunIcon.GetComponent<Image>().color = 
+                Color.white;
             activeWeapon.BarIsNotEmpty = true;
         }
     }

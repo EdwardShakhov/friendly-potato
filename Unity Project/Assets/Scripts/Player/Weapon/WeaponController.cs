@@ -5,8 +5,6 @@ public class WeaponController : MonoBehaviour
 {
     [SerializeField] private int _selectedWeapon;
 
-    public int SelectedWeapon => _selectedWeapon;
-
     protected void Start()
     {
         SelectWeapon();
@@ -14,7 +12,8 @@ public class WeaponController : MonoBehaviour
 
     protected void Update()
     {
-        if (GameManager.Instance.IsPlayerDead || GameManager.Instance.IsGamePaused) return;
+        if (GameManager.Instance.IsPlayerDead || GameManager.Instance.IsGamePaused) 
+            return;
         
         var previousSelectedWeapon = _selectedWeapon;
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
@@ -47,7 +46,9 @@ public class WeaponController : MonoBehaviour
 
     private void SelectWeapon ()
     {
-        if(!GameManager.Instance.Player.GetComponent<PlayerController>().ActiveWeapon.BarIsNotEmpty) return;
+        if(!GameManager.Instance.Player.GetComponent<PlayerController>().ActiveWeapon.BarIsNotEmpty 
+           && GameManager.Instance.Player.GetComponent<PlayerController>().ActiveWeapon.NumberOfBullets != 0) 
+            return;
         
         var playerController = GameManager.Instance.Player.GetComponent<PlayerController>();
         

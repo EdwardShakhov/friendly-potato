@@ -24,7 +24,7 @@ using UnityEngine.UI;
         public void Show()
         {
             gameObject.SetActive(true);
-            Invoke(nameof(Hide), 4f);
+            Invoke(nameof(Hide), 2f);
         }
 
         public void Hide()

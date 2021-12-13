@@ -19,31 +19,43 @@ public class GameManager : MonoBehaviour
     [Header("Game State")]
     [SerializeField] private bool _isGamePaused;
     [SerializeField] private bool _isPlayerDead;
-
-    [Header("Level Essentials")]
-    [SerializeField] private int _currentNumberOfEnemiesOnMap;
-    [SerializeField] private int _maximumNumberOfEnemies = 50;
-    [SerializeField] private int _enemySpawnTime = 1;
-    [SerializeField] private int _mapSize = 90;
-
-    [Header("Instantiated Objects")]
-    [SerializeField] private GameObject _player;
-    [SerializeField] private GameObject _spawnEnemies;
-    private List<GameObject> Enemies; //[SerializeField]
-
-    [Header("Prefabs")]
-    [SerializeField] private GameObject _playerPrefab;
-    [SerializeField] private GameObject _spawnEnemiesPrefab;
-
+    
     [Header("UI")]
     [SerializeField] private PlayerHealthBar _playerHealthBar;
     [SerializeField] private PlayerAmmoBar _playerAmmoBar;
     [SerializeField] private PlayerExperienceBar _playerExperienceBar;
     [SerializeField] private PlayerWeaponHUD _playerWeaponHUD;
-    [SerializeField] private GameOverScreen _gameOverScreen;
     [SerializeField] private PauseScreen _pauseScreen;
+    [SerializeField] private GameOverScreen _gameOverScreen;
+    private const int _showGameOverScreenDelay = 5;
     
-    //getters/setters
+    [Header("Prefabs")]
+    [SerializeField] private GameObject _playerPrefab;
+    [SerializeField] private GameObject _spawnEnemiesPrefab;
+    [SerializeField] private GameObject _healthKit;
+    [SerializeField] private GameObject _ammoPistolKit;
+    [SerializeField] private GameObject _ammoShotgunKit;
+
+    [Header("Instantiated Objects")]
+    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _spawnEnemies;
+    [SerializeField] private GameObject _key;
+    private List<GameObject> Enemies;
+    
+    [Header("Level Essentials")]
+    [SerializeField] private int _mapSize = 90;
+    [SerializeField] private int _lootInstantiationTime = 15;
+    [SerializeField] private GameObject _keyPrefab;
+    
+    [Header("Level Enemies")]
+    [SerializeField] private int _maximumNumberOfZombies = 25;
+    [SerializeField] private int _maximumNumberOfSpiders = 25;
+    [SerializeField] private int _zombieSpawnTime = 1;
+    [SerializeField] private int _spiderSpawnTime = 1;
+    [SerializeField] private int currentNumberOfZombies;
+    [SerializeField] private int currentNumberOfSpiders;
+    [SerializeField] private int currentTotalNumberOfEnemies;
+    
     public bool IsGamePaused
     {
         get => _isGamePaused;
@@ -54,18 +66,35 @@ public class GameManager : MonoBehaviour
         get => _isPlayerDead;
         set => _isPlayerDead = value;
     }
-    public int CurrentNumberOfEnemiesOnMap
-    {
-        get => _currentNumberOfEnemiesOnMap;
-        set => _currentNumberOfEnemiesOnMap = value;
-    }
-    public int MaximumNumberOfEnemies => _maximumNumberOfEnemies;
-    public int EnemySpawnTime => _enemySpawnTime;
-    public int MapSize => _mapSize;
-    public GameObject Player => _player;
     public PlayerAmmoBar PlayerAmmoBar => _playerAmmoBar;
     public PlayerWeaponHUD PlayerWeaponHUD => _playerWeaponHUD;
-    //getters/setters end
+    public GameObject HealthKit => _healthKit;
+    public GameObject AmmoPistolKit => _ammoPistolKit;
+    public GameObject AmmoShotgunKit => _ammoShotgunKit;
+    public GameObject Player => _player;
+    public GameObject Key => _key;
+    public int MapSize => _mapSize;
+    public int LootInstantiationTime => _lootInstantiationTime;
+    public int CurrentNumberOfZombies
+    {
+        get => currentNumberOfZombies;
+        set => currentNumberOfZombies = value;
+    }
+    public int MaximumNumberOfZombies => _maximumNumberOfZombies;
+    public int ZombieSpawnTime => _zombieSpawnTime;
+    public int CurrentNumberOfSpiders
+    {
+        get => currentNumberOfSpiders;
+        set => currentNumberOfSpiders = value;
+    }
+    public int MaximumNumberOfSpiders => _maximumNumberOfSpiders;
+    public int SpiderSpawnTime => _spiderSpawnTime;
+    public int CurrentTotalNumberOfEnemies
+    {
+        get => currentTotalNumberOfEnemies;
+        set => currentTotalNumberOfEnemies = value;
+    }
+    
     
     protected void Awake()
     {
@@ -90,7 +119,8 @@ public class GameManager : MonoBehaviour
     {
         _player = Instantiate(_playerPrefab);
         _spawnEnemies = Instantiate(_spawnEnemiesPrefab);
-        _playerHealthBar.Show(); //объединить - Hud.Show();
+        _key = Instantiate(_keyPrefab, new Vector3(83f,1f,-2f), Quaternion.identity);
+        _playerHealthBar.Show();
         _playerAmmoBar.Show();
         _playerExperienceBar.Show();
         _isPlayerDead = false;
@@ -111,7 +141,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         _isPlayerDead = true;
-        Invoke(nameof(GameOverScreenSetActive), 5f);
+        Invoke(nameof(GameOverScreenSetActive), _showGameOverScreenDelay);
     }
 
     public void GameOverScreenSetActive()

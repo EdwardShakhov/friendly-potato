@@ -3,7 +3,6 @@
 public class UISound : MonoBehaviour
 {
     [SerializeField] private AudioClip[] _soundClick;
-
     private AudioSource _audioSource;
 
     private void Awake()

@@ -6,6 +6,8 @@ public class PlayerSound : MonoBehaviour
     [SerializeField] private AudioClip[] _soundFire;
     [SerializeField] private AudioClip[] _soundHit;
     [SerializeField] private AudioClip[] _soundFall;
+    [SerializeField] private AudioClip[] _soundLoot;
+    [SerializeField] private AudioClip[] _soundLevelUp;
 
     private AudioSource _audioSource;
 
@@ -14,8 +16,8 @@ public class PlayerSound : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void Footstep() 
-        //triggering by animation event
+    //triggering by animation event
+    public void Footstep()
     {
         var clip = GetRandomStep();
         _audioSource.PlayOneShot(clip);
@@ -33,10 +35,22 @@ public class PlayerSound : MonoBehaviour
         _audioSource.PlayOneShot(clip);
     }
     
+    //triggering by animation event
     public void Fall()
-        //triggering by animation event
     {
         var clip = GetRandomFall();
+        _audioSource.PlayOneShot(clip);
+    }
+    
+    public void Loot()
+    {
+        var clip = GetRandomLoot();
+        _audioSource.PlayOneShot(clip);
+    }
+    
+    public void LevelUp()
+    {
+        var clip = GetRandomLevelUp();
         _audioSource.PlayOneShot(clip);
     }
 
@@ -58,5 +72,15 @@ public class PlayerSound : MonoBehaviour
     private AudioClip GetRandomFall()
     {
         return _soundFall[Random.Range(0, _soundFall.Length)];
+    }
+    
+    private AudioClip GetRandomLoot()
+    {
+        return _soundLoot[Random.Range(0, _soundLoot.Length)];
+    }
+    
+    private AudioClip GetRandomLevelUp()
+    {
+        return _soundLevelUp[Random.Range(0, _soundLevelUp.Length)];
     }
 }
